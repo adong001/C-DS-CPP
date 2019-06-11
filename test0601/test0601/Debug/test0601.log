@@ -1,0 +1,22 @@
+﻿生成启动时间为 2019/6/1 18:30:40。
+     1>项目“C:\Users\杨冬\documents\visual studio 2013\Projects\test0601\test0601\test0601.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\c语言\VS2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt main.c
+         main.c
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test0601\test0601\main.c(78): warning C4047: “函数”:“MailList *”与“MailList **”的间接级别不同
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test0601\test0601\main.c(78): warning C4024: “InCapacity”: 形参和实参 1 的类型不同
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test0601\test0601\main.c(119): warning C4047: “函数”:“MailList *”与“MailList **”的间接级别不同
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test0601\test0601\main.c(119): warning C4024: “Is_empty”: 形参和实参 1 的类型不同
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test0601\test0601\main.c(238): warning C4101: “c”: 未引用的局部变量
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test0601\test0601\main.c(200): warning C4716: “main1”: 必须返回一个值
+         D:\c语言\VS2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt test.txt
+         test.txt
+       Link:
+         D:\c语言\VS2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\杨冬\documents\visual studio 2013\Projects\test0601\Debug\test0601.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\杨冬\documents\visual studio 2013\Projects\test0601\Debug\test0601.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\杨冬\documents\visual studio 2013\Projects\test0601\Debug\test0601.lib" /MACHINE:X86 Debug\main.obj
+         Debug\test.obj
+         test0601.vcxproj -> C:\Users\杨冬\documents\visual studio 2013\Projects\test0601\Debug\test0601.exe
+     1>已完成生成项目“C:\Users\杨冬\documents\visual studio 2013\Projects\test0601\test0601\test0601.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.82

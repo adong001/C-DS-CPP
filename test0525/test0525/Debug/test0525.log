@@ -1,0 +1,10 @@
+﻿生成启动时间为 2019/5/29 21:00:55。
+     1>项目“C:\Users\杨冬\documents\visual studio 2013\Projects\test0525\test0525\test0525.vcxproj”在节点 2 上(Build 个目标)。
+     1>Link:
+         D:\c语言\VS2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\杨冬\Documents\Visual Studio 2013\Projects\test0525\Debug\test0525.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\杨冬\Documents\Visual Studio 2013\Projects\test0525\Debug\test0525.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\杨冬\Documents\Visual Studio 2013\Projects\test0525\Debug\test0525.lib" /MACHINE:X86 Debug\main.obj
+     1>LINK : fatal error LNK1561: 必须定义入口点
+     1>已完成生成项目“C:\Users\杨冬\documents\visual studio 2013\Projects\test0525\test0525\test0525.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:00.20

@@ -1,0 +1,16 @@
+﻿生成启动时间为 2019/6/9 21:34:49。
+     1>项目“C:\Users\杨冬\Documents\Visual Studio 2013\Projects\test\test\test0604\test0604\test0604.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\c语言\VS2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt main.c
+         main.c
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test\test0604\test0604\main.c(32): warning C4090: “初始化”: 不同的“const”限定符
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test\test0604\test0604\main.c(33): warning C4090: “初始化”: 不同的“const”限定符
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test\test0604\test0604\main.c(70): warning C4090: “return”: 不同的“const”限定符
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test\test0604\test0604\main.c(235): error C3872: “0xa0”:  此字符不允许在标识符中使用
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test\test0604\test0604\main.c(236): error C2065: “ ”: 未声明的标识符
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test\test0604\test0604\main.c(236): error C2143: 语法错误 : 缺少“;”(在“return”的前面)
+     1>已完成生成项目“C:\Users\杨冬\Documents\Visual Studio 2013\Projects\test\test\test0604\test0604\test0604.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:00.26
