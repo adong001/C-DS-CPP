@@ -1,0 +1,18 @@
+﻿生成启动时间为 2019/6/22 17:52:53。
+     1>项目“c:\Users\杨冬\documents\visual studio 2013\Projects\DS_test0622(链表)\DS_test0622(链表)\DS_test0622(链表).vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\c语言\VS2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt Node.c
+         Node.c
+     1>c:\users\杨冬\documents\visual studio 2013\projects\ds_test0622(链表)\ds_test0622(链表)\node.c(20): warning C4133: “=”: 从“SListNode *”到“SList *”的类型不兼容
+     1>c:\users\杨冬\documents\visual studio 2013\projects\ds_test0622(链表)\ds_test0622(链表)\node.c(22): warning C4133: “=”: 从“SList *”到“SListNode *”的类型不兼容
+     1>c:\users\杨冬\documents\visual studio 2013\projects\ds_test0622(链表)\ds_test0622(链表)\node.c(48): warning C4133: “=”: 从“SListNode *”到“SList *”的类型不兼容
+     1>c:\users\杨冬\documents\visual studio 2013\projects\ds_test0622(链表)\ds_test0622(链表)\node.c(50): warning C4133: “=”: 从“SList *”到“SListNode *”的类型不兼容
+       Link:
+         D:\c语言\VS2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"c:\users\杨冬\documents\visual studio 2013\Projects\DS_test0622(链表)\Debug\DS_test0622(链表).exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"c:\users\杨冬\documents\visual studio 2013\Projects\DS_test0622(链表)\Debug\DS_test0622(链表).pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"c:\users\杨冬\documents\visual studio 2013\Projects\DS_test0622(链表)\Debug\DS_test0622(链表).lib" /MACHINE:X86 Debug\main.obj
+         Debug\Node.obj
+         DS_test0622(链表).vcxproj -> c:\users\杨冬\documents\visual studio 2013\Projects\DS_test0622(链表)\Debug\DS_test0622(链表).exe
+     1>已完成生成项目“c:\Users\杨冬\documents\visual studio 2013\Projects\DS_test0622(链表)\DS_test0622(链表)\DS_test0622(链表).vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.31
