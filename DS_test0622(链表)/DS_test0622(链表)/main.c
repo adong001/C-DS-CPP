@@ -6,7 +6,7 @@
 #include<assert.h>
 void TestSList()
 {
-	SList test;
+	SList test,list;
 	SListNode *n;
 	SListInit(&test);
 	SListPushFront(&test, 4);
@@ -14,15 +14,25 @@ void TestSList()
 	SListPushFront(&test, 5);
 	SListPushFront(&test, 3);
 	SListPushFront(&test, 9);
+	test._head->_next->_next->_next->_next = test._head->_next;
+	//SListInit(&list);
+	//SListPushFront(&test, 2);
+	//SListPushFront(&test, 1);
+	//SListPushFront(&test, 7);
+	//SListPushFront(&test, 8);
    /* n=SListFind(&test, 5);
 	printf("%d\n", n->_data);*/
 	//SListInsertAfter(test._head, 100);
 	/*SListInsertAfter(test._head->_next, 111);
 	SListInsertAfter(test._head->_next, 112);*/
-	SListRemove(&test, 1);
+	//SListRemove(&test, 1);
+	//SListReverse(&test);
+	//n=SListIntersect(&test, &list);
 	// 在pos的前面进行插入
 	// SListEraseAfter(test._head ->_next);
-	SListPrint(&test);
+	int p=SListHasCycle(&test);
+	printf("%d\n", p);
+	//SListPrint(&test);
 }
 int main()
 {

@@ -129,4 +129,136 @@ void SListPrint(SList* plist)
 	putchar('\n');
 }
 
+#if 0
+void SListReverse(SList *plist)
+{
+	assert(plist != NULL);
+	SListNode *tmp = plist->_head->_next;
+	SListNode *cur = plist->_head;
+	while (tmp != NULL)
+	{
+		cur->_next = tmp->_next;
+		tmp->_next = plist->_head;
+		plist->_head = tmp;
+		tmp = cur->_next;
+	}
+}
+#else
+
+void SListReverse(SList *plist)
+{
+	assert(plist != NULL);
+	SListNode *tmp = plist->_head->_next;
+	SListNode *cur = plist->_head;
+	//SListNode *newhead = cur;
+	cur->_next = NULL;
+	while (tmp != NULL)
+	{
+		plist->_head = tmp;
+		tmp = tmp->_next;
+		plist->_head->_next = cur;
+		cur = plist->_head;
+	}
+	/*while(tmp != NULL)
+	{
+		newhead = tmp;
+		tmp = tmp->_next;
+		newhead->_next = cur;
+		cur = cur->_next;
+	}
+	plist->_head->_next = NULL;
+	plist->_head = newhead;*/
+}
+#endif
+int SListSize(SList *plist) //求链表节点个数
+{
+	int count = 0;
+	SListNode *tmp = plist->_head;
+	assert(plist != NULL);
+	while (tmp != NULL)
+	{
+		count++;
+		tmp = tmp->_next;
+	}
+	return count;
+}
+
+SListNode* SListIntersect(SList *plistA, SList *plistB)//找到两个链表相交的第一个节点返回(链表无环)
+{
+	int lenA = 0;
+	int lenB = 0;
+	int i;
+	int gap;
+	SListNode* headlong = plistA->_head;
+	SListNode* headshort = plistB->_head;
+	lenA = SListSize(&plistA);//分别求两个链表节点长度
+	lenB = SListSize(&plistB);
+	gap = lenA - lenB;
+	if (gap < 0)
+	{
+		gap *= -1;
+		headlong = plistB->_head;
+		headshort = plistA->_head;
+	}
+	for (i = 0; i < gap; i++)
+	{
+		headlong = headlong->_next;
+	}
+	for (; headlong != NULL; headlong = headlong->_next, headshort = headshort->_next)
+	{
+		if (headlong == headshort)
+		{
+			return headlong;
+		}
+	}
+	return NULL;
+}
+
+int SListHasCycle(SList *plist)
+{
+	SListNode* fast = plist->_head;
+	SListNode* slow = plist->_head;
+	while (slow && fast && fast->_next)
+	{
+		slow = slow->_next;
+		fast = fast->_next->_next;
+		if (slow == fast)
+		{
+			return 1;
+		}
+	}
+	return 0;
+}
+SList* SListGetHasCycle(SList *plist)
+{
+	SListNode* fast = plist->_head;
+	SListNode* slow = plist->_head;
+	while (slow && fast && fast->_next)
+	{
+		slow = slow->_next;
+		fast = fast->_next->_next;
+		if (slow == fast)
+		{
+			return slow;
+		}
+	}
+	return NULL;
+}
+SListNode *SListDelectCycle(SList* plist)
+{
+	SListNode * cur = plist->_head;
+	SListNode *tmp = SListGetHasCycle(&plist);
+	if (tmp == NULL)
+	{
+		return NULL;
+	}
+	for (; cur != NULL; cur = cur->_next ,tmp =tmp->_next)
+	{
+		if (cur == tmp)
+		{
+			return cur;
+		}
+	}
+
+}
 void TestSList();
