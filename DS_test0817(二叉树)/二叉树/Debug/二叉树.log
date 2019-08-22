@@ -1,0 +1,23 @@
+﻿生成启动时间为 2019/8/22 14:33:31。
+     1>项目“C:\Users\杨冬\Documents\Visual Studio 2013\Projects\二叉树\二叉树\二叉树.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\c语言\VS2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /FR"Debug\\" /Gd /TC /analyze- /errorReport:prompt BTree.c
+         BTree.c
+     1>c:\users\杨冬\documents\visual studio 2013\projects\二叉树\二叉树\btree.c(207): warning C4047: “函数”:“DataType”与“BTDataType”的间接级别不同
+     1>c:\users\杨冬\documents\visual studio 2013\projects\二叉树\二叉树\btree.c(207): warning C4024: “dequeuePush”: 形参和实参 2 的类型不同
+     1>c:\users\杨冬\documents\visual studio 2013\projects\二叉树\二叉树\btree.c(210): warning C4013: “dequeueTop”未定义；假设外部返回 int
+     1>c:\users\杨冬\documents\visual studio 2013\projects\二叉树\二叉树\btree.c(210): warning C4047: “=”:“BTNode *”与“int”的间接级别不同
+     1>c:\users\杨冬\documents\visual studio 2013\projects\二叉树\二叉树\btree.c(235): warning C4047: “=”:“BTNode *”与“int”的间接级别不同
+       Link:
+         D:\c语言\VS2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\杨冬\Documents\Visual Studio 2013\Projects\二叉树\Debug\二叉树.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\杨冬\Documents\Visual Studio 2013\Projects\二叉树\Debug\二叉树.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\杨冬\Documents\Visual Studio 2013\Projects\二叉树\Debug\二叉树.lib" /MACHINE:X86 Debug\BTree.obj
+         Debug\main.obj
+         Debug\Queue.obj
+         Debug\Stack.obj
+         二叉树.vcxproj -> C:\Users\杨冬\Documents\Visual Studio 2013\Projects\二叉树\Debug\二叉树.exe
+       BscMake:
+         D:\c语言\VS2013\VC\bin\bscmake.exe /nologo /o"C:\Users\杨冬\Documents\Visual Studio 2013\Projects\二叉树\Debug\二叉树.bsc" /n Debug\BTree.sbr Debug\main.sbr Debug\Queue.sbr Debug\Stack.sbr
+     1>已完成生成项目“C:\Users\杨冬\Documents\Visual Studio 2013\Projects\二叉树\二叉树\二叉树.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.14
