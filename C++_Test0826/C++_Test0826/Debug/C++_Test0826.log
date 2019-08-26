@@ -1,0 +1,15 @@
+﻿生成启动时间为 2019/8/26 12:25:57。
+     1>项目“c:\Users\杨冬\Documents\Visual Studio 2013\Projects\C++_Test0826\C++_Test0826\C++_Test0826.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\c语言\VS2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>c:\users\杨冬\documents\visual studio 2013\projects\c++_test0826\c++_test0826\main.cpp(33): warning C4244: “初始化”: 从“double”转换到“const int”，可能丢失数据
+     1>c:\users\杨冬\documents\visual studio 2013\projects\c++_test0826\c++_test0826\main.cpp(39): warning C4172: 返回局部变量或临时变量的地址
+       Link:
+         D:\c语言\VS2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"c:\Users\杨冬\Documents\Visual Studio 2013\Projects\C++_Test0826\Debug\C++_Test0826.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"c:\Users\杨冬\Documents\Visual Studio 2013\Projects\C++_Test0826\Debug\C++_Test0826.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"c:\Users\杨冬\Documents\Visual Studio 2013\Projects\C++_Test0826\Debug\C++_Test0826.lib" /MACHINE:X86 Debug\main.obj
+         C++_Test0826.vcxproj -> c:\Users\杨冬\Documents\Visual Studio 2013\Projects\C++_Test0826\Debug\C++_Test0826.exe
+     1>已完成生成项目“c:\Users\杨冬\Documents\Visual Studio 2013\Projects\C++_Test0826\C++_Test0826\C++_Test0826.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.89
