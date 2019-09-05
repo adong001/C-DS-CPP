@@ -2,9 +2,8 @@
 #include<iostream>
 #include<cstdio>
 #include<cstdlib>
+#include<cstring>
 using namespace std;
-
-
 //二、某老板想要一个能快速计算订单价格的程序，请你帮他设计一个类：
 //1、这个类里需要原价和数量，原价从一个数组中读出即可（自行定义数组），数量需要初始化。
 //2、老板会不定期调整价格，调整的方式是通过调整一个价格系数，这个系数乘以原价即为最终价格，
@@ -12,18 +11,18 @@ using namespace std;
 class Goods
 {
 private:
-	static double m_discount;//折扣
-	static int m_kinds;//商品种类
+	static double s_discount;//折扣
+	static int s_kinds;//商品种类
+	static Goods *s_point;//第一个成员的地址
+	char m_name[20];//商品名称
 	double m_price;//单价
 	int m_amount;//数量
-	static void Purchase();//打折
-	static void ShowMenu 
-public:
-	Goods(float price = 0, int amount = 0);
-	void Discount(int discount);
-	
-
+public:	
+	static void Purchase(Goods *);//打折
+	static void ShowGoods(Goods *);//显示所有商品信息
+	static void PushGoods();//进货
+	void GoodsSet(char *name , double price, int amount);
+	static Goods* ReturnAdr();
 };
-int Goods::m_kinds = 0;
-double Goods::m_discount = 1;
 void BossMenu();
+

@@ -1,1 +1,1 @@
-#include"mahjong.h"
+//#include"mahjong.h"
