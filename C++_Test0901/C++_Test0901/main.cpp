@@ -60,10 +60,10 @@ int main()
 	//int *j = (int*)&i;
 	//*j = 1;
 	//printf("%d,%d ,%d\n", i,&i, *j);
-	/*Data d1(2018,11,19,43);*/
-	BossMenu();
-
-	
+	//Data d1(2018,11,19,10);
+	Data d(2019, 9, 7);
+	cout << (d + 14599000000);
+	//BossMenu();
 	system("pause");
 	return 0;
 }
