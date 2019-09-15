@@ -45,12 +45,24 @@ int main()
 
 	string s1;
 	string s2("Student");
-	cout << s2.substr() << endl;
+	//cout << s2.substr() << endl;
 	//cout << s2.substr(20, 5) << endl;
 	//cout << s2.substr(-1, 5) << endl;
-	cout << s2.substr(2, -1) << endl;
+	//cout << s2.substr(2, -1) << endl;
 	//cout << s2.substr(-2, 10) << endl;
 
+	cout << s2.find("ud");
+	cout << s2.find(s1);
+	char str[1000] = { 0 };
+	scanf("%d[0-9]",str);//限定输入（正则表达式）
+	scanf("%d[^\n]", str);
+	scanf("%d[a-z]", str);
+	fgets(str, 1000, stdin);
+	
+	cin.getline(str, 10);
+
+	getline(cin, s1);
+	cout << s1;
 	//cout << s2.rfind('e') << endl;
 	//cout << s2.rfind('e',2) << endl;
 	//cout << s2.rfind('a') << endl;
