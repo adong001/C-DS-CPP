@@ -18,12 +18,12 @@
     <ClCompile Include="main.cpp">
       <Filter>资源文件</Filter>
     </ClCompile>
-    <ClCompile Include="string.cpp">
+    <ClCompile Include="String.cpp">
       <Filter>资源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="string.h">
+    <ClInclude Include="String.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

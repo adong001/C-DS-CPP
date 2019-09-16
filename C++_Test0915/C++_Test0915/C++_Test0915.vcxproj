@@ -44,7 +44,9 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>WIN32_CRT_SECURE_NO_WARNINGS</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>_CRT_SECURE_NO_WARNINGS</AdditionalIncludeDirectories>
+      <AdditionalUsingDirectories>_CRT_SECURE_NO_WARNINGS</AdditionalUsingDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -66,10 +68,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="string.cpp" />
+    <ClCompile Include="String.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="string.h" />
+    <ClInclude Include="String.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
