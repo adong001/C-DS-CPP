@@ -5,6 +5,7 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #define CAPACITY 16
 using namespace std;
+typedef char * Iterator;
 class String
 {
 private:
@@ -17,6 +18,7 @@ public:
 	String(const String &s);
 	String(size_t n, char ch);
 	~String();
+	size_t length();
 	size_t size();
 	size_t capacity();
 	void ReCapacity(size_t size);
@@ -25,9 +27,8 @@ public:
 	void resize(size_t n,char ch = ' ');
 	bool empty();
 	void clear();
-	typedef char * iterator;
-	iterator Begin();
-	iterator End();
+	Iterator Begin();
+	Iterator End();
 	void push_back(char ch);
 	void pop_back();
 	char operator [](int pos);
@@ -38,6 +39,27 @@ public:
 	String& operator +=(char ch);
 	String& operator +=(const char* str);
 	String& operator +=(const String& s);
+	String operator + (const char * str) const;
+	String operator + (const String &s) const;
+	friend String operator +(const char * str, const String &s);
+	bool operator >  (const char * str) const;
+	bool operator <  (const char * str) const;
+	bool operator >= (const char * str) const;
+	bool operator <= (const char * str) const;
+	bool operator == (const char * str) const;
+	bool operator != (const char * str) const;
+	bool operator >  (const String &s) const;
+	bool operator <  (const String &s) const;
+	bool operator >= (const String &s) const;
+	bool operator <= (const String &s) const;
+	bool operator == (const String &s) const;
+	bool operator != (const String &s) const;
+	friend bool operator >  (const char * str, const String &s);
+	friend bool operator <  (const char * str, const String &s);
+	friend bool operator >= (const char * str, const String &s);
+	friend bool operator <= (const char * str, const String &s);
+	friend bool operator == (const char * str, const String &s);
+	friend bool operator != (const char * str, const String &s);
 	String& append(size_t n, char ch);
 	String& append(const char* str);
 	String& append(const String& s);
