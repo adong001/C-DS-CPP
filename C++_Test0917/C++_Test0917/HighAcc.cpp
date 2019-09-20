@@ -4,13 +4,20 @@ HighAcc::HighAcc(string& s)
 {
 	m_size = s.size();
 	m_data = new char[m_size];
-	string::reverse_iterator i;
+    string::reverse_iterator i;
 	int j;
+	
 	for (j = 0,i = s.rbegin(); i !=s.rend(); i++,j++)
 	{
+		cout << *i << endl;
 		m_data[j] = *i - '0';
+		cout << m_data[j]<< endl;
 	}
-}
+	/*for (auto &i = s.end(); i != s.begin(); i--, j++)
+	{
+		m_data[j] = *i - '0';
+	}*/
+} 
 //HighAcc HighAcc::operator *(HighAcc& H)
 //{
 //
@@ -23,7 +30,7 @@ HighAcc HighAcc::operator +(HighAcc& H)
 	//DealData();
 	//H.DealData();
 	int MaxSize = m_size > H.m_size ? m_size : H.m_size;
-	sum.m_size = MaxSize + sum.m_data[MaxSize];
+	sum.m_size = MaxSize + 1;
 	sum.m_data = new char[sum.m_size];
 	for (i = 0; i < MaxSize; i++)
 	{
@@ -31,7 +38,7 @@ HighAcc HighAcc::operator +(HighAcc& H)
 		sum.m_data[i] = tmp % 10;
 		sum.m_data[i] = tmp / 10;
 	}
-	sum.m_size = MaxSize + sum.m_data[MaxSize];
+	sum.m_size -= !sum.m_data[MaxSize];
 	return sum;
 }
 
@@ -76,7 +83,7 @@ HighAcc::operator string()
 	string s;
 	for (i = m_size - 1; i >= 0; i++)
 	{
-		s.push_back(m_data[i]+'0');
+		s.push_back(m_data[i] + '0');
 	}
 	return s;
 }

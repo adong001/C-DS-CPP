@@ -14,7 +14,7 @@ public:
 	HighAcc() :
 		m_size(1)
 	{
-		 
+		m_data[m_size-1] = 0;
 	}
 	HighAcc(string& s);
 	HighAcc operator *(HighAcc& H);
