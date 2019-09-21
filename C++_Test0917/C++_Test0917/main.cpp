@@ -8,7 +8,7 @@ int main()
 	cin >> s2;
 	HighAcc a(s1);
 	HighAcc b(s2);
-	cout << (string)(a + b);
+	cout << (string)(a * b);
     system("pause");
     return 0;
 }

@@ -8,13 +8,13 @@ using namespace std;
 class HighAcc
 {
 private:
-	char *m_data;
+	char m_data[NUMSIZE];
 	int m_size;
 public:
 	HighAcc() :
 		m_size(1)
 	{
-		m_data[m_size-1] = 0;
+		memset(m_data, 0, NUMSIZE);
 	}
 	HighAcc(string& s);
 	HighAcc operator *(HighAcc& H);
