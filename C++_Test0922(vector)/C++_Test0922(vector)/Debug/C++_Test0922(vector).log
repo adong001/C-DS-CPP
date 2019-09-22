@@ -1,0 +1,27 @@
+﻿生成启动时间为 2019/9/22 17:12:35。
+     1>项目“c:\Users\杨冬\documents\visual studio 2013\Projects\C++_Test0922(vector)\C++_Test0922(vector)\C++_Test0922(vector).vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\c语言\VS2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp Vector.cpp
+         Vector.cpp
+     1>c:\users\杨冬\documents\visual studio 2013\projects\c++_test0922(vector)\c++_test0922(vector)\vector.h(40): error C2535: “const T *Bit::Vector<T>::c_begin(void)”: 已经定义或声明成员函数
+                 c:\users\杨冬\documents\visual studio 2013\projects\c++_test0922(vector)\c++_test0922(vector)\vector.h(39) : 参见“Bit::Vector<T>::c_begin”的声明
+                 c:\users\杨冬\documents\visual studio 2013\projects\c++_test0922(vector)\c++_test0922(vector)\vector.h(42): 参见对正在编译的类 模板 实例化“Bit::Vector<T>”的引用
+     1>c:\users\杨冬\documents\visual studio 2013\projects\c++_test0922(vector)\c++_test0922(vector)\vector.cpp(3): error C2065: “T”: 未声明的标识符
+     1>c:\users\杨冬\documents\visual studio 2013\projects\c++_test0922(vector)\c++_test0922(vector)\vector.cpp(3): error C2923: “Bit::Vector”: 对于参数“T”，“T”不是有效的 模板 类型变量
+     1>c:\users\杨冬\documents\visual studio 2013\projects\c++_test0922(vector)\c++_test0922(vector)\vector.cpp(3): error C2955: “Bit::Vector”: 使用 类 模板 需要 模板 参数列表
+                 c:\users\杨冬\documents\visual studio 2013\projects\c++_test0922(vector)\c++_test0922(vector)\vector.h(10) : 参见“Bit::Vector”的声明
+     1>c:\users\杨冬\documents\visual studio 2013\projects\c++_test0922(vector)\c++_test0922(vector)\vector.cpp(3): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>c:\users\杨冬\documents\visual studio 2013\projects\c++_test0922(vector)\c++_test0922(vector)\vector.cpp(3): error C2143: 语法错误 : 缺少“,”(在“&”的前面)
+     1>c:\users\杨冬\documents\visual studio 2013\projects\c++_test0922(vector)\c++_test0922(vector)\vector.cpp(4): error C2509: “{ctor}”: 成员函数没有在“Bit::Vector”中声明
+                 c:\users\杨冬\documents\visual studio 2013\projects\c++_test0922(vector)\c++_test0922(vector)\vector.h(10) : 参见“Bit::Vector”的声明
+     1>c:\users\杨冬\documents\visual studio 2013\projects\c++_test0922(vector)\c++_test0922(vector)\vector.cpp(4): fatal error C1903: 无法从以前的错误中恢复；正在停止编译
+         main.cpp
+     1>c:\users\杨冬\documents\visual studio 2013\projects\c++_test0922(vector)\c++_test0922(vector)\vector.h(40): error C2535: “const T *Bit::Vector<T>::c_begin(void)”: 已经定义或声明成员函数
+                 c:\users\杨冬\documents\visual studio 2013\projects\c++_test0922(vector)\c++_test0922(vector)\vector.h(39) : 参见“Bit::Vector<T>::c_begin”的声明
+                 c:\users\杨冬\documents\visual studio 2013\projects\c++_test0922(vector)\c++_test0922(vector)\vector.h(42): 参见对正在编译的类 模板 实例化“Bit::Vector<T>”的引用
+         正在生成代码...
+     1>已完成生成项目“c:\Users\杨冬\documents\visual studio 2013\Projects\C++_Test0922(vector)\C++_Test0922(vector)\C++_Test0922(vector).vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:01.44
