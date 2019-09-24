@@ -8,7 +8,7 @@ using namespace std;
 //例如输入一个长度为9的数组{ 1, 2, 3, 2, 2, 2, 5, 4, 2 }。
 //由于数字2在数组中出现了5次，超过数组长度的一半，
 //因此输出2。如果不存在则输出0。
-int MoreThanHalfNum_Solution1(vector<int>& numbers)
+int MoreThanHalfNum_Solution1(vector<int>&numbers)
 {
 	int sum = 0, tmp = 0;
 	for (auto& i :numbers)
@@ -80,7 +80,7 @@ int FindGreatestSumOfSubArray(vector<int>& array)
 	}
 	int maxResult = 0;
 	int i;
-	int *tmp = (int *)malloc(sizeof(int)* array.size());
+	int *tmp = new int[array.size()];
 	memset(tmp, 0, sizeof(int)* array.size());
 	*tmp = array[0];
 	for (i = 1; i < array.size(); i++)
