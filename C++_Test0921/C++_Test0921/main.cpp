@@ -69,7 +69,7 @@ void test_vector_erase()
 	cout << "v1.size = " << v1.size() << " " << v1.capacity() << endl;
 	cout << "v1 = ";
 	CoutVector(v1);
-
+		
 	//重载2：
 	//iterator erase(const_iterator first, const_iterator last);
 	//删除first到last位置的元素
