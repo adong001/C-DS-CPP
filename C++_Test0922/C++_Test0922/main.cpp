@@ -36,6 +36,11 @@ void generate(vector<int>& v, size_t n);//一维打印
 vector<vector<int>>generate(int numRows) //二维打印杨辉三角
 {
 	vector<vector<int> >res;
+	if (numRows < 1)
+	{
+		return res;
+	}
+	
 	for (int i = 0; i < numRows; i++)
 	{
 		res.push_back(vector<int>());
@@ -85,7 +90,7 @@ int main()
 	{
 		cout << *pv<<" ";
 	}*/
-    generate(15);
+   // generate(0);
 
    //begin()函数返回值为r容器的首地址。
 	//void swap (vector& x);(交换两个容器的里的所有值)
@@ -136,28 +141,18 @@ int main()
 	//cout << v1[7] << " " << v2[7] << endl;
 
 	//迭代器失效
-	//vector<int>v;
-	//v.push_back(1);
-	//v.push_back(2);
-	//v.push_back(3);
-	//v.push_back(4);
-	//v.push_back(5);
+	vector<int>v;
+	v.push_back(1);
+	v.push_back(2);
+	v.push_back(3);
+	v.push_back(4);
+	v.push_back(5);
+	vector<int>::iterator iv = v.end();
+    v.erase(iv-1);//end()-1是最后一个位置的值
+	cout << *iv << endl;
 
-	//vector<int>::iterator iv = v.end();
-	//cout << v.capacity() << endl;
-	//v.push_back(1);
-	//v.push_back(2);
-	//v.push_back(3);
-	//v.push_back(4);
-	//v.push_back(5);
-	//v.push_back(1);
-	//v.push_back(2);
-	//v.push_back(3);
-	//v.push_back(4);
-	//v.push_back(5);
 	//iv = v.insert(iv, 10, 8);//用返回值接她，解决
-	//v.push_back(1);
-	//cout << *(v.end()) << endl;
+	//cout << *iv << endl;
 	//cout << v[v.size()-1] << endl;
 	//v.erase(iv+2);
 

@@ -1,26 +1,27 @@
-//#include"Vector.h"
-//Bit::Vector<T>::Vector(size_t n, const T& val )
-//{
-//	m_start(nullptr);
-//	m_end(nullptr);
-//	m_endOfStorage(nullptr);
-//}
-//
-//
-//void Vector<T>::Reserve(size_t n)
-//{
-//
-//}
+#include"Vector.h"
 
-//Bit::Vector<T>::Vector(size_t n, const T& val )
-//{
-//	m_start(nullptr);
-//	m_end(nullptr);
-//	m_endOfStorage(nullptr);
-//}
-//
-//
-//void Vector<T>::Reserve(size_t n)
-//{
-//
-//}
+iterator begin()
+{
+	return m_start;
+}
+
+iterator end()
+{
+	return m_finsh;
+}
+
+/*c_iterator c_begin(){ }
+c_iterator c_begin(){ }
+size_t size(){ }
+size_t capacity(){ }
+void reserve(size_t _size){ }
+void resize(size_t _size, const T &val = T()){ }
+T & operator [] (int i){ }
+const T & operator [] (int i) const{ }
+void push_back(const T &val){ }
+void pop_back(){ }
+iterator insert(iterator pos, const T &val){ }
+iterator insert(iterator pos, int n, const T &val){ }
+iterator insert(iterator pos, const T * start, const T * end){ }
+iterator erase(iterator pos){ }
+iterator erase(iterator start, iterator end){ }*/

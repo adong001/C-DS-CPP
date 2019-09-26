@@ -11,7 +11,7 @@ using namespace std;
 int MoreThanHalfNum_Solution1(vector<int>&numbers)
 {
 	int sum = 0, tmp = 0;
-	for (auto& i :numbers)
+	for (auto& i : numbers)
 	{
 		sum = (sum^i)&~tmp;
 		tmp = (tmp^i)&~sum;
