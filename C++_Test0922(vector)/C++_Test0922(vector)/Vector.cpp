@@ -1,14 +1,20 @@
 #include"Vector.h"
+using namespace Bit;
 
-iterator begin()
-{
-	return m_start;
-}
+namespace bit{
 
-iterator end()
-{
-	return m_finsh;
-}
+	template<class T>
+	iterator vector<T>::begin()
+	{
+		return m_start;
+	}
+
+	iterator end()
+	{
+		return m_finsh;
+	}
+
+};
 
 /*c_iterator c_begin(){ }
 c_iterator c_begin(){ }
