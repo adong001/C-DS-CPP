@@ -1,20 +1,67 @@
-#include"Vector.h"
-using namespace Bit;
-
-namespace bit{
-
-	template<class T>
-	iterator vector<T>::begin()
-	{
-		return m_start;
-	}
-
-	iterator end()
-	{
-		return m_finsh;
-	}
-
-};
+//#include"Vector.h"
+//using namespace Bit;
+//
+//template<class T>
+//vector<T>::iterator begin()
+//{
+//	return m_start;
+//}
+//
+//template<class T>
+//vector<T>::iterator end()
+//{
+//	return m_finsh;
+//}
+//
+//template<class T>
+//vector<T>::c_iterator c_begin()const
+//{
+//	return m_start;
+//}
+//
+//template<class T>
+//vector<T>::c_iterator c_end()const
+//{
+//	return m_finsh;
+//}
+//
+//template<class T>
+//size_t vector<T>::size()
+//{
+//	return m_end - m_start;
+//}
+//
+//template<class T>
+//size_t vector<T>::capacity()
+//{
+//	return m_endOfStorage - m_start;
+//}
+//
+//
+//template<class T>
+//void vector<T>::reserve(size_t _size)//Ö»À©²»Ëõ
+//{
+//	int capacity = m_endOfStorage - start;
+//	T* tmp;
+//	if (capacity < _size)
+//	{
+//		if (capacity == 0)
+//		{
+//			capacity = 1;
+//		}
+//		while (capacity < _size)
+//		{
+//			capacity *= 2;
+//		}
+//
+//		tmp = new T[capacity];
+//		memncpy(tmp, m_start, size());
+//		m_end = tmp + size();
+//		delete[]m_start;
+//		m_start = tmp;
+//		m_endOfStorage = tmp + _size;
+//	}
+//}
 
 /*c_iterator c_begin(){ }
 c_iterator c_begin(){ }
