@@ -1,0 +1,79 @@
+﻿生成启动时间为 2019/10/6 18:35:36。
+     1>项目“C:\Users\杨冬\Documents\Visual Studio 2013\Projects\Test\Test(本地仓库)\C++_Tetst0927(list)\C++_Tetst0927(list)\C++_Tetst0927(list).vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\c语言\VS2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_tetst0927(list)\c++_tetst0927(list)\list.h(31): warning C4018: “<”: 有符号/无符号不匹配
+                 c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_tetst0927(list)\c++_tetst0927(list)\list.h(27): 编译类 模板 成员函数“List<int>::List(size_t,const T &)”时
+                 with
+                 [
+                     T=int
+                 ]
+                 c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_tetst0927(list)\c++_tetst0927(list)\main.cpp(5): 参见对正在编译的函数 模板 实例化“List<int>::List(size_t,const T &)”的引用
+                 with
+                 [
+                     T=int
+                 ]
+                 c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_tetst0927(list)\c++_tetst0927(list)\main.cpp(5): 参见对正在编译的类 模板 实例化“List<int>”的引用
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_tetst0927(list)\c++_tetst0927(list)\list.h(87): error C2440: “初始化”: 无法从“ListNode<T> **”转换为“ListNode<T> ”
+                 with
+                 [
+                     T=int
+                 ]
+                 与指向的类型无关；转换要求 reinterpret_cast、C 样式转换或函数样式转换
+                 c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_tetst0927(list)\c++_tetst0927(list)\list.h(86): 编译类 模板 成员函数“ListIterator<T> *List<T>::insert(ListIterator<T> *,const T &)”时
+                 with
+                 [
+                     T=int
+                 ]
+                 c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_tetst0927(list)\c++_tetst0927(list)\list.h(63): 参见对正在编译的函数 模板 实例化“ListIterator<T> *List<T>::insert(ListIterator<T> *,const T &)”的引用
+                 with
+                 [
+                     T=int
+                 ]
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_tetst0927(list)\c++_tetst0927(list)\list.h(89): error C2248: “ListIterator<T>::m_pNode”: 无法访问 private 成员(在“ListIterator<T>”类中声明)
+                 with
+                 [
+                     T=int
+                 ]
+                 c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_tetst0927(list)\c++_tetst0927(list)\iterator.h(9) : 参见“ListIterator<T>::m_pNode”的声明
+                 with
+                 [
+                     T=int
+                 ]
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_tetst0927(list)\c++_tetst0927(list)\list.h(89): error C2039: “m_pNode”: 不是“ListNode<T>”的成员
+                 with
+                 [
+                     T=int
+                 ]
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_tetst0927(list)\c++_tetst0927(list)\list.h(90): error C2248: “ListIterator<T>::m_pNode”: 无法访问 private 成员(在“ListIterator<T>”类中声明)
+                 with
+                 [
+                     T=int
+                 ]
+                 c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_tetst0927(list)\c++_tetst0927(list)\iterator.h(9) : 参见“ListIterator<T>::m_pNode”的声明
+                 with
+                 [
+                     T=int
+                 ]
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_tetst0927(list)\c++_tetst0927(list)\list.h(91): error C2248: “ListIterator<T>::m_pNode”: 无法访问 private 成员(在“ListIterator<T>”类中声明)
+                 with
+                 [
+                     T=int
+                 ]
+                 c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_tetst0927(list)\c++_tetst0927(list)\iterator.h(9) : 参见“ListIterator<T>::m_pNode”的声明
+                 with
+                 [
+                     T=int
+                 ]
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_tetst0927(list)\c++_tetst0927(list)\list.h(93): error C2440: “return”: 无法从“ListNode<T> ”转换为“ListIterator<T> ”
+                 with
+                 [
+                     T=int
+                 ]
+                 与指向的类型无关；转换要求 reinterpret_cast、C 样式转换或函数样式转换
+     1>已完成生成项目“C:\Users\杨冬\Documents\Visual Studio 2013\Projects\Test\Test(本地仓库)\C++_Tetst0927(list)\C++_Tetst0927(list)\C++_Tetst0927(list).vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:00.49
