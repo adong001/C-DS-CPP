@@ -3,7 +3,31 @@
 #include<stack>
 using namespace std;
 
-
+//BTNode* BinaryTreeCreate(BTDataType* src)//创建二叉树
+//{
+//	static int s_n = 0;
+//	if (src[s_n] == '#')
+//	{
+//		s_n++;
+//		return NULL;
+//	}
+//	BTNode *cur = (BTNode *)malloc(sizeof(BTNode));
+//	cur->_data = src[s_n];
+//	s_n++;
+//	cur->lchild = BinaryTreeCreate(src);
+//	cur->rchild = BinaryTreeCreate(src);
+//	return cur;
+//}
+//
+//void BinaryTreeDestory(BTNode* root)//后序遍历销毁
+//{
+//	if (root != NULL)
+//	{
+//		BinaryTreePostOrder(root->lchild);
+//		BinaryTreePostOrder(root->rchild);
+//		free(root);
+//	}
+//}
 class MinStack
 {
 private:
