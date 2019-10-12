@@ -20,22 +20,22 @@ using namespace std;
 //		m_rchild(nullptr)
 //	{}
 //
-//	TreeNode*  push(T* src);
-//	//通过前序遍历的数组"ABDG##H#J###CE##FI###"构建二叉树
-//	{
-//		static int s_n = 0;//定义静态变量记录数组下标
-//		if (src[s_n] == '#')//
-//		{
-//			s_n++;//下标+1，递归进入直接访问下一个
-//			return nullptr;
-//		}
-//		TreeNode* cur = new TreeNode();
-//		cur->_data = src[s_n];
-//		s_n++;//下标+1，递归进入直接访问下一个
-//		cur->lchild = BinaryTreeCreate(src);//左右孩子递归访问
-//		cur->rchild = BinaryTreeCreate(src);
-//		return cur;
-//	}
+//	//TreeNode<T>*  push(T* src);
+//	////通过前序遍历的数组"ABDG##H#J###CE##FI###"构建二叉树
+//	//{
+//	//	static int s_n = 0;//定义静态变量记录数组下标
+//	//	if (src[s_n] == '#')//
+//	//	{
+//	//		s_n++;//下标+1，递归进入直接访问下一个
+//	//		return nullptr;
+//	//	}
+//	//	TreeNode<T>* cur = new TreeNode<T>();
+//	//	cur->_data = src[s_n];
+//	//	s_n++;//下标+1，递归进入直接访问下一个
+//	//	cur->lchild = BinaryTreeCreate(src);//左右孩子递归访问
+//	//	cur->rchild = BinaryTreeCreate(src);
+//	//	return cur;
+//	//}
 //
 //	~TreeNode()
 //	{
@@ -47,40 +47,101 @@ using namespace std;
 //		}
 //	}
 //};
-//class Solution 
-//{
-//public:
-//	vector<int> preorderTraversal(TreeNode* root) {
-//
-//	}
-//};
-
-
-//vector<int> preorderTraversal(TreeNode* root)
-//{
-//	vector
-//		static int count = 1;
-//	if (count == 1)
-//	{
-//		cout << "[";
-//	}
-//
-//	if (root)
-//	{
-//
-//		count++;
-//		cout << root->val;
-//		if (root->left || root->right)
-//		{
-//			cout << ",";
-//		}
-//		preorderTraversal(root->left);
-//		preorderTraversal(root->right);
-//		cout << "]" << endl;
-//	}
-//}
-int main1()
+struct TreeNode {
+	int val;
+	TreeNode *left;
+	TreeNode *right;
+	TreeNode(int x) :
+		val(x),
+		left(NULL),
+		right(NULL)
+	{}
+};
+class Solution
 {
+public:
+	vector<int> preorderTraversal(TreeNode* root)
+	{
+		TreeNode* cur = root;
+		vector<int> vres;
+		stack<TreeNode*> stmp;
+		if (!cur)
+		{
+			return vres;
+		}
+
+		stmp.push(cur);//把根先压进去
+	
+		do{
+			vres.push_back(cur->val);
+
+			if (cur->right)//右孩子存在，右孩子入栈
+			{
+				stmp.push(cur->right);
+			}
+
+			if (cur->left)//左孩子存在，左孩子的值push进容器中,左孩子入栈
+			{
+				stmp.push(cur->left);
+			}
+
+			cur = stmp.top();//取栈顶访问
+			stmp.pop();//取完栈顶pop掉栈顶元素
+		}while (cur != root) ;//出栈至只有一个根时，退出
+
+		cout << "[";
+		for (auto& i : vres)
+		{
+			cout << i << ",";
+		}
+		cout << "]";
+		return vres;
+	}
+};
+
+
+vector<int> preorderTraversal2(TreeNode* root)//递归版
+{
+	static vector<int> res;
+	if (root)
+	{
+		res.push_back(root->val);
+		preorderTraversal2(root->left);
+		preorderTraversal2(root->right);
+	}
+	return res;
+}
+
+
+
+int main()
+{
+	TreeNode* root = new TreeNode(100);
+	TreeNode* rootl = new TreeNode(1);
+	TreeNode* rootr = new TreeNode(17);
+	root->left = rootl;
+	root->right = rootr;
+	TreeNode* rootll = new TreeNode(39);
+	TreeNode* rootlr = new TreeNode(48);
+	rootl->left = rootll;
+	rootl->right = rootlr;
+	TreeNode* rootlrl = new TreeNode(12);
+	TreeNode* rootlrll = new TreeNode(43);
+	rootlr->left = rootlrl;
+	rootlrl->left = rootlrll;
+	TreeNode* rootrl = new TreeNode(9);
+	TreeNode* rootrr = new TreeNode(90);
+	rootr->left = rootrl;
+	rootr->right = rootrr;
+	/*Solution s;
+	s.preorderTraversal(root);*/
+
+	vector<int> iv = preorderTraversal2(root);
+	for (auto& i : iv)
+	{
+		cout << i << " ";
+	}
+	cout << endl;
 	system("pause");
 	return 0;
 }//
@@ -126,7 +187,7 @@ int main1()
 //		   = 22
 
 
-class Solution {
+class Solution2 {
 public:
 	int evalRPN(vector<string>& tokens)
 	{
@@ -150,10 +211,10 @@ public:
 					break;
 				case '-':
 					tmp.top() = num2 - num1;
-					break; 
+					break;
 				case '*':
 					tmp.top() = num2 * num1;
-					break; 
+					break;
 				case '/':
 					tmp.top() = num2 / num1;
 					break;
@@ -164,10 +225,10 @@ public:
 	}
 };
 
-int main()
+int main2()
 {
 	vector<string> vs{ "10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+" };
-	Solution Solute;
+	Solution2 Solute;
 	cout << Solute.evalRPN(vs) << endl;
 	system("pause");
 	return 0;
