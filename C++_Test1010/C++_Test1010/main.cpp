@@ -6,6 +6,33 @@ using namespace std;
 #include<string>
 #include<cctype>
 #include<cstdlib>
+
+BTNode* BinaryTreeCreate(BTDataType* src)//创建二叉树
+{
+	static int s_n = 0;
+	if (src[s_n] == '#')
+	{
+		s_n++;
+		return NULL;
+	}
+	BTNode *cur = (BTNode *)malloc(sizeof(BTNode));
+	cur->_data = src[s_n];
+	s_n++;
+	cur->lchild = BinaryTreeCreate(src);
+	cur->rchild = BinaryTreeCreate(src);
+	return cur;
+}
+
+void BinaryTreeDestory(BTNode* root)//后序遍历销毁
+{
+	if (root != NULL)
+	{
+		BinaryTreePostOrder(root->lchild);
+		BinaryTreePostOrder(root->rchild);
+		free(root);
+	}
+}
+
 //1.给定一个二叉树，返回它的前序遍历。
 //template<class T>
 //class TreeNode
