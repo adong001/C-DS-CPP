@@ -7,31 +7,8 @@ using namespace std;
 #include<cctype>
 #include<cstdlib>
 
-BTNode* BinaryTreeCreate(BTDataType* src)//创建二叉树
-{
-	static int s_n = 0;
-	if (src[s_n] == '#')
-	{
-		s_n++;
-		return NULL;
-	}
-	BTNode *cur = (BTNode *)malloc(sizeof(BTNode));
-	cur->_data = src[s_n];
-	s_n++;
-	cur->lchild = BinaryTreeCreate(src);
-	cur->rchild = BinaryTreeCreate(src);
-	return cur;
-}
 
-void BinaryTreeDestory(BTNode* root)//后序遍历销毁
-{
-	if (root != NULL)
-	{
-		BinaryTreePostOrder(root->lchild);
-		BinaryTreePostOrder(root->rchild);
-		free(root);
-	}
-}
+
 
 //1.给定一个二叉树，返回它的前序遍历。
 //template<class T>
@@ -84,7 +61,7 @@ struct TreeNode {
 		right(NULL)
 	{}
 };
-class Solution
+class Solution1
 {
 public:
 	vector<int> preorderTraversal(TreeNode* root)
@@ -140,6 +117,74 @@ vector<int> preorderTraversal2(TreeNode* root)//递归版
 }
 
 
+//您需要在二叉树的每一行中找到最大的值。
+//
+//示例：
+//
+//输入 :
+//
+//1
+/// \
+//3   2
+/// \   \
+//5   3   9
+//
+//输出:[1, 3, 9]
+class Solution{
+public:
+	vector<int> largestValues(TreeNode* root) {
+		vector<int> vres;
+		vector<int> MaxLevel;
+		queue<TreeNode*> tmp;
+		queue<TreeNode* > qu;
+		int max;
+		if (!root)
+		{
+			return vres;
+		}
+		TreeNode* cur = root;
+		MaxLevel.push_back(cur->val);
+		while (cur)
+		{
+			vres.push_back(cur->val);
+			if (cur->left)
+			{
+				qu.push(cur->left);
+			}
+
+			if (cur->right)
+			{
+				qu.push(cur->right);
+			}
+
+			
+
+			if (!qu.empty())
+			{
+				tmp = qu; //为不影响原队列的数据(找出每层最大值要pop队列)，用中间变量队列存这一层的值
+				max = tmp.front()->val;//先将队尾的值给max
+				tmp.pop();
+				while (!tmp.empty())
+				{
+					max = max > qu.front()->val ? max : qu.front()->val;//找出这层最大的
+					tmp.pop();
+				}
+				MaxLevel.push_back(max);//将比较后的最大数push进MaxLevel中
+
+				cur = qu.front();//原队列继续进行遍历
+				qu.pop();
+			}
+			else
+			{
+				cur = nullptr;
+			}
+
+		}
+		return MaxLevel;
+	}
+};
+
+
 
 int main()
 {
@@ -162,8 +207,8 @@ int main()
 	rootr->right = rootrr;
 	/*Solution s;
 	s.preorderTraversal(root);*/
-
-	vector<int> iv = preorderTraversal2(root);
+	Solution s;
+	vector<int> iv = s.largestValues(root);
 	for (auto& i : iv)
 	{
 		cout << i << " ";
@@ -249,7 +294,7 @@ public:
 	}
 };
 
-int main2()
+int main3()
 {
 	vector<string> vs{ "10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+" };
 	Solution2 Solute;
