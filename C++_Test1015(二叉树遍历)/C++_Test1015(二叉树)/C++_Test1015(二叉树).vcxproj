@@ -65,8 +65,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Tree.cpp" />
-    <ClCompile Include="TreeNode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Tree.h" />
