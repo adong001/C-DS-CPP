@@ -11,7 +11,7 @@ private:
 	TreeNode<T>* m_left;
 	TreeNode<T>* m_right;
 public:
-	TreeNode(const T& val) :
+	TreeNode(const T& val = 0) :
 		m_val(val),
 		m_left(nullptr),
 		m_right(nullptr)
