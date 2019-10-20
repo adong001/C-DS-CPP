@@ -47,7 +47,7 @@ public:
 	{
 		return m_root;
 	}
-	
+
 	vector<T> PreOrder()//先序非递归
 	{
 		TreeNode<T>* cur = m_root;
@@ -150,5 +150,63 @@ public:
 		}
 		return vres;
 	}
+
+	vector<T> PostOrder()//后序非递归版
+	{
+		TreeNode<T>* cur = m_root;
+		vector<T> vres;
+		stack<TreeNode<T>*> stmp;
+		stack<int> sflag;//访问标记位，1为左孩子已经访问，0为未访问左孩子
+
+		if (!cur)
+		{
+			return vres;
+		}
+		do
+		{	//过程1
+			for (; cur; cur = cur->m_left)
+			{
+				stmp.push(cur);//把根及所有左孩子push进栈
+				sflag.push(0);//访问标志位置0
+			}
+			//过程3
+			while (!stmp.empty() && sflag.top())//栈不为空且访问标志位为1(左孩子已访问),开始打印,循环打印，直至栈为空或标志位为0时
+			{
+				cur = stmp.top();//取栈顶
+				vres.push_back(cur->m_val);//push进vres
+				stmp.pop();//pop掉栈顶
+				sflag.pop();//这个节点左右孩子及自己都以访问完毕，标志位pop掉
+			}
+
+			//过程2
+			if (!stmp.empty())//到这里时，说明没有左孩子了
+			{
+				cur = stmp.top();//取栈顶
+				sflag.top() = 1;//没左孩子，标志位置为1
+				cur = cur->m_right;//左孩子没有，访问右孩子
+			}
+
+		} while (!stmp.empty());
+		return vres;
+	}
+
+
+
+
+	vector<T> PostOrder_Recursive(TreeNode<T>* root)//后序递归版
+	{
+		static vector<T> vres;
+		if (root)
+		{
+			InOrder_Recursive(root->m_left);
+			InOrder_Recursive(root->m_right);
+			vres.push_back(root->m_val);
+		}
+		return vres;
+	}
+
+	//vector<T> LevelOrder(TreeNode<T>* root)//层序非递归版
+	//vector<T> LevelOrder_Recursive(TreeNode<T>* root)//层序递归版
+
 
 };
