@@ -75,7 +75,7 @@ public:
 		}
 
 		stmp.push(cur);//把根先压进去
-	
+
 		do{
 			vres.push_back(cur->val);
 
@@ -91,7 +91,7 @@ public:
 
 			cur = stmp.top();//取栈顶访问
 			stmp.pop();//取完栈顶pop掉栈顶元素
-		}while (cur != root) ;//出栈至只有一个根时，退出
+		} while (cur != root);//出栈至只有一个根时，退出
 
 		cout << "[";
 		for (auto& i : vres)
@@ -132,53 +132,69 @@ vector<int> preorderTraversal2(TreeNode* root)//递归版
 //输出:[1, 3, 9]
 class Solution{
 public:
-	vector<int> largestValues(TreeNode* root) {
+	vector<int> largestValues(TreeNode* root)
+	{
 		vector<int> vres;
 		vector<int> MaxLevel;
-		queue<TreeNode*> tmp;
 		queue<TreeNode* > qu;
 		int max;
+		int qu_size;
 		if (!root)
 		{
 			return vres;
 		}
+
+		//que.push(root);
+		//int s;
+		//while (!que.empty()) {
+		//	s = que.size();
+		//	int max = -2147483648;
+		//	for (int i = 0; i < s; i++) {
+		//		TreeNode* node = que.front();
+		//		que.pop();
+		//		if (node->val > max) max = node->val;
+		//		if (node->left) que.push(node->left);
+		//		if (node->right) que.push(node->right);
+		//	}
+		//	res.push_back(max);
 		TreeNode* cur = root;
-		MaxLevel.push_back(cur->val);
+		qu.push(cur);
+	    MaxLevel.push_back(cur->val);
+	    qu.pop();
+		int length = 1;
 		while (cur)
 		{
-			vres.push_back(cur->val);
-			if (cur->left)
+			MaxLevel.push_back(qu.front()->val);
+			for (int i = 0; i < length; i++)
 			{
-				qu.push(cur->left);
-			}
-
-			if (cur->right)
-			{
-				qu.push(cur->right);
-			}
-
-			
-
-			if (!qu.empty())
-			{
-				tmp = qu; //为不影响原队列的数据(找出每层最大值要pop队列)，用中间变量队列存这一层的值
-				max = tmp.front()->val;//先将队尾的值给max
-				tmp.pop();
-				while (!tmp.empty())
+				if (cur->left)
 				{
-					max = max > qu.front()->val ? max : qu.front()->val;//找出这层最大的
-					tmp.pop();
+					qu.push(cur->left);
+					MaxLevel.push_back(cur->left->val);
 				}
-				MaxLevel.push_back(max);//将比较后的最大数push进MaxLevel中
 
-				cur = qu.front();//原队列继续进行遍历
-				qu.pop();
-			}
-			else
-			{
-				cur = nullptr;
-			}
+				if (cur->right)
+				{
+					if (cur->left && MaxLevel.back() < cur->right->val || !cur->left)
+					{
+						MaxLevel.pop_back();
+						MaxLevel.push_back(cur->right->val);
+					}
+					qu.push(cur->right);
+				}
 
+				if (!qu.empty())
+				{
+					cur = qu.front();//原队列继续进行遍历
+					qu.pop();
+				}
+				else
+				{
+					cur = nullptr;
+				}
+
+			}
+			length = qu.size();
 		}
 		return MaxLevel;
 	}
@@ -188,23 +204,23 @@ public:
 
 int main()
 {
-	TreeNode* root = new TreeNode(100);
+	TreeNode* root = new TreeNode(1);
 	TreeNode* rootl = new TreeNode(1);
-	TreeNode* rootr = new TreeNode(17);
+	TreeNode* rootr = new TreeNode(3);
 	root->left = rootl;
 	root->right = rootr;
-	TreeNode* rootll = new TreeNode(39);
-	TreeNode* rootlr = new TreeNode(48);
-	rootl->left = rootll;
-	rootl->right = rootlr;
-	TreeNode* rootlrl = new TreeNode(12);
-	TreeNode* rootlrll = new TreeNode(43);
-	rootlr->left = rootlrl;
-	rootlrl->left = rootlrll;
-	TreeNode* rootrl = new TreeNode(9);
-	TreeNode* rootrr = new TreeNode(90);
-	rootr->left = rootrl;
-	rootr->right = rootrr;
+	//TreeNode* rootll = new TreeNode(39);
+	//TreeNode* rootlr = new TreeNode(48);
+	//rootl->left = rootll;
+	//rootl->right = rootlr;
+	//TreeNode* rootlrl = new TreeNode(12);
+	//TreeNode* rootlrll = new TreeNode(43);
+	//rootlr->left = rootlrl;
+	//rootlrl->left = rootlrll;
+	//TreeNode* rootrl = new TreeNode(9);
+	//TreeNode* rootrr = new TreeNode(90);
+	//rootr->left = rootrl;
+	//rootr->right = rootrr;
 	/*Solution s;
 	s.preorderTraversal(root);*/
 	Solution s;

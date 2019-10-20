@@ -6,13 +6,12 @@
 //{
 //	return m_start;
 //}
-//
 //template<class T>
 //vector<T>::iterator end()
 //{
 //	return m_finsh;
 //}
-//
+
 //template<class T>
 //vector<T>::c_iterator c_begin()const
 //{

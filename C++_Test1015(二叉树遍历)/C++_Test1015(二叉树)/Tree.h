@@ -3,6 +3,8 @@
 #include<queue>
 #include<stack>
 #include"TreeNode.h"
+using namespace std;
+
 
 template<class T>
 class Tree
@@ -41,9 +43,14 @@ public:
 		}
 	}
 
-	int PreOrder()//先序非递归
+	TreeNode<T>* ReturnRoot()
 	{
-		TreeNode<T>* cur = m_root;s
+		return m_root;
+	}
+	
+	vector<T> PreOrder()//先序非递归
+	{
+		TreeNode<T>* cur = m_root;
 		vector<T> vres;
 		stack<TreeNode<T>*> stmp;
 		if (!cur)
@@ -53,16 +60,16 @@ public:
 
 		while (cur)
 		{
-			vres.push_back(cur->val);//将根的值push进容器中
+			vres.push_back(cur->m_val);//将根的值push进容器中
 
-			if (cur->right)//右孩子存在，右孩子入栈，右孩子最后访问，放在栈底
+			if (cur->m_right)//右孩子存在，右孩子入栈，右孩子最后访问，放在栈底
 			{
-				stmp.push(cur->right);
+				stmp.push(cur->m_right);
 			}
 
-			if (cur->left)//左孩子存在,左孩子入栈
+			if (cur->m_left)//左孩子存在,左孩子入栈
 			{
-				stmp.push(cur->left);
+				stmp.push(cur->m_left);
 			}
 
 			if (!stmp.empty())//栈不为空时访问
@@ -79,69 +86,69 @@ public:
 		return vres;
 	}
 
-	//vector<T> PreOrder_Recursive()//先序递归版
-	//{
-	//	static vector<T> res;
-	//	if (m_root)
-	//	{
-	//		res.push_back(m_root->val);
-	//		PreOrder_Recursive(m_root->left);
-	//		PreOrder_Recursive(m_root->right);
-	//	}
-	//	return res;
-	//}
+	vector<T> PreOrder_Recursive(TreeNode<T>* root)//先序递归版
+	{
+		static vector<T> res;
+		if (root)
+		{
+			res.push_back(root->m_val);
+			PreOrder_Recursive(root->m_left);
+			PreOrder_Recursive(root->m_right);
+		}
+		return res;
+	}
 
 
-	//vector<T> InOrder()//中序遍历
-	//{
-	//	TreeNode<T>* cur = m_root;
-	//	vector<T> vres;
-	//	stack<TreeNode<T>*> stmp;
+	vector<T> InOrder()//中序遍历
+	{
+		TreeNode<T>* cur = m_root;
+		vector<T> vres;
+		stack<TreeNode<T>*> stmp;
 
-	//	if (!cur)
-	//	{
-	//		return vres;
-	//	}
-	//	stmp.push(cur);
+		if (!cur)
+		{
+			return vres;
+		}
+		stmp.push(cur);
 
-	//	while (cur || !stmp.empty())//根和栈都为空时跳出
-	//	{
-	//		for (; cur && cur->left; cur = cur->left)//先把左孩子都入栈
-	//		{
-	//			stmp.push(cur->left);
-	//		}
+		while (cur || !stmp.empty())//根和栈都为空时跳出
+		{
+			for (; cur && cur->m_left; cur = cur->m_left)//先把左孩子都入栈
+			{
+				stmp.push(cur->m_left);
+			}
 
-	//		if (!stmp.empty())//栈不为空，取栈顶，push进vres，并pop.
-	//		{
-	//			cur = stmp.top();
-	//			vres.push_back(cur->val);
-	//			stmp.pop();
-	//		}
+			if (!stmp.empty())//栈不为空，取栈顶，push进vres，并pop.
+			{
+				cur = stmp.top();
+				vres.push_back(cur->m_val);
+				stmp.pop();
+			}
 
-	//		else //若栈为空，说明树的根节点左孩子已访问完毕，直接给vres push进根的值，访问右孩子
-	//		{
-	//			vres.push_back(cur->val);
-	//		}
+			else //若栈为空，说明树的根节点左孩子已访问完毕，直接给vres push进根的值，访问右孩子
+			{
+				vres.push_back(cur->m_val);
+			}
 
-	//		cur = cur->right;//进入左孩子
-	//		if (cur) //右孩子入不为空，先把右孩子的根push进，否则
-	//		{
-	//			stmp.push(cur);
-	//		}
-	//	}
-	//	return vres;
+			cur = cur->m_right;//进入左孩子
+			if (cur) //右孩子入不为空，先把右孩子的根push进，否则
+			{
+				stmp.push(cur);
+			}
+		}
+		return vres;
 
-	//}
-	//vector<T> InOrder_Recursive()//中序递归版
-	//{
-	//	static vector<T> vres;
-	//	if (root)
-	//	{
-	//		InOrder_Recursive(m_root->left);
-	//		vres.push_back(m_root->val);
-	//		InOrder_Recursive(m_root->right);
-	//	}
-	//	return vres;
-	//}
+	}
+	vector<T> InOrder_Recursive(TreeNode<T>* root)//中序递归版
+	{
+		static vector<T> vres;
+		if (root)
+		{
+			InOrder_Recursive(root->m_left);
+			vres.push_back(root->m_val);
+			InOrder_Recursive(root->m_right);
+		}
+		return vres;
+	}
 
 };

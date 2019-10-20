@@ -1,42 +1,21 @@
-﻿生成启动时间为 2019/9/29 18:24:28。
+﻿生成启动时间为 2019/10/20 21:12:10。
      1>项目“C:\Users\杨冬\Documents\Visual Studio 2013\Projects\Test\Test(本地仓库)\C++_Test0922(vector)\C++_Test0922(vector)\C++_Test0922(vector).vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         D:\c语言\VS2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         D:\c语言\VS2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Vector.cpp main.cpp
+         Vector.cpp
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test0922(vector)\c++_test0922(vector)\vector.cpp(5): warning C4346: “Bit::vector<T>::iterator”: 依赖名称不是类型
+                 用“typename”为前缀来表示类型
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test0922(vector)\c++_test0922(vector)\vector.cpp(5): error C2146: 语法错误: 缺少“;”(在标识符“begin”的前面)
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test0922(vector)\c++_test0922(vector)\vector.cpp(8): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test0922(vector)\c++_test0922(vector)\vector.cpp(10): warning C4346: “Bit::vector<T>::iterator”: 依赖名称不是类型
+                 用“typename”为前缀来表示类型
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test0922(vector)\c++_test0922(vector)\vector.cpp(10): error C2146: 语法错误: 缺少“;”(在标识符“end”的前面)
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test0922(vector)\c++_test0922(vector)\vector.cpp(13): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+         正在生成代码...
+         正在跳过...(未检测到相关更改)
          main.cpp
-     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test0922(vector)\c++_test0922(vector)\vector.h(34): warning C4018: “<”: 有符号/无符号不匹配
-                 c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test0922(vector)\c++_test0922(vector)\vector.h(28): 编译类 模板 成员函数“Bit::vector<int>::vector(size_t,const T &)”时
-                 with
-                 [
-                     T=int
-                 ]
-                 c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test0922(vector)\c++_test0922(vector)\main.cpp(7): 参见对正在编译的函数 模板 实例化“Bit::vector<int>::vector(size_t,const T &)”的引用
-                 with
-                 [
-                     T=int
-                 ]
-                 c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test0922(vector)\c++_test0922(vector)\main.cpp(7): 参见对正在编译的类 模板 实例化“Bit::vector<int>”的引用
-     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test0922(vector)\c++_test0922(vector)\vector.h(134): warning C4018: “<”: 有符号/无符号不匹配
-                 c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test0922(vector)\c++_test0922(vector)\vector.h(130): 编译类 模板 成员函数“void Bit::vector<int>::reserve(size_t)”时
-                 c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test0922(vector)\c++_test0922(vector)\vector.h(60): 参见对正在编译的函数 模板 实例化“void Bit::vector<int>::reserve(size_t)”的引用
-     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test0922(vector)\c++_test0922(vector)\vector.h(140): warning C4018: “<”: 有符号/无符号不匹配
-     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test0922(vector)\c++_test0922(vector)\vector.h(148): warning C4018: “<”: 有符号/无符号不匹配
-     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test0922(vector)\c++_test0922(vector)\vector.h(165): warning C4018: “<”: 有符号/无符号不匹配
-                 c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test0922(vector)\c++_test0922(vector)\vector.h(161): 编译类 模板 成员函数“void Bit::vector<int>::resize(size_t,const T &)”时
-                 with
-                 [
-                     T=int
-                 ]
-                 c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test0922(vector)\c++_test0922(vector)\vector.h(33): 参见对正在编译的函数 模板 实例化“void Bit::vector<int>::resize(size_t,const T &)”的引用
-                 with
-                 [
-                     T=int
-                 ]
-       Link:
-         D:\c语言\VS2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\杨冬\Documents\Visual Studio 2013\Projects\Test\Test(本地仓库)\C++_Test0922(vector)\Debug\C++_Test0922(vector).exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\杨冬\Documents\Visual Studio 2013\Projects\Test\Test(本地仓库)\C++_Test0922(vector)\Debug\C++_Test0922(vector).pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\杨冬\Documents\Visual Studio 2013\Projects\Test\Test(本地仓库)\C++_Test0922(vector)\Debug\C++_Test0922(vector).lib" /MACHINE:X86 Debug\main.obj
-         Debug\Vector.obj
-         C++_Test0922(vector).vcxproj -> C:\Users\杨冬\Documents\Visual Studio 2013\Projects\Test\Test(本地仓库)\C++_Test0922(vector)\Debug\C++_Test0922(vector).exe
-     1>已完成生成项目“C:\Users\杨冬\Documents\Visual Studio 2013\Projects\Test\Test(本地仓库)\C++_Test0922(vector)\C++_Test0922(vector)\C++_Test0922(vector).vcxproj”(Build 个目标)的操作。
+     1>已完成生成项目“C:\Users\杨冬\Documents\Visual Studio 2013\Projects\Test\Test(本地仓库)\C++_Test0922(vector)\C++_Test0922(vector)\C++_Test0922(vector).vcxproj”(Build 个目标)的操作 - 失败。
 
-生成成功。
+生成失败。
 
-已用时间 00:00:00.92
+已用时间 00:00:03.68
