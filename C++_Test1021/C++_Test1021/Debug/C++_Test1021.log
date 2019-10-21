@@ -1,0 +1,32 @@
+﻿生成启动时间为 2019/10/21 22:18:13。
+     1>项目“c:\Users\杨冬\documents\visual studio 2013\Projects\Test\Test(本地仓库)\C++_Test1021\C++_Test1021\C++_Test1021.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\c语言\VS2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test1021\c++_test1021\main.cpp(31): error C3867: “std::basic_ostringstream<char,std::char_traits<char>,std::allocator<char>>::str”:  函数调用缺少参数列表；请使用“&std::basic_ostringstream<char,std::char_traits<char>,std::allocator<char>>::str”创建指向成员的指针
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test1021\c++_test1021\main.cpp(31): error C2297: “<<”: 非法，右操作数包含“const char [4]”类型
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test1021\c++_test1021\main.cpp(31): warning C4552: “<<”: 运算符不起任何作用；应输入带副作用的运算符
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test1021\c++_test1021\main.cpp(32): error C2784: “std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &)”: 未能从“overloaded-function”为“std::basic_istream<_Elem,_Traits> &”推导 模板 参数
+                 d:\c语言\vs2013\vc\include\string(135) : 参见“std::operator >>”的声明
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test1021\c++_test1021\main.cpp(32): error C2784: “std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &&,std::basic_string<_Elem,_Traits,_Alloc> &)”: 未能从“overloaded-function”为“std::basic_istream<_Elem,_Traits> &&”推导 模板 参数
+                 d:\c语言\vs2013\vc\include\string(21) : 参见“std::operator >>”的声明
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test1021\c++_test1021\main.cpp(32): error C2784: “std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &&,_Ty &)”: 未能从“overloaded-function”为“std::basic_istream<_Elem,_Traits> &&”推导 模板 参数
+                 d:\c语言\vs2013\vc\include\istream(1103) : 参见“std::operator >>”的声明
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test1021\c++_test1021\main.cpp(32): error C2784: “std::basic_istream<char,_Traits> &std::operator >>(std::basic_istream<char,_Traits> &,unsigned char &)”: 未能从“overloaded-function”为“std::basic_istream<char,_Traits> &”推导 模板 参数
+                 d:\c语言\vs2013\vc\include\istream(1093) : 参见“std::operator >>”的声明
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test1021\c++_test1021\main.cpp(32): error C2784: “std::basic_istream<char,_Traits> &std::operator >>(std::basic_istream<char,_Traits> &,unsigned char *)”: 未能从“overloaded-function”为“std::basic_istream<char,_Traits> &”推导 模板 参数
+                 d:\c语言\vs2013\vc\include\istream(1086) : 参见“std::operator >>”的声明
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test1021\c++_test1021\main.cpp(32): error C2784: “std::basic_istream<char,_Traits> &std::operator >>(std::basic_istream<char,_Traits> &,signed char &)”: 未能从“overloaded-function”为“std::basic_istream<char,_Traits> &”推导 模板 参数
+                 d:\c语言\vs2013\vc\include\istream(1079) : 参见“std::operator >>”的声明
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test1021\c++_test1021\main.cpp(32): error C2784: “std::basic_istream<char,_Traits> &std::operator >>(std::basic_istream<char,_Traits> &,signed char *)”: 未能从“overloaded-function”为“std::basic_istream<char,_Traits> &”推导 模板 参数
+                 d:\c语言\vs2013\vc\include\istream(1072) : 参见“std::operator >>”的声明
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test1021\c++_test1021\main.cpp(32): error C2784: “std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,_Elem &)”: 未能从“overloaded-function”为“std::basic_istream<_Elem,_Traits> &”推导 模板 参数
+                 d:\c语言\vs2013\vc\include\istream(1047) : 参见“std::operator >>”的声明
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test1021\c++_test1021\main.cpp(32): error C2784: “std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,_Elem *)”: 未能从“overloaded-function”为“std::basic_istream<_Elem,_Traits> &”推导 模板 参数
+                 d:\c语言\vs2013\vc\include\istream(1006) : 参见“std::operator >>”的声明
+     1>c:\users\杨冬\documents\visual studio 2013\projects\test\test(本地仓库)\c++_test1021\c++_test1021\main.cpp(32): error C2677: 二进制“>>”: 没有找到接受“std::string”类型的全局运算符(或没有可接受的转换)
+     1>已完成生成项目“c:\Users\杨冬\documents\visual studio 2013\Projects\Test\Test(本地仓库)\C++_Test1021\C++_Test1021\C++_Test1021.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:01.12
