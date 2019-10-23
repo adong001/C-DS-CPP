@@ -32,7 +32,11 @@ void test()
 	//cout << endl;
 
 	//vres = tree.InOrder_Recursive(tree.ReturnRoot());
-	vres = tree.PostOrder_Recursive(tree.ReturnRoot());
+	
+	//vres = tree.PostOrder_Recursive(tree.ReturnRoot());
+
+	//vres = tree.LevelOrder();
+	vres = tree.LevelOrder_Recursive(1,tree.ReturnRoot());
 	for (auto& i : vres)
 	{
 		cout << i << " ";

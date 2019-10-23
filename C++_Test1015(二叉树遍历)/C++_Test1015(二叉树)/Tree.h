@@ -205,8 +205,82 @@ public:
 		return vres;
 	}
 
-	//vector<T> LevelOrder(TreeNode<T>* root)//层序非递归版
-	//vector<T> LevelOrder_Recursive(TreeNode<T>* root)//层序递归版
+	vector<T> LevelOrder()//层序非递归版
+	{
+		queue<TreeNode<T>*> qtmp;
+		vector<T> vres;
+		if (!m_root)
+		{
+			return vres;
+		}
+
+		TreeNode<T>* cur = m_root;
+		qtmp.push(cur);//先将根节点push进去
+
+		while (cur)
+		{
+
+			vres.push_back(cur->m_val);
+			if (cur->m_left)
+			{
+				qtmp.push(cur->m_left);
+			}
+
+			if (cur->m_right)
+			{
+				qtmp.push(cur->m_right);
+			}
+
+			qtmp.pop();
+			if (!qtmp.empty())
+			{
+				cur = qtmp.front();
+			}
+			else
+			{
+				cur = nullptr;
+			}
+		}
+		return vres;
+
+	}
+	vector<T> LevelOrder_Recursive(size_t LevelNodeNums, TreeNode<T>* root)//层序递归版
+	{
+		static vector<T> vres;
+		size_t Num;//这层的节点数
+		int count = 0;
+		if (!root)
+		{
+			return vres;
+		}
+		vres.push_back(root->m_val);
+		for (Num = 0; Num < LevelNodeNums; Num++)
+		{
+			if (root)
+			{
+				if (root->m_left->m_left)
+				{
+					count++;
+				}
+				if (root->m_left->m_right)
+				{
+					count++;
+				}
+				LevelOrder_Recursive(count, root->m_left);
+				count = 0;
+				if (root->m_right->m_left)
+				{
+					count++;
+				}
+				if (root->m_right->m_right)
+				{
+					count++;
+				}
+				LevelOrder_Recursive(count,root->m_right);
+			}
+		}
+	return vres;
+}
 
 
 };
