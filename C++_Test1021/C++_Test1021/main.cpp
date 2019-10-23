@@ -40,7 +40,7 @@ class base
 };
 
 
-int main()
+int main2()
 {
 	
 	//file_test();
