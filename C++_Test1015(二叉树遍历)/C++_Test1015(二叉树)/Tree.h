@@ -281,6 +281,34 @@ public:
 		}
 	return vres;
 }
+	/ 递归实现层序遍历
+		//由于层序遍历是一种广度优先的遍历，所以我们需要通过层数控制整个函数的运行
+		//每轮循环传入要输出的层数
+		//然后当层数不等于0时，向下递归，每次递归层数减一
+		//当层数等于0的时候，则说明已经到达了要输出的那一层，递归的结束条件就满足了，直接输出值即可
+		void leavlOrder()
+	{
+			cout << "递归实现层序遍历:";
+			int l = leavl(_root);
+			for (int i = 0; i < l; ++i)
+			{
+				leavlOrder(_root, i);
+			}
+			cout << endl;
+		}
 
+	void leavlOrder(BSTNode *node, int l)
+	{
+		if (node != nullptr)
+		{
+			if (l == 0)
+			{
+				cout << node->_data << " ";
+				return;
+			}
+			leavlOrder(node->_left, l - 1);
+			leavlOrder(node->_right, l - 1);
+		}
+	}
 
 };
