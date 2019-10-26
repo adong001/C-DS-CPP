@@ -155,7 +155,7 @@ int BinaryTreeLevelKSize(BTNode* root, int k)//求出第K层节点个数
 	return BinaryTreeLevelKSize(root->lchild, k - 1) + BinaryTreeLevelKSize(root->rchild, k - 1);
 }
 
-BTNode* BinaryTreeFind(BTNode* root, BTDataType x)
+BTNode* BinaryTreeFind(BTNode* root, BTDataType x)//查找X
 {
 	BTNode *cur = NULL;
 	if (root != NULL)
