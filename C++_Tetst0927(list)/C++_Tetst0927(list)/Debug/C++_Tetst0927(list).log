@@ -1,4 +1,4 @@
-﻿生成启动时间为 2019/10/6 18:35:36。
+﻿生成启动时间为 2019/10/27 15:46:41。
      1>项目“C:\Users\杨冬\Documents\Visual Studio 2013\Projects\Test\Test(本地仓库)\C++_Tetst0927(list)\C++_Tetst0927(list)\C++_Tetst0927(list).vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
          D:\c语言\VS2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
@@ -76,4 +76,4 @@
 
 生成失败。
 
-已用时间 00:00:00.49
+已用时间 00:00:01.46
