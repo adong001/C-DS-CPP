@@ -64,8 +64,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="t1.cpp" />
-    <ClCompile Include="t2.cpp" />
+    <ClCompile Include="区间最小值.cpp" />
+    <ClCompile Include="多重继承(菱形继承).cpp" />
+    <ClCompile Include="纯虚函数(抽象类).cpp" />
+    <ClCompile Include="虚表.cpp" />
+    <ClCompile Include="重写.cpp" />
+    <ClCompile Include="隐藏.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
