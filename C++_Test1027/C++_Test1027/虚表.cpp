@@ -12,7 +12,7 @@ public:
 	}
 };
 
-class TestBase:public Base
+class TestBase
 {
 public:
 	int m_b;
@@ -22,7 +22,7 @@ public:
 	}
 };
 
-class Test :public TestBase
+class Test :public Base ,public TestBase
 {
 public:
 	int m_c;
