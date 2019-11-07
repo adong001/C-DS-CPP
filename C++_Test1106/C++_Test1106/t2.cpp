@@ -8,31 +8,49 @@ using namespace std;
 //例如，输入”They are students.”和”aeiou”，则删除之后的第一个字符串变成”Thy r stdnts.”
 
 
-//void DeleteString(char* src, const char* dest)
-//{
-//	if (src|| dest)
-//	{
-//		return;
-//	}
-//	char* p1;
-//	const char* p2 = dest;
-//	for (; p2; p2++)
-//	{
-//		for (p1 = src; p1; p1++)
-//		{
-//			if (*p1 == *p2)
-//			{
-//				while (p1)
-//				{
-//					*p1 = *(p1 + 1);
-//					if()
-//				}
-//			}
-//		}
-//	}
-//}
+void DeleteString_C(char* src, const char* dest)
+{
+	if (!src||!dest)
+	{
+		return;
+	}
+	char* ip1,*tmp = src;
+	const char* ip2;
+	for (ip2 = dest; *ip2; ip2++,tmp = src)//遍历dest，依次在src中查找删除
+	{
+		while(*tmp)//找到第一个要删的位置
+		{
+			if (*tmp != *ip2)
+			{
+				tmp++;
+			}
+			else
+			{
+				break;
+			}
+		}
+
+		if (*tmp)//如果要删的字符在src中没有就不删，继续第一个for循环找下一个要删的字符
+		{
+			for (ip1 = tmp++; *tmp; ip1++, tmp++)//（ip1=tmp++）tmp要覆盖ip1，所以跳到的下一个位置
+			{
+				while (*tmp == *ip2)
+			    //直到找到不是删的那个字符例如：src = "haaat",dest="a";
+				//就要找到‘t’为止;
+				{
+					tmp++;
+				}
+				*ip1 = *tmp;//将后面的字符移到前面；
+			}
+			*ip1 = '\0';//因为tmp在'\0'位置跳出了，没有给ip1的下一个位置赋字符串结束符
+		}
+		
+	}
+}
+
+
 template<class T>
-void DeleteString(T& src,const T& dest)
+void DeleteString_CPP(T src,const T dest)
 {
 	string src_str(src);
 	string dest_str(dest);
@@ -40,35 +58,37 @@ void DeleteString(T& src,const T& dest)
 	{
 		return;
 	}
-	int pos = 0;
-	string::iterator ip1 = src_str.begin();
-	string::iterator ip2 = dest_str.begin();
-	for (; ip2 != src_str.end(); ip2++)
+	int pos;
+	string::iterator ip1; 
+	string::iterator src_begin = src_str.begin();//循环内多次调用end函数，这里直接用一个变量存它，减少栈开销
+	string::const_iterator ip2 = dest_str.begin();
+	string::const_iterator dest_end = dest_str.end();//循环内多次调用end函数，这里直接用一个变量存它，减少栈开销
+	for (; ip2 != dest_end; ip2++)
 	{
-		while(pos>=0)
+		do
 		{
-			pos = src_str.find(*ip2);
-			if (pos >= 0)
+			pos = src_str.find(*ip2);//找到dest第一个字符在src中的位置返回(找不到返回-1)
+
+			if (pos >= 0)//找到了
 			{
-				ip1 = src_str.begin() + pos;
+				ip1 = src_begin + pos;//ip1记录要删除字符串位置的迭代器
 				src_str.erase(ip1);
 			}
-			else
-			{
-				ip1++;
-			}
-		}
+
+		}while (pos >= 0);//src里面可能有重复的待删字符，使用while循环删除至找不到为止(pos = -1)
 	}
+	strcpy(src, src_str.c_str());
 }
 
 int main2()
 {
-	//string src = "They are students";
-	//string dest = "aeiou"; //输出
-	char* src = "They are students";
-	char* dest = "aeiou"; //输出
-	DeleteString(src, dest);
-	cout << src<< endl;
+	char src[] = "They are students";
+	char src2[] = "They are students";
+	char dest[] = "aeiou"; //输出Thy r stdents
+	DeleteString_C(src, dest);
+	cout << src << endl;
+	DeleteString_CPP(src2, dest);
+	cout << src2 << endl;
     system("pause");
     return 0;
 }

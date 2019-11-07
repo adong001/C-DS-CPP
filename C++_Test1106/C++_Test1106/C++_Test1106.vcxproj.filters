@@ -18,10 +18,13 @@
     <ClCompile Include="t2.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="t3.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="t1.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="t3.cpp">
+    <ClCompile Include="t4.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
