@@ -64,10 +64,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="t1.cpp" />
-    <ClCompile Include="t2.cpp" />
-    <ClCompile Include="t3.cpp" />
-    <ClCompile Include="t4.cpp" />
+    <ClCompile Include="最大子段和.cpp" />
+    <ClCompile Include="删除公共字符.cpp" />
+    <ClCompile Include="1-n数组排序.cpp" />
+    <ClCompile Include="各组中值总和最大.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

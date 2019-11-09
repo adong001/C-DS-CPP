@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include<iostream>
 using namespace std;
-
+//求最大子段和(为负数时=0)
 int maxSubSum(int* a, int length)//动态规划
 {
 	int Max = 0, Sum = 0;

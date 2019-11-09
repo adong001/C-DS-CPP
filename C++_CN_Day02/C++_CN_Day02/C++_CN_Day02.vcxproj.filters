@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="t1.cpp">
+    <ClCompile Include="翻转单词.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="t2.cpp">
+    <ClCompile Include="牛牛子序列.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

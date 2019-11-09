@@ -64,8 +64,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="t1.cpp" />
-    <ClCompile Include="t2.cpp" />
+    <ClCompile Include="牛牛子序列.cpp" />
+    <ClCompile Include="翻转单词.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

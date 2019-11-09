@@ -80,15 +80,42 @@ void DeleteString_CPP(T src,const T dest)
 	strcpy(src, src_str.c_str());
 }
 
+
+void DeleteSameString()
+{
+	string src;
+	string dest;
+	getline(cin, src);
+	getline(cin, dest);
+	char str[256] = {};
+	string tmp;
+	if (src.empty() || dest.empty())
+	{
+		return;
+	}
+	int i;
+	for (i = 0; i < dest.size(); i++)
+	{
+		str[dest[i]]++;
+	}
+
+	for (i = 0; i < src.size(); i++)
+	{
+		if (str[src[i]] == 0)
+		{
+			tmp += src[i];
+		}
+	}
+	cout << tmp << endl;
+
+}
+
+
+
 int main2()
 {
-	char src[] = "They are students";
-	char src2[] = "They are students";
-	char dest[] = "aeiou"; //Êä³öThy r stdents
-	DeleteString_C(src, dest);
-	cout << src << endl;
-	DeleteString_CPP(src2, dest);
-	cout << src2 << endl;
+	//
+	DeleteSameString();
     system("pause");
     return 0;
 }
