@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="最大子段合.cpp" />
     <ClCompile Include="回文串.cpp" />
   </ItemGroup>
