@@ -19,7 +19,7 @@ void DeleteSameString()
 	cout<< endl;
 }
 
-int main()
+int main1()
 {
 	DeleteSameString();
 	system("pause");

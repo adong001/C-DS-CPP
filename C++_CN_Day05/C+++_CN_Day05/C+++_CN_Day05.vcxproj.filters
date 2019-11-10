@@ -21,5 +21,11 @@
     <ClCompile Include="只输出字符的一次.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="欧几里得格子放蛋糕.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="字符串转整型.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
