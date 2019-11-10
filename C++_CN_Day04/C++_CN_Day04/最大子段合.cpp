@@ -28,16 +28,7 @@ int Max_Mid_Sum()
 		{
 			tmp = 0;
 		}
-		/*tmp += vres[j];
-		if (tmp>max)
-		{
-		max = tmp;
-		}
-		else if(tmp < 0)
-		{
-		tmp = 0;
-		}
-		}*/
+	
 	}
 	return max;
 }
@@ -56,7 +47,8 @@ int main2()
 #include<vector>
 using namespace std;
 
-int main() {
+int main1()
+{
 	int size;
 	cin >> size;
 	vector<int> nums(size);

@@ -26,23 +26,20 @@ int ToPalindrome()
 	string dest;
 	getline(cin, src);
 	getline(cin, dest);
-	if (src.empty() || dest.empty)
+	if (src.empty() || dest.empty())
 	{
 		return -2;
 	}
 	int src_size = src.size();
-	string::iterator ip = src.begin();
-	string tmp;
 	int i;
 	for (i = -1; i < src.size(); i++)
 	{
-		tmp = src;
-		tmp.insert(ip - 1, dest);
+		string tmp = src;
+		tmp.insert(i, dest);
 		if (IsPalindrome(tmp))
 		{
 			return i;
 		}
-		tmp.clear();
 	}
 
 }
@@ -50,43 +47,46 @@ int ToPalindrome()
 
 int main()
 {
-	cout << IsPalindrome();
+	string s1("haha");
+	s1.insert(0, "o");
+	cout << s1 << endl;
+	cout << ToPalindrome()<<endl;
     system("pause");
     return 0;
 }
 
 
 
-//判断回文字符串
-bool palindrome(const string& str) {	//传引用
-	int begin = 0;
-	int end = str.size() - 1;
-	while (begin<end) {
-		if (str[begin] != str[end]) {
-			return false;
-		}
-		begin++;
-		end--;
-	}
-	return true;
-}
-int main() {
-	std::string str1, str2;
-	getline(cin, str1);
-	getline(cin, str2);
-	int count = 0;
-	for (int i = 0; i <= str1.size(); ++i) {
-		// 将字符串2插入到字符串1的每个位置，再判断是否是回文        
-		string str = str1;
-		str.insert(i, str2);
-		if (palindrome(str)) {
-			++count;
-		}
-	}
-	cout << count << endl;
-	system("pause");
-	return 0;
-}
+////判断回文字符串
+//bool palindrome(const string& str) {	//传引用
+//	int begin = 0;
+//	int end = str.size() - 1;
+//	while (begin<end) {
+//		if (str[begin] != str[end]) {
+//			return false;
+//		}
+//		begin++;
+//		end--;
+//	}
+//	return true;
+//}
+//int main() {
+//	std::string str1, str2;
+//	getline(cin, str1);
+//	getline(cin, str2);
+//	int count = 0;
+//	for (int i = 0; i <= str1.size(); ++i) {
+//		// 将字符串2插入到字符串1的每个位置，再判断是否是回文        
+//		string str = str1;
+//		str.insert(i, str2);
+//		if (palindrome(str)) {
+//			++count;
+//		}
+//	}
+//	cout << count << endl;
+//	system("pause");
+//	return 0;
+//}
 
 
 
