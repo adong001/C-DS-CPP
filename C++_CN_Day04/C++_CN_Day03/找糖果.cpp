@@ -26,25 +26,28 @@ using namespace std;
 void FindCandy()
 {
 	int A_B, B_C, AB, BC;
-	int A, B, C;
+	int A, B1, B2, C;
 	cin >> A_B >> B_C >> AB >> BC;
-	if (A_B<-30 || A_B>30 || B_C<-30 || B_C>30 ||
-		AB<-30 || AB>30 || BC<-30 || BC>30 ||
-		A_B > AB || B_C > BC)
+	if (A_B<-30 && A_B>30 && B_C<-30 && B_C>30 &&
+		AB<-30 && AB>30 && BC<-30 && BC>30 &&
+		A_B > AB && B_C > BC)
 	{
 		cout << "NO" << endl;
 		return;
 	}
+
 	A = (A_B + AB) / 2;
-	B = (B_C + BC) / 2;
-	C = BC - B;
-	if (((A - B) == A_B) && ((B - C) == B_C) && ((A + B) == AB) && ((B + C) == BC))
+	C = (BC - B_C)/2;
+	B1 = (AB - A_B) / 2;
+	B2 = (B_C + BC) / 2;
+
+	if (B1 == B2)
 	{
-		cout << A << " " << B << " " << C << endl;
+		cout << A << " " << B1 << " " << C << endl;
 	}
 	else
 	{
-		cout << "NO" << endl;
+		cout << "No" << endl;
 	}
 
 }
