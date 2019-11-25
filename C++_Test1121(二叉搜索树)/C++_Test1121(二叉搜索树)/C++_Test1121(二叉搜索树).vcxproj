@@ -64,7 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryTree.h" />
