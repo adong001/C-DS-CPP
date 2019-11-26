@@ -1,5 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include<iostream>
+#include<map>
+#include<string>
 using namespace std;
 
 void test1()
@@ -39,8 +41,7 @@ namespace test3
 };
 
 
-namespace test4
-{
+
 	class A
 	{
 	public:
@@ -56,21 +57,42 @@ namespace test4
 	class C :public A,public B
 	{
 	public:
+		int a, b, c;
 		virtual ~C(){ cout << "C"; }
 	};
-};
 
+
+//int main1()
+//{
+//	//test1();
+//	//test2();
+//	/*test3::A* a = new test3::B();
+//	delete a;*/
+//	test4::C* c = new test4::C;
+//	test4::B* b1 = dynamic_cast<test4::B*>(c);
+//	test4::A* a2 = dynamic_cast<test4::A*>(b1);
+//	delete a2;
+//    system("pause");
+//    return 0;
+//}
 
 int main()
 {
-	//test1();
-	//test2();
-	/*test3::A* a = new test3::B();
-	delete a;*/
-	test4::C* c = new test4::C;
-	test4::B* b1 = dynamic_cast<test4::B*>(c);
-	test4::A* a2 = dynamic_cast<test4::A*>(b1);
-	delete a2;
-    system("pause");
-    return 0;
+	/*map<string, int> m;
+	m.insert(pair<string, int>("AAA", 100));
+	m.insert(pair<string, int>("BBB", 200));
+	m.insert(make_pair("CCC", 300));
+	for (auto& mi : m)
+	{
+		cout << mi.first << " " << mi.second << endl;
+	}*/
+
+	C* c = new C[3];
+	c[0].a = 10;
+
+	c[1].a = 20;
+	c[2].a = 30;
+	cout << c[1].a << c[2].a << endl;
+	system("pause");
+	return 0;
 }
