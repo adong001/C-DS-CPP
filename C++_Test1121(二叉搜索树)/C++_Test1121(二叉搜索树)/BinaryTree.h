@@ -1,6 +1,7 @@
-
 #include<stack>
 #include<vector>
+#include <iostream>
+using namespace std;
 
 namespace YD
 {
@@ -36,9 +37,10 @@ namespace YD
 			}
 		}
 
-		void erase_root(TreeNode<T>* parent, TreeNode<T>* node, const int& status)//删除节点函数,保证节点一定存在
+		void erase_node(TreeNode<T>** parent, TreeNode<T>** node)//删除节点函数,保证节点一定存在
 		{
-			TreeNode<T>* cur = node;
+			TreeNode<T>* cur = *node;
+			TreeNode<T>* res = *node;
 
 			if (!cur->m_left && !cur->m_right)//左右孩子都不存在，直接删除
 			{
@@ -48,41 +50,43 @@ namespace YD
 
 			else if (!cur->m_left)//左孩子为空
 			{
+				res = cur->m_right;
 				delete cur;
-				cur = cur->m_right;
 			}
 
 			else if (!cur->m_right)//右孩子为空
 			{
+				res = cur->m_left;
 				delete cur;
-				cur = cur->m_left;
+				
 			}
 
 			else//左右孩子都存在
 			{
-				TreeNode<T>* tmp = node->m_right;
-				cur = node->m_left;
+				TreeNode<T>* tmp = (*node)->m_right;
+				cur = (*node)->m_left;
 
 				for (; tmp->m_left; tmp = tmp->m_left);//找到根节点右孩子中最小的(也就是根节点右孩子中一直找到左孩子为空为止)
 
 				tmp->m_left = cur->m_right;//右边中的最小值的左孩子指向  左边孩子中的最大值
-				cur->m_right = node->m_right;//右孩子继承删除节点的右孩子
-				delete node;
+				cur->m_right = (*node)->m_right;//右孩子继承删除节点的右孩子
+				delete (*node);
 			}
 
-			if (parent == m_root)//删的是根节点
+			if (*parent == m_root)//删的是根节点
 			{
-				parent = cur;
+				*parent = res;
 			}
 
-			else if (status == true)//删的是parent的左孩子
+			else if ((*parent)->m_left == res)//删的是parent的左孩子
 			{
-				parent->m_left = cur;
+				(*parent)->m_left = res;
 			}
 			else
 			{
-				parent->m_right = cur; // 删的是parent的右孩子，让其父节点指向新的节点
+				(*parent)->m_right = res; // 删的是parent的右孩子，让其父节点指向新的节点
 			}
+			delete cur;
 
 		}
 
@@ -97,75 +101,36 @@ namespace YD
 			Destory(m_root);
 		}
 
-		bool Find(TreeNode<T>* parent, TreeNode<T>* node, bool& status, const T& val)//
+		bool Find(TreeNode<T>** parent, TreeNode<T>** node, const T& val)//通过节点的值查找它的地址和父节点的地址
 		{
-			parent = node = m_root;
-			if (parent->m_data == val)//val的值为根节点时
+			*parent = *node = m_root;
+			if ((*node)->m_data == val)//val的值为根节点时
 			{
 				return true;
 			}
 
-			//status代表找到目标节点node是父节点parent的左孩子还是右孩子的标志位（true---左孩子， false---右孩子）
-
-			while (node)
+			while ((*node))
 			{
-				if (node->m_data == val)//找到返回
+				if ((*node)->m_data == val)//找到返回
 				{
-					break;
+					return true;
 				}
 
-				else
+				(*parent) = (*node);//没找到跟新父节点，继续找
+
+				if ((*parent)->m_data > val)//大于当前节点往左孩子里找
 				{
-					parent = node;//没找到跟新父节点，继续找
+					(*node) = (*parent)->m_left;
 				}
 
-				if (parent->m_data > val)//大于当前节点往左孩子里找
+				else//小于当前节点往右孩子里找
 				{
-					node = parent->m_left;
-					status = true;
+					(*node) = (*parent)->m_right;
 				}
 
-				else if (parent->m_data < val)//小于当前节点往右孩子里找
-				{
-					node = parent->m_left;
-					status = false;
-				}
 			}
 
-			if (!node)//找到的节点为空，返回false
-			{
-				return false;
-			}
-			return true;
-		}
-
-		TreeNode<T>* Find(const T& val)
-		{
-			if (!m_root)
-			{
-				return nullptr;
-			}
-
-			TreeNode<T>* cur = m_root;
-
-			while (cur)
-			{
-				if (cur->m_data == val)//找到返回
-				{
-					return cur;
-				}
-
-				else if (cur->m_data > val)//val值小于当前节点值，往左边找
-				{
-					cur = cur->m_left;
-				}
-
-				else   //val值大于当前节点值，往右边找
-				{
-					cur = cur->m_right;
-				}
-			}
-			return nullptr;
+			return false;
 		}
 
 		bool Insert(const T& val)
@@ -178,7 +143,6 @@ namespace YD
 
 			TreeNode<T>* cur = m_root;
 			TreeNode<T>* pre = m_root;
-			bool flag = false;//定义一个flag，往左边插为true,右边插为false
 
 			while (cur)
 			{
@@ -187,24 +151,22 @@ namespace YD
 					return false;
 				}
 
-				else if (cur->m_data > val)//val值小于当前节点值，往左边插
+				pre = cur;
+
+				if (cur->m_data > val)//val值小于当前节点值，往左边插
 				{
-					pre = cur;
-					cur = cur->m_left;
-					flag = true;
+					cur = pre->m_left;
 				}
 
 				else   //val值大于当前节点值，往左边插
 				{
-					pre = cur;
-					cur = cur->m_right;
-					flag = false;
+					cur = pre->m_right;
 				}
 			}
 
 			cur = new TreeNode<T>(val);//此时找到的节点肯定是空的，他就必须插在这个位置
 
-			if (flag)//往左边插
+			if (pre->m_data > cur->m_data)//往左边插
 			{
 				pre->m_left = cur;
 			}
@@ -215,58 +177,55 @@ namespace YD
 			return true;
 		}
 
-
-
 		bool erase(const T& val)
 		{
+
 			if (!m_root)
 			{
 				return false;
 			}
-			TreeNode<T>* parent = nullptr, *node = nullptr;
-			bool status;
 
-			if (!Find(parent, node, status, val))//先找到要删除的节点,找不到直接返回false
+			TreeNode<T>* parent = nullptr, *node = nullptr;
+
+			if (!Find(&parent, &node, val))
+				//先找到要删除的节点,找不到直接返回false,
+				//找完后node指向要删的那个节点,parent指向他的父亲
 			{
 				return false;
 			}
-#if 0
-			
-#else
-			erase_root(parent, node, status);//删除那个节点即可，此时一定会保真删除成功
-			return true;
-#endif 
 
+			erase_node(&parent, &node);//上面都已经保证这个节点存在，那就一定能删除成功！
+			return true;
 		}
 
-		//vector<T> InOrderTree()
-		//{
-		//	vector<T> res;
-		//	if (!m_root)
-		//	{
-		//		return res;
-		//	}
+		vector<T> InOrderTree()
+		{
+			vector<T> res;
+			if (!m_root)
+			{
+				return res;
+			}
 
-		//	stack<TreeNode<T>*> st;
-		//	TreeNode<T>* cur = m_root;
-		//	while (cur || !st.empty())
-		//	{
-		//		for (; cur; cur = cur->m_left)
-		//		{
-		//			st.push(cur);
-		//		}
-		//		
-		//		if (!st.empty())
-		//		{
-		//			cur = st.top();
-		//			res.push_back(cur->m_data);
-		//			st.pop();
-		//			cur = cur->m_right;
-		//		}
-		//	}
-		//	return res;
-		//}
+			stack<TreeNode<T>*> st;
+			TreeNode<T>* cur = m_root;
 
+			while (cur || !st.empty())
+			{
+				for (; cur; cur = cur->m_left)
+				{
+					st.push(cur);
+				}
+
+				if (!st.empty())
+				{
+					cur = st.top();
+					res.push_back(cur->m_data);
+					st.pop();
+					cur = cur->m_right;
+				}
+			}
+			return res;
+		}
 
 	};
 };
