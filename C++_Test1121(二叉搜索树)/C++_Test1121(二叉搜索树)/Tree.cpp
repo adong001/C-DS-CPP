@@ -1,6 +1,4 @@
 #include"BinaryTree.h"
-
-
 int main()
 {
 	YD::Tree<int> bst;
@@ -18,13 +16,36 @@ int main()
 	vector<int> v = bst.InOrderTree();
 	for (auto & i : v)
 	{
-	cout << i << ' ';
+		cout << i << ' ';
 	}
+	cout << endl;
 	bst.erase(7);
-	/*vector<int> v = bst.InOrderTree();
+
+	v = bst.InOrderTree();
 	for (auto & i : v)
 	{
 		cout << i << ' ';
-	}*/
+	}
+	cout << endl;
+
+	bst.erase(2);
+
+	v = bst.InOrderTree();
+	for (auto & i : v)
+	{
+		cout << i << ' ';
+	}
+	cout << endl;
+
+	bst.erase(5);
+
+	v = bst.InOrderTree();
+	for (auto & i : v)
+	{
+		cout << i << ' ';
+	}
+	cout << endl;
+
+	system("pause");
 	return 0;
 }
