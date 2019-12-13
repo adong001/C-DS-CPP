@@ -1,8 +1,24 @@
 #include"BinaryTree.h"
+#include<set>
+#include<algorithm>
+#include<vector>
+int minimumTotal(vector<vector<int> > &triangle)
+{
+	for (int i = triangle.size() - 2; i >= 0; i--)
+	{
+		for (int j = 0; j <= i; j++)
+		{
+			triangle[i][j] = min(triangle[i + 1][j], triangle[i + 1][j + 1]) + triangle[i][j];
+		}
+	}
+	return triangle[0][0];
+}
 int main()
 {
-	YD::Tree<int> bst;
+	vector<vector<int>> iv{ { -1 }, { 2, 3 }, { 1, -1, -3 } };
+	minimumTotal(iv);
 
+	YD::Tree<int> bst;
 	bst.Insert(5);
 	bst.Insert(2);
 	bst.Insert(8);
