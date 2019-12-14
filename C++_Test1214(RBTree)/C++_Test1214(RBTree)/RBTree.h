@@ -1,8 +1,4 @@
 #pragma once
-
-
-
-
 #include<stack>
 #include<vector>
 #include <iostream>
@@ -15,7 +11,7 @@ namespace YD
 	{
 	private:
 		T m_data;
-		int m_bf;//Æ½ºâÒò×Ó
+		int m_bf;
 		TreeNode<T>* m_left;
 		TreeNode<T>* m_right;
 		TreeNode<T>* m_parent;
@@ -296,7 +292,7 @@ namespace YD
 
 		}
 
-		void ModifyBF(TreeNode<T>* cur,TreeNode<T>* pre)
+		void ModifyBF(TreeNode<T>* cur, TreeNode<T>* pre)
 		{
 			while (pre)
 			{
