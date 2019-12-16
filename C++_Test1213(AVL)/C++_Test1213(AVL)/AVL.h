@@ -334,7 +334,7 @@ namespace YD
 							LRound(pre);//一次左旋解决问题
 						}
 
-						else//右左  、、睡到市成都市单词别开生面
+						else//右左 
 						{
 							RLRound(pre);//先右再左
 						}
