@@ -2,6 +2,9 @@
 #include "HashTable.h"
 using namespace std;
 
+#if 0
+
+
 int main()
 {
 	HashTable<int, int> ht;
@@ -31,24 +34,34 @@ int main()
 
 	ht.insert(pair<int, int>(23, 11));
 	ht.insert(pair<int, int>(27, 13));
+	ht.insert(pair<int, int>(11, 13));
 
 	for (auto e : ht.Table())
 	{
 		cout << "Key=" << e.m_val.first << " Value=" << e.m_val.second << " Status=" << e.m_status << endl;
 	}
 
+
 	return 0;
 }
 
-//int main()
-//{
-//	wf::hashTable<string, int, wf::dealString> ht;
-//
-//	ht.insert(pair<string, int>("abc", 1));
-//	ht.insert(pair<string, int>("def", 2));
-//	ht.insert(pair<string, int>("ghi", 3));
-//	ht.insert(pair<string, int>("jkl", 4));
-//
-//
-//	return 0;
-//}
+#else
+
+int main3()
+{
+	HashTable<string, int, DealString> ht;
+
+	ht.insert(pair<string, int>("abc", 1));
+	ht.insert(pair<string, int>("def", 2));
+	ht.insert(pair<string, int>("ghi", 3));
+	ht.insert(pair<string, int>("jkl", 4));
+
+	for (auto e : ht.Table())
+	{
+		cout << "Key=" << e.m_val.first << " Value=" << e.m_val.second << " Status=" << e.m_status << endl;
+	}
+	cout << endl;
+
+	return 0;
+}
+#endif

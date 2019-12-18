@@ -6,6 +6,30 @@
 #include<algorithm>
 using namespace std;
 
+class DealInt
+{
+public:
+	int operator ()(const int num)
+	{
+		return num;
+	}
+};
+
+class DealString
+{
+public:
+	int operator ()(const string& str)
+	{
+		int seed = 128;//种子
+		int sum = 0;
+		for (auto& e : str)
+		{
+			sum = seed * sum + e;//128进制，第一位是第一个字符，第二位是第二个字符
+		}
+		return sum & 0x7fffffff;//可能越界，取后32位即可(不转也行，会隐士转换)
+	}
+};
+
 enum Status
 {
 	EMPTY,
@@ -14,7 +38,7 @@ enum Status
 };
 
 
-template<class Key, class Value>
+template<class Key, class Value,class DealFunc = DealInt>
 class HashTable
 {
 private:
@@ -32,14 +56,17 @@ private:
 	vector<Elem> m_table;
 	size_t m_size;
 
-	int HashFunc(const Key& key)
+	int HashFunc(const Key& key)//哈希算法函数，可自定义
 	{
-		return key % m_table.capacity();
+		DealFunc func;
+		return func(key) % m_table.capacity();
 	}
+
+
 public:
 
 	HashTable(size_t capacity = 11) :
-		m_table(capacity),
+		m_table(capacity),//注意：m_table.size()是哈希表的容量，m_size是当前表中有几个元素
 		m_size(0)
 	{}
 
@@ -51,7 +78,7 @@ public:
 
 	size_t capacity()
 	{
-		return m_table.size;
+		return m_table.size();
 	}
 
 	bool empty()
@@ -79,7 +106,7 @@ public:
 			{
 				return false;
 			}
-			n = (n == m_size) ? 0 : n + 1;
+			n = (n == capacity()) ? 0 : n + 1;
 		}
 
 		m_table[n].m_val = p;

@@ -66,6 +66,9 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="main1.cpp" />
+    <ClCompile Include="两个数组的交集.cpp" />
+    <ClCompile Include="两句话不同的单词.cpp" />
+    <ClCompile Include="存在重复的元素.cpp" />
     <ClCompile Include="重复n次元素.cpp" />
   </ItemGroup>
   <ItemGroup>

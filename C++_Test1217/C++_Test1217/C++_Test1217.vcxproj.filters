@@ -24,6 +24,15 @@
     <ClCompile Include="main1.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="两个数组的交集.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="存在重复的元素.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="两句话不同的单词.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HashTable.h">
