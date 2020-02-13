@@ -35,7 +35,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HashTable.h">
+    <ClInclude Include="HashSet.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

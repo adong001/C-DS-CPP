@@ -55,7 +55,7 @@ namespace YD
 		//由数学推论可知，使用除留余数法当哈希数组的容量为素数时，发生哈希冲突的概率最低，
 		//因为，每次都要mod数组的容量，当容量为素数时，它的因数就只有自己和1，发生冲突只能
 		//是容量的一倍
-		static int m_PrimePos;//哈希表数组的长度的数组的下标
+		static int s_m_PrimePos;//哈希表数组的长度的数组的下标
 
 		int HashFunc(const T& value)//闭散列线性探测
 		{
@@ -65,10 +65,10 @@ namespace YD
 
 		void CheckCapacity()
 		{
-			if (m_size * 10 / capacity() >= 75)//载荷因子限制在0.7---0.8之间
+			if (m_size * 100 / capacity() >= 70)//载荷因子限制在0.7---0.8之间
 				//载荷因子 = m_size / m_table.size();
 			{
-				vector<HashBucketNode<T>*> tmp(s_m_primeTable[++m_PrimePos], nullptr);
+				vector<HashBucketNode<T>*> tmp(s_m_primeTable[++s_m_PrimePos], nullptr);
 				HashBucketNode<T>* cur;
 
 				for (int i = 0; i < capacity(); i++)
@@ -158,7 +158,7 @@ namespace YD
 			HashBucketNode<T>* tmp,cur;
 			if (m_data[n])//确保这个桶里有元素
 			{
-				if (m_data[n] == value)//头部就是待删值
+  				if (m_data[n].m_val == value)//头部就是待删值
 				{
 					tmp = m_data[n];
 					m_data[n] = tmp->m_next;
@@ -207,5 +207,5 @@ namespace YD
 		11534351, 23068673, 46137359, 92274737, 184549429,
 		369098771, 738197549, 1476395029, 2952790016u, 4294967291u };
 	template<class T, class SW>
-	int HashSet<T, SW>::m_PrimePos = 0;
+	int HashSet<T, SW>::s_m_PrimePos = 0;
 };

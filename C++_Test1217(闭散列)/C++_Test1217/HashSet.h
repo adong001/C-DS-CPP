@@ -6,7 +6,7 @@ using namespace std;
 
 namespace YD
 {
-	class DealInt
+	class DealInt//仿函数,当键值类型为int时返回int
 	{
 	public:
 		int operator ()(const int num)
@@ -15,7 +15,7 @@ namespace YD
 		}
 	};
 
-	class DealString
+	class DealString//当键值类型为string时处理成int返回
 	{
 	public:
 		int operator ()(const string& str)
@@ -37,31 +37,30 @@ namespace YD
 		DELETE//已删除，此位置可以插入，但后面还有相同Key值的元素
 	};
 
-
+	template<class Value>
+	struct Elem//每个元素的属性
+	{
+		Value m_val;//值
+		Status m_status;//状态
+		Elem(const Value& value = Value(), const Status& status = Status()) :
+			m_val(value),
+			m_status(status)
+		{}
+	};
 
 	template<class Value, class DealFunc = DealInt>
 	class HashSet//闭散列线性探测
 	{
 	private:
 
-		struct Elem//每个元素的属性
-		{
-			Value m_val;//值
-			Status m_status;//状态
-			Elem(const Value& value = Value(), const Status& status = Status()) :
-				m_val(value),
-				m_status(status)
-			{}
-		};
-
-		vector<Elem> m_table;//哈希数组
+		vector<Elem<Value>> m_table;//哈希数组
 		size_t m_size;//哈希表元素的个数
 		static long long s_m_primeTable[30];//哈希表数组的长度的数组
 		//里面的元素都是素数，第二个素数是第一个素数的两倍向后最近的那个素数，以此类推
 		//由数学推论可知，使用除留余数法当哈希数组的容量为素数时，发生哈希冲突的概率最低，
 		//因为，每次都要mod数组的容量，当容量为素数时，它的因数就只有自己和1，发生冲突只能
 		//是容量的一倍
-		static int m_PrimePos;//哈希表数组的长度的数组的下标
+		static int s_m_PrimePos;//哈希表数组的长度的数组的下标
 
 		int HashFunc(const Value& value)//闭散列线性探测
 		{
@@ -69,12 +68,13 @@ namespace YD
 			return func(value) % capacity();//再用除留余数法获取Key值
 		}
 
+
 		void CheckCapacity()
 		{
-			if (m_size * 10 / capacity() >= 75)//载荷因子限制在0.7---0.8之间
+			if (m_size * 100 / capacity() >= 70)//载荷因子限制在0.7---0.8之间
 				//载荷因子 = m_size / m_table.size();
 			{
-				HashSet<Value> newHt(++m_PrimePos);
+				HashSet<Value> newHt(s_m_primeTable[++s_m_PrimePos]);
 				for (int i = 0; i < capacity(); i++)
 				{
 					if (m_table[i].m_status == EXIST)
@@ -96,7 +96,6 @@ namespace YD
 				m_table[i].m_status = EMPTY;
 			}
 		}
-
 
 		//vector<Elem> Table()//
 		//{
@@ -182,9 +181,11 @@ namespace YD
 		void claer()
 		{
 			m_table.clear();
+			m_size = 0;
 		}
 
 	};
+		
 	template<class Value, class DealFunc>
 	long long HashSet<Value, DealFunc>::s_m_primeTable[30] = {
 		11, 23, 47, 89, 179,
@@ -193,4 +194,6 @@ namespace YD
 		360457, 720899, 1441807, 2883593, 5767169,
 		11534351, 23068673, 46137359, 92274737, 184549429,
 		369098771, 738197549, 1476395029, 2952790016u, 4294967291u };
+	template<class Value, class DealFunc>
+	int HashSet<Value, DealFunc>::s_m_PrimePos = 0;
 };

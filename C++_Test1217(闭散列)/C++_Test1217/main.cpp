@@ -6,27 +6,27 @@ using namespace std;
 
 int main()
 {
-	YD::HashSet<int> hs;
-	hs.insert(1);
-	hs.insert(8);
-	hs.insert(13);
-	hs.insert(7);
-	hs.insert(2);
-	hs.insert(15);
-	hs.insert(18);
-	hs.insert(23);
-	hs.insert(17);
-	hs.insert(12);
-	hs.insert(25);
-	hs.insert(58);
-	hs.insert(33);
-	hs.insert(27);
-	hs.insert(22);
+	YD::HashSet<int> set;
+	set.insert(1);
+	set.insert(8);
+	set.insert(13);
+	set.insert(7);
+	set.insert(2);
+	set.insert(15);
+	set.insert(18);
+	set.insert(23);
+	set.insert(17);
+	set.insert(12);
+	set.insert(25);
+	set.insert(58);
+	set.insert(33);
+	set.insert(27);
+	set.insert(22);
 
-	hs.erase(2);
-	hs.erase(27);
+	set.erase(2);
+	set.erase(27);
 
-	//hs.clear();
+	set.claer();
 
 	system("pause");
 	return 0;

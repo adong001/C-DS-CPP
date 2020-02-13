@@ -65,7 +65,7 @@ public:
 		return vs;
 	}
 };
-int main()
+int main4()
 {
 	string A = "this apple is sweet", B = "this apple is sour";
 	Solution s;
