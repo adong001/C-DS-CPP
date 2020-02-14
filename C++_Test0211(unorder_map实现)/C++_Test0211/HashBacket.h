@@ -39,16 +39,16 @@ namespace YD
 			m_val(val),
 			m_next(nullptr)
 		{}
-		template<class T, class SW>
-		friend class HashSet;
+		template<class K, class V,class KeyOfValue, class SW>
+		friend class HashBucket;
 	};
 
 
-	template<class T, class SW = DealInt>
-	class HashSet//开散列线性探测
+	template<class K, class V, class KeyOfValue, class HF = DealInt>
+	class HashBucket//哈希桶
 	{
 	private:
-		vector<HashBucketNode<T>*> m_data;//数组指针
+		vector<HashBucketNode<K>*> m_data;//数组指针
 		size_t m_size;//已插入元素的个数
 		static long long s_m_primeTable[30];//哈希表数组的长度的数组
 		//里面的元素都是素数，第二个素数是第一个素数的两倍向后最近的那个素数，以此类推
@@ -84,11 +84,16 @@ namespace YD
 		}
 
 	public:
-		HashSet(size_t capacity = s_m_primeTable[0]) ://构造函数
+		HashBucket(size_t capacity = s_m_primeTable[0]) ://构造函数
 			m_data(capacity, nullptr),//注意：m_table.size()是哈希表的容量，m_size是当前表中有几个元素
 			m_size(0)
 		{}
 
+		class iterator
+		{
+		public:
+			HashBucket<K,V,KeyOfValue，HF>
+		};
 		size_t size()const//哈希数组存在的元素的个数
 		{
 			return m_size();
@@ -104,7 +109,7 @@ namespace YD
 			return m_size == 0;
 		}
 
-		void swap(HashSet<T,SW>& ht)//交换两个元素的位置
+		void swap(HashSet<T, SW>& ht)//交换两个元素的位置
 		{
 			m_data.swap(ht);
 		}
@@ -138,7 +143,7 @@ namespace YD
 			int n = HashFunc(value);//获取待查找元素的键
 			HashBucketNode<T>* cur;
 
-			for (cur = m_data[n]; cur;cur = cur->m_next)
+			for (cur = m_data[n]; cur; cur = cur->m_next)
 			{
 				if (cur->m_val == value)
 				{
@@ -155,7 +160,7 @@ namespace YD
 			HashBucketNode<T>* cur;
 			if (m_data[n])//确保这个桶里有元素
 			{
-  				if (m_data[n]->m_val == value)//头部就是待删值
+				if (m_data[n]->m_val == value)//头部就是待删值
 				{
 					tmp = m_data[n];
 					m_data[n] = tmp->m_next;
@@ -183,7 +188,7 @@ namespace YD
 		void claer()
 		{
 			HashBucketNode<T>* tmp;
-			for (auto& head :m_data)
+			for (auto& head : m_data)
 			{
 				while (head)
 				{

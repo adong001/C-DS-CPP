@@ -1,11 +1,13 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include<iostream>
-#include<Bitmap>
+#include<bitset>
+#include<vector>
 using namespace std;
 
 int main()
 {
-	bitmap<int>
+	bitset<vector<int>> bs;
+
     system("pause");
     return 0;
 }
