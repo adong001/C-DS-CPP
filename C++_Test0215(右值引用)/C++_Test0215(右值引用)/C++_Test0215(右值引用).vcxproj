@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{A2A7C2DC-5C1B-4E4E-B82C-A5924BE27536}</ProjectGuid>
-    <RootNamespace>C_Test0211开散列</RootNamespace>
+    <ProjectGuid>{4DBF60F0-677C-4A70-8426-E39CA27051CD}</ProjectGuid>
+    <RootNamespace>C_Test0215右值引用</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -65,10 +65,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="HashSet.h" />
-    <ClInclude Include="unordered_set.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

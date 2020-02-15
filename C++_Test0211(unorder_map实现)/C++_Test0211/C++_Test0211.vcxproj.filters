@@ -18,5 +18,11 @@
     <ClInclude Include="HashBacket.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="unordered_map.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="iterator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

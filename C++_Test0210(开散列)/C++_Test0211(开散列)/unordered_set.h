@@ -1,5 +1,4 @@
 #pragma once
-#include"iterator.h"
 #include<iostream>
 #include<string>
 #include<vector>
@@ -40,16 +39,24 @@ namespace YD
 			m_val(val),
 			m_next(nullptr)
 		{}
-		template<class K, class V,class KeyOfValue, class HF>
-		friend class HashBucket;
+		template<class T, class SW>
+		friend class HashSet;
+	};
+
+	template<class T, class SW>
+	class iterator//迭代器类
+	{
+	private:
+		unordered_set<T, SW>* m_it;
+		
 	};
 
 
-	template<class K, class V, class KeyOfValue, class HF = DealInt>
-	class HashBucket//哈希桶
+	template<class T, class SW = DealInt>
+	class unordered_set//开散列线性探测
 	{
 	private:
-		vector<HashBucketNode<V>*> m_data;//数组指针
+		vector<HashBucketNode<T>*> m_data;//数组指针
 		size_t m_size;//已插入元素的个数
 		static long long s_m_primeTable[30];//哈希表数组的长度的数组
 		//里面的元素都是素数，第二个素数是第一个素数的两倍向后最近的那个素数，以此类推
@@ -58,10 +65,10 @@ namespace YD
 		//是容量的一倍
 		static int s_m_PrimePos;//哈希表数组的长度的数组的下标
 
-		int HashFunc(const K& Key)//闭散列线性探测
+		int HashFunc(const T& value)//闭散列线性探测
 		{
-			HF func;//先根据元素的类型分别处理成int型
-			return func(Key) % capacity();//再用除留余数法获取Key值
+			SW func;//先根据元素的类型分别处理成int型
+			return func(value) % capacity();//再用除留余数法获取Key值
 		}
 
 		void CheckCapacity()
@@ -69,8 +76,8 @@ namespace YD
 			if (m_size * 100 / capacity() >= 70)//载荷因子限制在0.7---0.8之间
 				//载荷因子 = m_size / m_table.size();
 			{
-				vector<HashBucketNode<V>*> tmp(s_m_primeTable[++s_m_PrimePos], nullptr);
-				HashBucketNode<V>* cur;
+				vector<HashBucketNode<T>*> tmp(s_m_primeTable[++s_m_PrimePos], nullptr);
+				HashBucketNode<T>* cur;
 				tmp.swap(m_data);
 				m_size = 0;
 				for (int i = 0; i < tmp.size(); i++)
@@ -83,40 +90,19 @@ namespace YD
 				tmp.clear();
 			}
 		}
-		
 
 	public:
-		typename typedef iterator<K, V, KeyOfValue, HF>::iterator iterator;
-		HashBucket(size_t capacity = s_m_primeTable[0]) ://构造函数
+		unordered_set(size_t capacity = s_m_primeTable[0]) ://构造函数
 			m_data(capacity, nullptr),//注意：m_table.size()是哈希表的容量，m_size是当前表中有几个元素
 			m_size(0)
 		{}
 
-		iterator begin()
-		{
-			int BucketNum = 0;
-			for (; BucketNum < capacity(); BucketNum++)
-			{
-				if (m_data[BucketNum])
-				{
-					return iterator(m_data[BucketNum], this);
-				}
-			}
-			return iterator(nullptr, this);
-		}
-
-		iterator end()
-		{
-			return iterator(nullptr, this);
-		}
-
-
-		size_t size()//哈希数组中节点的个数
+		size_t size()const//哈希数组存在的元素的个数
 		{
 			return m_size();
 		}
 
-		size_t capacity()//返回哈希数组的容量
+		size_t capacity()const//返回哈希数组的容量
 		{
 			return m_data.size();
 		}
@@ -126,84 +112,36 @@ namespace YD
 			return m_size == 0;
 		}
 
-		void swap(HashBucket<K,V, KeyOfValue,HF>& ht)//交换两个哈希数组
+		void swap(unordered_set<T, SW>& ht)//交换两个元素的位置
 		{
 			m_data.swap(ht);
 		}
 
-		
-		bool Is_In_Bucket(const K& key)//判断key是否在哈希表里
-		{
-			int BucketNum = HashFunc(key);
-			HashBucketNode<V>* cur = nullptr;
-			for (cur = m_data[BucketNum]; cur; cur = cur->m_next)
-			{
-				if (KeyOfValue()(cur->m_val) == key)
-				{
-					return true;
-				}
-			}
-			return false;
-		}
-
-		size_t Count_Empty_Bucket(const K& key)//统计空桶的个数
-		{
-			int count = 0;
-			int BucketNum;
-			HashBucketNode<V>* cur = nullptr;
-			for (BucketNum = 0; BucketNum < capacity(); BucketNum++)
-			{
-				if (!m_data[BucketNum])
-				{
-					count++;
-				}
-			}
-			return count;
-		}
-
-		size_t Bucket_Size(const K& key)//统计某个桶中节点的个数
-		{
-			int count = 0;
-			int BucketNum = HashFunc(key);
-			HashBucketNode<V>* cur;
-			for (cur = m_data[BucketNum]; cur; cur = cur->m_next)
-			{
-				count++;
-			}
-			return count;
-		}
-
-		pair<iterator,bool> insert(const T& val)//插入元素
+		bool insert(const T& val)//插入元素
 		{
 			CheckCapacity();//检查是否有足够容量可以插入
 
 			int n = HashFunc(val);//获取他的键值
 			HashBucketNode<T>* tmp;
-			pair<iterator, bool> p;
 			if (m_data[n])//当这个键的头部不为空，则进入
 			{
 				for (tmp = m_data[n]; tmp; tmp = tmp->m_next)
 				{
 					if (tmp->m_val == val)//找到相同的return 
 					{
-						p.first = end();
-						p.second = false;
-						return p;
+						return false;
 					}
 				}
 			}
 			tmp = new HashBucketNode<T>(val);
 			tmp->m_next = m_data[n];//头插
 			m_data[n] = tmp;
-			iterator it(m_data[n], this);
-			p.first = it;
-			p.second = true;
 			m_size++;
-			return p;
+			return true;
 		}
 
 
-		iterator Find(const T& value)//查找元素
+		HashBucketNode<T>* Find(const T& value)//查找元素
 		{
 			int n = HashFunc(value);//获取待查找元素的键
 			HashBucketNode<T>* cur;
@@ -212,47 +150,42 @@ namespace YD
 			{
 				if (cur->m_val == value)
 				{
-					return iterator(cur, this);
+					return cur;
 				}
 			}
-			return iterator(nullptr,this);
+			return nullptr;
 		}
 
-		iterator erase(const V& val)//删除元素
+		bool erase(const T& value)//删除元素
 		{
-			int n = HashFunc(KeyOfValue()(val));//获取待查找元素的键
-			HashBucketNode<V>* tmp;
-			HashBucketNode<V>* cur;
+			int n = HashFunc(value);//获取待查找元素的键
+			HashBucketNode<T>* tmp;
+			HashBucketNode<T>* cur;
 			if (m_data[n])//确保这个桶里有元素
 			{
-				if (m_data[n]->m_val == val)//头部就是待删值
+				if (m_data[n]->m_val == value)//头部就是待删值
 				{
-					iterator res(m_data[n], this);
-					++res;//删除后迭代器向后移动防止迭代器失效
 					tmp = m_data[n];
 					m_data[n] = tmp->m_next;
 					delete tmp;
-					m_size--;
-					return res;
 				}
 				else//删的元素再中间或不存在
 				{
 					for (tmp = m_data[n]; tmp->m_next; tmp = tmp->m_next)
 					{
-						if (tmp->m_next->m_val == val)
+						if (tmp->m_next->m_val == value)
 						{
-							iterator res(tmp->m_next, this);
-							++res;//删除后迭代器向后移动防止迭代器失效
 							cur = tmp->m_next;
 							tmp->m_next = cur->m_next;
 							delete cur;
-							m_size--;
-							return res;
+							break;
 						}
 					}
 				}
+				m_size--;
+				return true;
 			}
-			return end();
+			return false;
 		}
 
 		void clear()
@@ -270,14 +203,14 @@ namespace YD
 			m_size = 0;
 		}
 
-		~HashBucket()
+		~unordered_set()
 		{
 			clear();
 		}
 
 	};
 	template<class T, class SW>
-	long long HashSet<T, SW>::s_m_primeTable[30] = {
+	long long unordered_set<T, SW>::s_m_primeTable[30] = {
 		11, 23, 47, 89, 179,
 		353, 709, 1409, 2819, 5639,
 		11273, 22531, 45061, 90121, 180233,
@@ -285,5 +218,5 @@ namespace YD
 		11534351, 23068673, 46137359, 92274737, 184549429,
 		369098771, 738197549, 1476395029, 2952790016u, 4294967291u };
 	template<class T, class SW>
-	int HashSet<T, SW>::s_m_PrimePos = 0;
+	int unordered_set<T, SW>::s_m_PrimePos = 0;
 };
