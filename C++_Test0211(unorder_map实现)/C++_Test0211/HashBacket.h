@@ -86,7 +86,7 @@ namespace YD
 		
 
 	public:
-		typename typedef iterator<K, V, KeyOfValue, HF>::iterator iterator;
+		typename typedef HashBucket<K, V, KeyOfValue, HF>::iterator iterator;
 		HashBucket(size_t capacity = s_m_primeTable[0]) ://构造函数
 			m_data(capacity, nullptr),//注意：m_table.size()是哈希表的容量，m_size是当前表中有几个元素
 			m_size(0)
@@ -173,12 +173,12 @@ namespace YD
 			return count;
 		}
 
-		pair<iterator,bool> insert(const T& val)//插入元素
+		pair<iterator,bool> insert(const V& val)//插入元素
 		{
 			CheckCapacity();//检查是否有足够容量可以插入
 
 			int n = HashFunc(val);//获取他的键值
-			HashBucketNode<T>* tmp;
+			HashBucketNode<V>* tmp;
 			pair<iterator, bool> p;
 			if (m_data[n])//当这个键的头部不为空，则进入
 			{
@@ -203,10 +203,10 @@ namespace YD
 		}
 
 
-		iterator Find(const T& value)//查找元素
+		iterator Find(const V& value)//查找元素
 		{
 			int n = HashFunc(value);//获取待查找元素的键
-			HashBucketNode<T>* cur;
+			HashBucketNode<V>* cur;
 
 			for (cur = m_data[n]; cur; cur = cur->m_next)
 			{
@@ -257,7 +257,7 @@ namespace YD
 
 		void clear()
 		{
-			HashBucketNode<T>* tmp;
+			HashBucketNode<V>* tmp;
 			for (auto& head : m_data)
 			{
 				while (head)
@@ -276,14 +276,14 @@ namespace YD
 		}
 
 	};
-	template<class T, class SW>
-	long long HashSet<T, SW>::s_m_primeTable[30] = {
+	template<class K,class V,class KeyOfValue, class HF>
+	long long HashBucket<K,V,KeyOfValue,HF>::s_m_primeTable[30] = {
 		11, 23, 47, 89, 179,
 		353, 709, 1409, 2819, 5639,
 		11273, 22531, 45061, 90121, 180233,
 		360457, 720899, 1441807, 2883593, 5767169,
 		11534351, 23068673, 46137359, 92274737, 184549429,
 		369098771, 738197549, 1476395029, 2952790016u, 4294967291u };
-	template<class T, class SW>
-	int HashSet<T, SW>::s_m_PrimePos = 0;
+	template<class K, class V, class KeyOfValue, class HF>
+	int HashBucket<K, V, KeyOfValue, HF>::s_m_PrimePos = 0;
 };

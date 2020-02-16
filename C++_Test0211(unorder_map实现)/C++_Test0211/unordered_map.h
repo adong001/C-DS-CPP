@@ -70,7 +70,7 @@ namespace YD
 		{
 			pair<iterator, bool> p = m_hb.insert(pair<K, V>(key, V()));//不存在就插入一个
 			iterator it = p.first;
-			return p.second;
+			return (*it);
 		}
 		const V& operator[](const K& key)const
 		{
