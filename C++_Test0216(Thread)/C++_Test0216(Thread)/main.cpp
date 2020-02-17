@@ -15,6 +15,8 @@ int main()
 		a += 10;
 		b += 20;
 	}, 5);
+
+	atomic_long s = 100;//long的原子类型
 	system("pause");
 	return 0;
 }
