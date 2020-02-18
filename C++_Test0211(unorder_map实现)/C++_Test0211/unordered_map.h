@@ -1,12 +1,8 @@
 #pragma once
 #include"HashBacket.h"
-
-
 namespace YD
 {
-	
-
-	template<class K,class V,class KeyOfValue,class HF = DealInt>
+	template<class K,class V,class HF = DealInt>
 	class unordered_map
 	{
 	private:
@@ -19,7 +15,7 @@ namespace YD
 			}
 		};
 		HashBucket<K, pair<K, V>, KeyOfValue, HF> m_hb;
-		typename typedef iterator<K, V, KeyOfValue, HF>::iterator iterator;
+		typename typedef HashBucket<K, V, KeyOfValue, HF>::iterator iterator;
 	public:
 		
 		unordered_map() :
@@ -56,7 +52,7 @@ namespace YD
 			return m_hb.empty();
 		}
 
-		void swap(unordered_map<K, V, KeyOfValue, HF>& hb)
+		void swap(unordered_map<K, V, HF>& hb)
 		{
 			m_hb.swap(hb.m_hb);
 		}
