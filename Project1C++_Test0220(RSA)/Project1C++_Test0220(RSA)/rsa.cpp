@@ -112,7 +112,7 @@ void RSA::getKeys()
 	DataType orla = getOrla(prime1, prime2);
 	m_key._pKey = getPKey(prime1, prime2);
 	m_key._eKey = getEKey(orla);
-	m_key._dKey = getDKey(m_key._eKey, m_key._pKey);
+	m_key._dKey = getDKey(m_key._eKey,orla);
 }
 
 Key RSA::getallKey()
