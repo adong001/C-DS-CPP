@@ -8,11 +8,11 @@ void test()
 	Key key = rsa.getallKey();
 	cout << "keys:" << endl;
 	cout << key._eKey << " " << key._dKey << " " << key._pKey << endl;
-	DataType original = 2;
+	DataType original = 10;
 	DataType decout = rsa.ecrept(original, key._eKey, key._pKey);
-	cout << "original：" << original << endl;
-	cout << "ecrept :" << decout << endl;
-	cout << "decreptL" << rsa.decrept(original, key._dKey, key._pKey);
+	cout << "original:" << original << endl;
+	cout << "ecrept:" << decout << endl;
+	cout << "decrept:" << rsa.decrept(decout, key._dKey, key._pKey);
 }
 
 
@@ -62,6 +62,14 @@ void test_mul_div()
 
 	cout << "-239928784 * -674348787 =" << -239928784 * -674348787 << "   mul = ";
 	cout << b1.mul("-239928784", "-674348787") << endl << endl;
+
+	cout << "-239928784 / -674348787 =" << -239928784 / -674348787 << "   div = ";
+	cout <<"商 = "<< b1.div("-239928784", "-674348787").first <<"   余数 = " <<b1.div("-239928784", "-674348787").second << endl << endl;
+
+	cout << "-239928784 / -674348787 =" << -239928784 / -674348787 << "   div = ";
+	cout << "商 = " << b1.div("-239928784", "-674348787").first << "   余数 = " << b1.div("-239928784", "-674348787").second << endl << endl;
+
+
 }
 
 int main()

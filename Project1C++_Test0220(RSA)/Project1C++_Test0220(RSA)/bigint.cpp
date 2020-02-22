@@ -1,9 +1,7 @@
 #include"bigint.h"
 
-BigInt::BigInt(const string& num)//构造函数
-{
-
-}
+BigInt::BigInt(const string& num) //构造函数
+{}
 
 
 BigInt::BigInt(const int num)//构造函数
@@ -311,10 +309,96 @@ string BigInt::mul(string num1, string num2)
 		return ret;
 	}
 }
+
+bool BigInt::less(string num1, string num2)
+{
+	if (num1.size() < num2.size())
+	{
+		return true;
+	}
+	if (num1.size() > num2.size())
+	{
+		return false;
+	}
+	//长度相同时
+	return num1 < num2;
+}
+
 pair<string, string> BigInt::div(string num1, string num2)//除法返回商和余数
 {
-	pair<string, string> ret;
-	return ret;
+	//借助减法实现-->105/2 = 105-20-20-20-20-20  商=减的次数，余数=不能减的数
+	
+	//pair<string, string> ret;
+	string ret;//商
+	string rem = num1;//余数
+
+	int diffNum = num1.size() - num2.size();//给除数进行放大，按照10的倍数放大
+	num2.append(diffNum, '0');
+	for (int i = 0; i < diffNum; ++i)
+	{
+		//记录减法执行的次数
+		char count = '0';
+		while (true)
+		{
+			if (less(0, num2))//余数小于除数
+			{
+				break;
+			}
+			rem = sub(rem, num2);
+			++count;
+		}
+		ret += count;
+		//除数减小10倍
+		num2.pop_back();
+	}
+
+	//删除前置的0
+	while (ret.size() > 1 && ret[0] == '0')
+	{
+		ret.erase(0, 1);
+	}
+	
+	return make_pair(ret,rem);
 }
 
 
+BigInt BigInt::operator+(BigInt& bi)
+{
+	string ret = add(m_number, bi.m_number);
+	return BigInt(ret);
+}
+
+BigInt BigInt::operator-(BigInt& bi)
+{
+	string ret = sub(m_number, bi.m_number);
+	return BigInt(ret);
+}
+
+BigInt BigInt::operator*(BigInt& bi)
+{
+	string ret = mul(m_number, bi.m_number);
+	return BigInt(ret);
+}
+
+BigInt BigInt::operator/(BigInt& bi)
+{
+	string ret = div(m_number, bi.m_number).first;
+	return BigInt(ret);
+}
+
+BigInt BigInt::operator%(BigInt& bi)
+{
+	string ret = div(m_number, bi.m_number).second;
+	return BigInt(ret);
+}
+
+ostream& operator<<(ostream& os, BigInt& bi)
+{
+	os << bi.m_number;
+	return os;
+}
+istream& operator>>(istream& is, BigInt& bi)
+{
+	is >> bi.m_number;
+	return is;
+}
