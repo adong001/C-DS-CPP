@@ -100,6 +100,8 @@ DataType RSA::ecrept(DataType data, DataType ekey, DataType pkey)//加密函数
 
 DataType RSA::decrept(DataType data, DataType dkey, DataType pkey)//解密函数
 {
+
+
 	//msgE-->明文，data-->密文，dkey-->私钥，pkey-->n
 	//解密：msgE = (data^dkey)%n 
 	return ecrept(data, dkey, pkey);
