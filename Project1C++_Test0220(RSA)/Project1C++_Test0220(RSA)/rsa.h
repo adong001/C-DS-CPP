@@ -4,7 +4,7 @@
 #include<ctime>
 #include<fstream>
 #include<cmath>
-//#include<boost/multiprecision/random.hpp>
+//
 //#include<boost/multiprecision/cpp_int.hpp>
 //#include<boost/multiprecision/miller_rabin.hpp>//´óËØÊı¼ì²â
 #define NUMBER 256

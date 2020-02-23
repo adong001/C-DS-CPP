@@ -170,7 +170,11 @@ DataType RSA::getEKey(DataType orla)//获取加密秘钥e
 DataType RSA::getDKey(DataType ekey, DataType orla)//获取解密秘钥d
 {
 	// e * d % f(n) = 1  (f(n) = orla)
-	DataType dkey = orla / ekey;
+	DataType x = 0, y = 0;
+	exGcd(ekey, orla, x, y);
+	//变换，让私钥d是一个比较小的值
+	return (x% orla + orla) % orla;
+	/*DataType dkey = orla / ekey;
 	while (true)
 	{
 		if ((dkey * ekey) % orla == 1)
@@ -180,6 +184,7 @@ DataType RSA::getDKey(DataType ekey, DataType orla)//获取解密秘钥d
 		++dkey;
 	}
 	return dkey;
+	*/
 }
 DataType RSA::getGcd(DataType data1, DataType data2)//获取两个数的最大公约数
 {
@@ -209,4 +214,21 @@ void RSA::getKeys()
 Key RSA::getallKey()//对外封装访问私有成员的接口
 {
 	return m_key;
+}
+//求私钥
+
+//求模范元素(公钥e)
+DataType exGcd(DataType a, DataType b, DataType& x, DataType& y)
+{
+	if (b == 0)
+	{
+		x = 1;
+		y = 0;
+		return a;
+	}
+	DataType gcd = exGcd(b, a % b, x, y);
+	DataType x1 = x, y1 = y;
+	x = y1;
+	y = x1 - a / b * y1;
+	return gcd;
 }
