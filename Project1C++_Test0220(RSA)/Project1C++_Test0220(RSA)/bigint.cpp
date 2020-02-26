@@ -324,6 +324,9 @@ bool BigInt::less(string num1, string num2)
 	return num1 < num2;
 }
 
+
+
+
 pair<string, string> BigInt::div(string num1, string num2)//除法返回商和余数
 {
 	//借助减法实现-->105/2 = 105-20-20-20-20-20  商=减的次数，余数=不能减的数
