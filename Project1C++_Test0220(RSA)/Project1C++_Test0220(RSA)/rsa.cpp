@@ -15,29 +15,40 @@
 
 void RSA::ecrept(const char* filename, const char* fileout)//文件加密
 {
-	ifstream fin(filename, ifstream::binary);
-	ofstream fout(fileout, ifstream::binary);
-	if (!fin.is_open())
+	fstream fs;
+	fs.open(filename, ios::in | ios::out | ios::binary);//以读写方式打开文件
+	if (!fs)
 	{
 		perror("input file open failed\n");
 		return;
 	}
+
 	char* buffer = new char[NUMBER];
-	DataType* bufferout = new DataType[NUMBER];
-	while (!fin.eof())
+	DataType tmp;
+	int size = sizeof(DataType);
+	int curNum;
+	int DataTypeNum;
+
+	while (!fs.eof())
 	{
-		fin.read(buffer, NUMBER);
-		int curNum = fin.gcount();//真正读到的字节数
-		for (int i = 0; i < curNum; i++)
+		fs.read(buffer, NUMBER);//每次读256字节
+		curNum = fs.gcount();//真正读到的字节数
+		DataTypeNum = curNum / size;
+		tmp = (DataType)buffer[DataTypeNum * size - 1];
+		//tmp保存缓冲区中后面一个不足一个DataType大小数据，
+		//因为有可能会出处出现，NUMBER不是DataType的整数倍，
+		//就会产生一个DataType数据一半在前一个256字节被读走，另一半在后一个256字节被读走
+		//就会加密错数据
+
+		for (int i = 0; i < DataTypeNum * size - 1; i += size - 1)
 		{
-			ecrept((DataType)buffer[i], m_key._eKey, m_key._pKey);//以DataType为单位进行加密
+			//以DataType为单位进行加密
+			ecrept((DataType)buffer[i], m_key._eKey, m_key._pKey);
 		}
-		fout.write((char*)bufferout, curNum * sizeof(DataType));//加密后，写入到fout中
+		fs.write((char*)buffer, curNum * sizeof(DataType));//加密后，写入到fout中
 	}
 	delete[] buffer;
-	delete[] bufferout;
-	fin.close();
-	fout.close();
+	fs.close();
 }
 void RSA::dcrept(const char* filename, const char* fileout)//文件解密
 {
@@ -58,7 +69,7 @@ void RSA::dcrept(const char* filename, const char* fileout)//文件解密
 		curNum /= sizeof(DataType);
 		for (int i = 0; i < curNum; i++)
 		{
-			bufferout[i] = (char)decrept(buffer[i], m_key._eKey, m_key._pKey);//以DataType为单位进行加密
+			bufferout[i] = (char)decrept(buffer[i], m_key._dKey, m_key._pKey);//以DataType为单位进行解密
 		}
 		fout.write(bufferout, curNum);//加密后，写入到fout中
 	}
@@ -113,6 +124,7 @@ DataType RSA::getPrime()//获取素数
 	/*boost::random::mt199937 gen(time(NULL));
 	  boost::random::uniform_int_distribution<DataType> dist(0,DataType(1)<<256);
 	  */
+	srand(time(NULL));
 	DataType prime;
 	while (true)
 	{
@@ -127,9 +139,14 @@ DataType RSA::getPrime()//获取素数
 
 bool RSA::IsPrime(DataType data)//判断是否为素数
 {
-	for (int i = 2; i <= sqrt(data); i++)
+	if (data % 2 == 0)
 	{
-		if (data%i == 0)
+		return false;
+	}
+
+	for (int i = 3; i <= sqrt(data); i += 2)//从2以后，偶数一定不是素数
+	{
+		if (data % i == 0)
 		{
 			return false;
 		}
@@ -170,11 +187,11 @@ DataType RSA::getEKey(DataType orla)//获取加密秘钥e
 DataType RSA::getDKey(DataType ekey, DataType orla)//获取解密秘钥d
 {
 	// e * d % f(n) = 1  (f(n) = orla)
-	DataType x = 0, y = 0;
-	exGcd(ekey, orla, x, y);
-	//变换，让私钥d是一个比较小的值
-	return (x% orla + orla) % orla;
-	/*DataType dkey = orla / ekey;
+	//DataType x = 0, y = 0;
+	//exGcd(ekey, orla, x, y);
+	////变换，让私钥d是一个比较小的值
+	//return (x% orla + orla) % orla;
+	DataType dkey = orla / ekey;
 	while (true)
 	{
 		if ((dkey * ekey) % orla == 1)
@@ -184,7 +201,7 @@ DataType RSA::getDKey(DataType ekey, DataType orla)//获取解密秘钥d
 		++dkey;
 	}
 	return dkey;
-	*/
+	
 }
 DataType RSA::getGcd(DataType data1, DataType data2)//获取两个数的最大公约数
 {
@@ -199,7 +216,7 @@ DataType RSA::getGcd(DataType data1, DataType data2)//获取两个数的最大公约数
 void RSA::getKeys()
 {
 	DataType prime1 = getPrime();
-		DataType prime2 =getPrime();
+	DataType prime2 = getPrime();
 	while (prime1 == prime2)
 	{
 		prime2 = getPrime();

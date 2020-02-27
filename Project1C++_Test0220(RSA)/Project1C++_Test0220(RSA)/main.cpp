@@ -4,17 +4,30 @@
 void test()
 {
 	RSA rsa;
-	rsa.getKeys();
-	Key key = rsa.getallKey();
-	cout << "keys:" << endl;
-	cout << key._eKey << " " << key._dKey << " " << key._pKey << endl;
-	DataType original = 10;
-	DataType decout = rsa.ecrept(original, key._eKey, key._pKey);
-	cout << "original:" << original << endl;
-	cout << "ecrept:" << decout << endl;
-	cout << "decrept:" << rsa.decrept(decout, key._dKey, key._pKey);
+	int k = 20;
+	while (k)
+	{
+		rsa.getKeys();
+		Key key = rsa.getallKey();
+		cout << "keys:" << endl;
+		cout << "key._eKey:" << key._eKey << " " << "key._dKey:" << key._dKey << " " << "key._pKey:" << key._pKey << endl;
+		DataType original = 243;
+		DataType decout = rsa.ecrept(original, key._eKey, key._pKey);
+		cout << "original:" << original << endl;
+		cout << "ecrept:" << decout << endl;
+		cout << "decrept:" << rsa.decrept(decout, key._dKey, key._pKey);
+		cout << endl << endl;
+		k--;
+	}
 }
 
+void test_file()
+{
+	RSA rsa;
+	rsa.getKeys();
+	rsa.ecrept("原文件.txt", "加密文件.txt");
+	rsa.dcrept("加密文件.txt","解密文件.txt");
+}
 
 
 void test_add_sub()
@@ -76,7 +89,8 @@ int main()
 {
 	//test_add_sub();
 	//test_mul_div();
-	test();
+	//test();
+	test_file();
     system("pause");
     return 0;
 }

@@ -405,22 +405,22 @@ istream& operator>>(istream& is, BigInt& bi)
 	is >> bi.m_number;
 	return is;
 }
-BigInt operator+(BigInt& bi);
-BigInt operator-(BigInt& bi);
-BigInt operator*(BigInt& bi);
-BigInt operator/(BigInt& bi);
-BigInt operator%(BigInt& bi);
-
-BigInt& operator+=(BigInt& bi);
-BigInt& operator-=(BigInt& bi);
-BigInt& operator*=(BigInt& bi);
-BigInt& operator/=(BigInt& bi);
-BigInt& operator%=(BigInt& bi);
-
-BigInt& operator++();
-BigInt operator++(int);//后置
-BigInt& operator--();
-BigInt operator--(int);//后置
-
-friend ostream& operator<<(ostream& os, BigInt& bi);
-friend istream& operator>>(istream& is, BigInt& bi);
+//BigInt operator+(BigInt& bi);
+//BigInt operator-(BigInt& bi);
+//BigInt operator*(BigInt& bi);
+//BigInt operator/(BigInt& bi);
+//BigInt operator%(BigInt& bi);
+//
+//BigInt& operator+=(BigInt& bi);
+//BigInt& operator-=(BigInt& bi);
+//BigInt& operator*=(BigInt& bi);
+//BigInt& operator/=(BigInt& bi);
+//BigInt& operator%=(BigInt& bi);
+//
+//BigInt& operator++();
+//BigInt operator++(int);//后置
+//BigInt& operator--();
+//BigInt operator--(int);//后置
+//
+//friend ostream& operator<<(ostream& os, BigInt& bi);
+//friend istream& operator>>(istream& is, BigInt& bi);
