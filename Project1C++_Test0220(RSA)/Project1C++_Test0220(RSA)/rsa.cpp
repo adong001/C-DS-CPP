@@ -15,41 +15,40 @@
 
 void RSA::ecrept(const char* filename, const char* fileout)//文件加密
 {
-	fstream fs;
-	fs.open(filename, ios::in | ios::out | ios::binary);//以读写方式打开文件
-	if (!fs)
+	ifstream fin(filename, ifstream::binary);
+	ofstream fout(fileout, ifstream::binary);
+	if (!fin.is_open())
 	{
 		perror("input file open failed\n");
 		return;
 	}
+	int length = sizeof(DataType);
+	int size = NUMBER * length;
 
-	char* buffer = new char[NUMBER];
-	DataType tmp;
-	int size = sizeof(DataType);
+	//读取的字节一定是DataType的整数倍，保证一次不会读取半个DataType的数据
+	char* bufferin = new char[size];
+	DataType* bufferout = new DataType[NUMBER];
 	int curNum;
-	int DataTypeNum;
 
-	while (!fs.eof())
+	while (!fin.eof())
 	{
-		fs.read(buffer, NUMBER);//每次读256字节
-		curNum = fs.gcount();//真正读到的字节数
-		DataTypeNum = curNum / size;
-		tmp = (DataType)buffer[DataTypeNum * size - 1];
-		//tmp保存缓冲区中后面一个不足一个DataType大小数据，
-		//因为有可能会出处出现，NUMBER不是DataType的整数倍，
-		//就会产生一个DataType数据一半在前一个256字节被读走，另一半在后一个256字节被读走
-		//就会加密错数据
-
-		for (int i = 0; i < DataTypeNum * size - 1; i += size - 1)
+		fin.read(bufferin, size);//每次读NUMBER个DataType字节的数据
+		curNum = fin.gcount();//真正读到的字节数，有可能后面读到空
+		int k = curNum / length;//以DataType为单位进行加密,k为加密次数
+		int i, j;
+		for (i = 0,j = 0; i < k; i++,j += length-1)
 		{
-			//以DataType为单位进行加密
-			ecrept((DataType)buffer[i], m_key._eKey, m_key._pKey);
+			//加密后，先写入bufferout缓冲区中
+			bufferout[i] = ecrept((DataType)bufferin[j], m_key._eKey, m_key._pKey);
 		}
-		fs.write((char*)buffer, curNum * sizeof(DataType));//加密后，写入到fout中
+		fout.write((char*)bufferout, curNum);//加密后，写入到fout中
 	}
-	delete[] buffer;
-	fs.close();
+	delete[] bufferin;
+	delete[] bufferout;
+	fin.close();
+	fout.close();
 }
+
 void RSA::dcrept(const char* filename, const char* fileout)//文件解密
 {
 
@@ -59,22 +58,31 @@ void RSA::dcrept(const char* filename, const char* fileout)//文件解密
 	{
 		perror("input file open failed\n");
 		return;
-	}
-	char* bufferout = new char[NUMBER];
-	DataType* buffer = new DataType[NUMBER];
+	}	
+	
+	int length = sizeof(DataType);
+	int size = NUMBER * length;
+
+	//读取的字节一定是DataType的整数倍，保证一次不会读取半个DataType的数据
+	DataType* bufferin = new DataType[NUMBER];
+	char* bufferout = new char[size];
+	int curNum;
+
 	while (!fin.eof())
 	{
-		fin.read((char*)buffer, NUMBER*sizeof(DataType));
-		int curNum = fin.gcount();//真正读到的字节数
-		curNum /= sizeof(DataType);
-		for (int i = 0; i < curNum; i++)
+		fin.read((char*)bufferout, size);//每次读NUMBER个DataType字节的数据
+		curNum = fin.gcount();//真正读到的字节数，有可能后面读到空
+		int k = curNum / length;//以DataType为单位进行解密,k为解密次数
+		int i, j;
+		for (i = 0,j = 0; i < k; i++, j += length - 1)
 		{
-			bufferout[i] = (char)decrept(buffer[i], m_key._dKey, m_key._pKey);//以DataType为单位进行解密
+			//解密后，先写入bufferout缓冲区中
+			bufferout[j] = (char)ecrept(bufferin[i], m_key._dKey, m_key._pKey);
 		}
-		fout.write(bufferout, curNum);//加密后，写入到fout中
+		fout.write(bufferout, curNum);//解密后，写入到fout中
 	}
 
-	delete[] buffer;
+	delete[] bufferin;
 	delete[] bufferout;
 	fin.close();
 	fout.close();

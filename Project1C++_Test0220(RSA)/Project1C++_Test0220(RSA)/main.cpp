@@ -88,9 +88,9 @@ void test_mul_div()
 int main()
 {
 	//test_add_sub();
-	//test_mul_div();
+	test_mul_div();
 	//test();
-	test_file();
+	//test_file();
     system("pause");
     return 0;
 }

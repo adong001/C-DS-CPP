@@ -7,7 +7,7 @@
 //
 //#include<boost/multiprecision/cpp_int.hpp>
 //#include<boost/multiprecision/miller_rabin.hpp>//´óËØÊı¼ì²â
-#define NUMBER 256
+#define NUMBER 20
 using namespace std;
 typedef long DataType;
 //typedef boost::multiprecision::int1024_t DataType;

@@ -24,7 +24,7 @@ class BigInt
 {
 private:
 	string m_number;
-	bool less(string num1, string num2);
+	bool less(string& num1, string& num2);
 public:
 	//通过字符串表示大数
 	string add(string num1, string num2);
