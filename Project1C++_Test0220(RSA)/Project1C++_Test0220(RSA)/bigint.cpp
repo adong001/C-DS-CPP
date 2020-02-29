@@ -16,7 +16,7 @@ BigInt::BigInt(const int num)//构造函数
 	}
 }
 
-bool less( string& num1,  string& num2)//num1<num2返回真
+bool BigInt::less( string& num1,  string& num2)//num1<num2返回真
 {
 	if (num1.size() > num2.size())
 	{
@@ -174,23 +174,29 @@ pair<string, string> BigInt::div(string num1, string num2)//除法返回商和余数
 {
 	//借助减法实现-->105/2 = 105-20-20-20-20-20  商=减的次数，余数=不能减的数
 
-	//pair<string, string> ret;
+	int len1 = num1.size();
+	int len2 = num2.size();
+	if (less(num1, num2))//这个除法只是用来获取余数, num1 % num2 = num2 % num1,为了方便计算，就让大除小
+	{
+		swap(num1, num2);
+		swap(len1, len2);
+	}
 	string ret;//商
 	string rem = num1;//余数
 
 	int diffNum = num1.size() - num2.size();//给除数进行放大，按照10的倍数放大
 	num2.append(diffNum, '0');
-	for (int i = 0; i < diffNum; ++i)
+	for (int i = 0; i <= diffNum; ++i)
 	{
 		//记录减法执行的次数
 		char count = '0';
 		while (true)
 		{
 			if (less(rem, num2))//余数小于除数
-			{
+			{  
 				break;
 			}
-			rem = sub(rem, num2);
+			rem = sub(rem, num2);//余数不断减去除数，减的次数count就是商
 			++count;
 		}
 		ret += count;
