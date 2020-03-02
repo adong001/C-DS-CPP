@@ -5,8 +5,8 @@
 #include<algorithm>
 #include<string>
 #include<fstream>
-#include<cmath>
 #include<utility>
+#include<cmath>
 
 //#include <boost/multipercision/cpp_int.hpp>"//大数库，功能强大(智能指针，lamba表达式)
 using namespace std;
@@ -26,6 +26,11 @@ private:
 	string m_number;
 	bool less(string& num1, string& num2);
 public:
+
+	BigInt(){};
+	BigInt(const string& num);
+	BigInt(const int num);
+
 	//通过字符串表示大数
 	string add(string num1, string num2);
 	string sub(string num1, string num2);
@@ -38,21 +43,24 @@ public:
 	BigInt operator/(BigInt& bi);
 	BigInt operator%(BigInt& bi);
 
+	/*friend BigInt operator +(const char * str, BigInt& b1);
+	friend BigInt operator -(const char * str, BigInt& b1);
+	friend BigInt operator *(const char * str, BigInt& b1);
+	friend BigInt operator /(const char * str, BigInt& b1);
+	friend BigInt operator %(const char * str, BigInt& b1);
+
 	BigInt& operator+=(BigInt& bi);
 	BigInt& operator-=(BigInt& bi);
 	BigInt& operator*=(BigInt& bi);
 	BigInt& operator/=(BigInt& bi);
 	BigInt& operator%=(BigInt& bi);
-
+	
 	BigInt& operator++();
 	BigInt operator++(int);//后置
 	BigInt& operator--();
-	BigInt operator--(int);//后置
+	BigInt operator--(int);//后置*/
 	
 	friend ostream& operator<<(ostream& os, BigInt& bi);
 	friend istream& operator>>(istream& is, BigInt& bi);
 
-	BigInt(){}
-	BigInt(const string& num);
-	BigInt(const int num);
 };

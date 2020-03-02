@@ -1,5 +1,8 @@
 #include"bigint.h"
 
+BigInt::BigInt()
+{}
+
 BigInt::BigInt(const string& num) //构造函数
 {
 	m_number = num;
@@ -244,6 +247,7 @@ BigInt BigInt::operator%(BigInt& bi)
 	return BigInt(ret);
 }
 
+
 ostream& operator<<(ostream& os, BigInt& bi)
 {
 	os << bi.m_number;
@@ -254,22 +258,6 @@ istream& operator>>(istream& is, BigInt& bi)
 	is >> bi.m_number;
 	return is;
 }
-//BigInt operator+(BigInt& bi);
-//BigInt operator-(BigInt& bi);
-//BigInt operator*(BigInt& bi);
-//BigInt operator/(BigInt& bi);
-//BigInt operator%(BigInt& bi);
-//
-//BigInt& operator+=(BigInt& bi);
-//BigInt& operator-=(BigInt& bi);
-//BigInt& operator*=(BigInt& bi);
-//BigInt& operator/=(BigInt& bi);
-//BigInt& operator%=(BigInt& bi);
-//
-//BigInt& operator++();
-//BigInt operator++(int);//后置
-//BigInt& operator--();
-//BigInt operator--(int);//后置
-//
-//friend ostream& operator<<(ostream& os, BigInt& bi);
-//friend istream& operator>>(istream& is, BigInt& bi);
+
+
+

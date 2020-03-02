@@ -1,5 +1,4 @@
 #include"rsa.h"
-#include"bigint.h"
 
 void test_key()
 {

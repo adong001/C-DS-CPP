@@ -1,9 +1,5 @@
 #pragma once
-#define _CRT_SECURE_NO_WARNINGS 1
-#include<iostream>
-#include<ctime>
-#include<fstream>
-#include<cmath>
+#include"bigint.h"
 //
 //#include<boost/multiprecision/cpp_int.hpp>
 //#include<boost/multiprecision/miller_rabin.hpp>//´óËØÊý¼ì²â
