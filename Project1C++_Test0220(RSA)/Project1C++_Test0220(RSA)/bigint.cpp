@@ -1,7 +1,11 @@
 #include"bigint.h"
-
+#include"rsa.h"
 BigInt::BigInt()
-{}
+{
+	RSA rsa;
+	rsa.getKeys();
+	Key key = rsa.getallKey();
+}
 
 BigInt::BigInt(const string& num) //¹¹Ôìº¯Êý
 {

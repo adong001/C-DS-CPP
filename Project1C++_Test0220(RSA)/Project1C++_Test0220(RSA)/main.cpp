@@ -51,9 +51,9 @@ void test_add_sub_mul_div()
 
 int main()
 {
-	test_add_sub_mul_div();
+	//test_add_sub_mul_div();
 	//test_key();
-	//test_file();
+	test_file();
 	system("pause");
 	return 0;
 }

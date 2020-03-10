@@ -27,7 +27,7 @@ private:
 	bool less(string& num1, string& num2);
 public:
 
-	BigInt(){};
+	BigInt();
 	BigInt(const string& num);
 	BigInt(const int num);
 

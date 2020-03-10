@@ -26,22 +26,23 @@ void RSA::ecrept(const char* filename, const char* fileout)//文件加密
 	int size = NUMBER * length;
 
 	//读取的字节一定是DataType的整数倍，保证一次不会读取半个DataType的数据
-	char* bufferin = new char[size];
+	char* bufferin = new char[NUMBER];
 	DataType* bufferout = new DataType[NUMBER];
 	int curNum;
 
 	while (!fin.eof())
 	{
-		fin.read(bufferin, size);//每次读NUMBER个DataType字节的数据
+		fin.read(bufferin, NUMBER);//每次读NUMBER个DataType字节的数据
 		curNum = fin.gcount();//真正读到的字节数，有可能后面读到空
 		int k = curNum / length;//以DataType为单位进行加密,k为加密次数
 		int i, j;
-		for (i = 0,j = 0; i < k; i++,j += length-1)
+		for (i = 0; i < curNum; i++)
+		//for (i = 0,j = 0; i < k; i++,j += length-1)
 		{
 			//加密后，先写入bufferout缓冲区中
-			bufferout[i] = ecrept((DataType)bufferin[j], m_key._eKey, m_key._pKey);
+			bufferout[i] = ecrept((DataType)bufferin[i], m_key._eKey, m_key._pKey);
 		}
-		fout.write((char*)bufferout, curNum);//加密后，写入到fout中
+		fout.write((char*)bufferout, curNum*length);//加密后，写入到fout中
 	}
 	delete[] bufferin;
 	delete[] bufferout;
@@ -65,7 +66,7 @@ void RSA::dcrept(const char* filename, const char* fileout)//文件解密
 
 	//读取的字节一定是DataType的整数倍，保证一次不会读取半个DataType的数据
 	DataType* bufferin = new DataType[NUMBER];
-	char* bufferout = new char[size];
+	char* bufferout = new char[NUMBER];
 	int curNum;
 
 	while (!fin.eof())
@@ -73,13 +74,14 @@ void RSA::dcrept(const char* filename, const char* fileout)//文件解密
 		fin.read((char*)bufferout, size);//每次读NUMBER个DataType字节的数据
 		curNum = fin.gcount();//真正读到的字节数，有可能后面读到空
 		int k = curNum / length;//以DataType为单位进行解密,k为解密次数
-		int i, j;
-		for (i = 0,j = 0; i < k; i++, j += length - 1)
+		int i, j; 
+		for (i = 0; i < k; i++)
+	   //for (i = 0,j = 0; i < k; i++, j += length - 1)
 		{
 			//解密后，先写入bufferout缓冲区中
-			bufferout[j] = (char)ecrept(bufferin[i], m_key._dKey, m_key._pKey);
+			bufferout[i] = (char)ecrept(bufferin[i], m_key._dKey, m_key._pKey);
 		}
-		fout.write(bufferout, curNum);//解密后，写入到fout中
+		fout.write(bufferout, k);//解密后，写入到fout中
 	}
 
 	delete[] bufferin;

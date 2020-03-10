@@ -7,8 +7,6 @@ using namespace std;
 int main()
 {
 
-
-
 	YD::unordered_map<int, int> m;
 	unordered_map<int, int> m2;
 	m2.begin();
