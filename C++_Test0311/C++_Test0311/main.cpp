@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
 	map<string, int> m;
-;
+	set<int> s;
     system("pause");
     return 0;
 }
