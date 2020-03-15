@@ -6,7 +6,9 @@ using namespace std;
 int main()
 {
 	map<string, int> m;
-	set<int> s;
+	int* ip = reinterpret_cast<int *>(12);
+	int i = reinterpret_cast<int>(ip);
+	cout << i << endl;
     system("pause");
     return 0;
 }
