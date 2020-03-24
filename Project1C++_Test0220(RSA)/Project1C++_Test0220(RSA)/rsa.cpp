@@ -1,19 +1,30 @@
 #include"rsa.h"
 
-//bool IsPrimeBigInt(DataType& data)
-//{
-//	brdm::mt11213b gen(time(nullptr));
-//	if (miller_rabin_test(data, 25, gen))
-//	{
-//		if (miller_rabin_test((data - 1) / 2, 25, gen))
-//		{
-//			return true;
-//		}
-//	}
-//	return false;
-//}
+void GetRandom()
+{
+	//mt19937:一种随机数产生器
+	rp::mt19937 gen(time(nullptr));
+	cout << "random" << endl;
+	//指定随机数的范围 0 ~ (1<<786) 
+	rp::uniform_int_distribution<mp::cpp_int> dist(0, mp::cpp_int(1) << 768);
 
-void RSA::ecrept(const char* filename, const char* fileout)//文件加密
+	cout << dist(gen) << endl;
+}
+
+bool IsPrimeBigInt(DataType& data)
+{
+	rp::mt11213b gen(time(nullptr));
+	if (miller_rabin_test(data, 25, gen))
+	{
+		if (miller_rabin_test((data - 1) / 2, 25, gen))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void RSA::Encrypt(const char* filename, const char* fileout)//文件加密
 {
 	ifstream fin(filename, ifstream::binary);
 	ofstream fout(fileout, ifstream::binary);
@@ -22,27 +33,28 @@ void RSA::ecrept(const char* filename, const char* fileout)//文件加密
 		perror("input file open failed\n");
 		return;
 	}
+	
 	int length = sizeof(DataType);
 	int size = NUMBER * length;
 
 	//读取的字节一定是DataType的整数倍，保证一次不会读取半个DataType的数据
-	char* bufferin = new char[NUMBER];
+	char* bufferin = new char[size];
 	DataType* bufferout = new DataType[NUMBER];
 	int curNum;
 
 	while (!fin.eof())
 	{
-		fin.read(bufferin, NUMBER);//每次读NUMBER个DataType字节的数据
+		fin.read(bufferin, size);//每次读NUMBER个DataType字节的数据
 		curNum = fin.gcount();//真正读到的字节数，有可能后面读到空
-		int k = curNum / length;//以DataType为单位进行加密,k为加密次数
-		int i, j;
-		for (i = 0; i < curNum; i++)
-		//for (i = 0,j = 0; i < k; i++,j += length-1)
+		curNum /= length;//读到curNum个DataType字节的数据
+		int i,j;
+		for (i = 0,j = 0; i < curNum; i++)
 		{
 			//加密后，先写入bufferout缓冲区中
-			bufferout[i] = ecrept((DataType)bufferin[i], m_key._eKey, m_key._pKey);
+			bufferout[i] = Encrypt((DataType)bufferin[j], m_key.m_eKey, m_key.m_pKey);
+			j += length;//bufferin是char每次偏移DataType大小的位置
 		}
-		fout.write((char*)bufferout, curNum*length);//加密后，写入到fout中
+		fout.write((char*)bufferout, curNum * length);//加密后，写入到fout中
 	}
 	delete[] bufferin;
 	delete[] bufferout;
@@ -50,7 +62,7 @@ void RSA::ecrept(const char* filename, const char* fileout)//文件加密
 	fout.close();
 }
 
-void RSA::dcrept(const char* filename, const char* fileout)//文件解密
+void RSA::Decrypt(const char* filename, const char* fileout)//文件解密
 {
 
 	ifstream fin(filename, ifstream::binary);
@@ -63,26 +75,26 @@ void RSA::dcrept(const char* filename, const char* fileout)//文件解密
 	
 	int length = sizeof(DataType);
 	int size = NUMBER * length;
-
-	//读取的字节一定是DataType的整数倍，保证一次不会读取半个DataType的数据
-	DataType* bufferin = new DataType[NUMBER];
-	char* bufferout = new char[NUMBER];
 	int curNum;
+
+    DataType* bufferin = new DataType[NUMBER];
+	char* bufferout = new char[size];
 
 	while (!fin.eof())
 	{
-		fin.read((char*)bufferout, size);//每次读NUMBER个DataType字节的数据
+		fin.read((char*)bufferin, size);//每次读NUMBER个DataType字节的数据
 		curNum = fin.gcount();//真正读到的字节数，有可能后面读到空
-		int k = curNum / length;//以DataType为单位进行解密,k为解密次数
-		int i, j; 
-		for (i = 0; i < k; i++)
-	   //for (i = 0,j = 0; i < k; i++, j += length - 1)
+		curNum /= length;//读到curNum个DataType字节的数据
+		int i, j;
+		for (i = 0, j = 0; i < curNum; i++)
 		{
-			//解密后，先写入bufferout缓冲区中
-			bufferout[i] = (char)ecrept(bufferin[i], m_key._dKey, m_key._pKey);
+			//加密后，先写入bufferout缓冲区中
+			bufferout[j] = (char)Decrypt(bufferin[i], m_key.m_dKey, m_key.m_pKey);
+			j += length;//bufferout是char每次偏移DataType大小的位置
 		}
-		fout.write(bufferout, k);//解密后，写入到fout中
+		fout.write(bufferout, curNum * length);//加密后，写入到fout中
 	}
+	//读取的字节一定是DataType的整数倍，保证一次不会读取半个DataType的数据
 
 	delete[] bufferin;
 	delete[] bufferout;
@@ -90,7 +102,7 @@ void RSA::dcrept(const char* filename, const char* fileout)//文件解密
 	fout.close();
 }
 
-DataType RSA::ecrept(DataType data, DataType ekey, DataType pkey)//加密函数
+DataType RSA::Encrypt(DataType data, DataType ekey, DataType pkey)//加密函数
 {
 	//msgE-->密文，data-->明文，ekey-->公钥，pkey-->n
 	/*加密：msgE = (data^ekey)% pkey 
@@ -119,87 +131,85 @@ DataType RSA::ecrept(DataType data, DataType ekey, DataType pkey)//加密函数
 	return msgE;//密文
 }
 
-DataType RSA::decrept(DataType data, DataType dkey, DataType pkey)//解密函数
+DataType RSA::Decrypt(DataType data, DataType dkey, DataType pkey)//解密函数
 {
 	//msgE-->明文，data-->密文，dkey-->私钥，pkey-->n
 	//解密：msgE = (data^dkey)%n 
-	return ecrept(data, dkey, pkey);
+	return Encrypt(data, dkey, pkey);
 }
 
 
-DataType RSA::getPrime()//获取素数
+DataType RSA::GetPrime()//获取素数
 {
-	/*boost::random::mt199937 gen(time(NULL));
-	  boost::random::uniform_int_distribution<DataType> dist(0,DataType(1)<<256);
-	  */
-	srand(time(NULL));
+	rp::mt19937 gen(time(NULL));
+	rp::uniform_int_distribution<DataType> dist(DataType(1), DataType(1) << 256);
+	//随机获取一个50位到256位的大数
+	//srand(time(NULL));  
 	DataType prime;
 	while (true)
 	{
-		prime = rand() % 100 + 2;
+		//prime = rand() % 100 + 2;
+		prime = dist(gen);
 		if (IsPrime(prime))
 		{
 			break;
 		}
 	}
+	cout << "prime = " << prime << endl;
 	return prime;
 }
 
 bool RSA::IsPrime(DataType data)//判断是否为素数
 {
-	if (data % 2 == 0)
+	rp::mt11213b gen(time(nullptr));
+	if (miller_rabin_test(data, 25, gen))
 	{
-		return false;
-	}
-
-	for (int i = 3; i <= sqrt(data); i += 2)//从2以后，偶数一定不是素数
-	{
-		if (data % i == 0)
+		if (miller_rabin_test((data - 1) / 2, 25, gen))
 		{
-			return false;
+			return true;
 		}
-		return true;
 	}
+	return false;
 }
-DataType RSA::getPKey(DataType prime1, DataType prime2)//获取n
+DataType RSA::GetPKey(DataType prime1, DataType prime2)//获取n
 {
 	//f(n) = f(p1*p2)
 	return prime1 * prime2;
 }
 
-DataType RSA::getOrla(DataType prime1, DataType prime2)//欧拉函数，
+DataType RSA::GetOrla(DataType prime1, DataType prime2)//欧拉函数，
 {
 	//f(nm) = f(n)f(m) = (n-1)(m-1)
 	return (prime1 - 1)*(prime2 - 1);
 }
 
-DataType RSA::getEKey(DataType orla)//获取加密秘钥e
+DataType RSA::GetEKey(DataType orla)//获取加密秘钥e
 {
 	//1 < e < f(n)
-	/*boost::random::mt199937 gen(time(NULL));
-	boost::random::uniform_int_distribution<DataType> dist(2,orla);
-	*/
-	srand(time(NULL));
+	rp::mt19937 gen(time(NULL));
+	rp::uniform_int_distribution<DataType> dist(2,orla);//获取一个2--orla的大数
+	
+	//srand(time(NULL));
 	DataType ekey;
 	while (true)
 	{
-		//ekey = dist(gen);
-		ekey = rand() % orla;//模后肯定小于f(n)
-		if (ekey > 1 && getGcd(ekey, orla) == 1)//1 < e < orla e与orla互质(最大公约数=1)
+		ekey = dist(gen);
+		//ekey = rand() % orla;//模后肯定小于f(n)
+		if (ekey > 1 && GetGcd(ekey, orla) == 1)//1 < e < orla e与orla互质(最大公约数=1)
 		{
 			return ekey;
 		}
 	}
 
 }
-DataType RSA::getDKey(DataType ekey, DataType orla)//获取解密秘钥d
+DataType RSA::GetDKey(DataType ekey, DataType orla)//获取解密秘钥d
 {
 	// e * d % f(n) = 1  (f(n) = orla)
-	//DataType x = 0, y = 0;
-	//exGcd(ekey, orla, x, y);
-	////变换，让私钥d是一个比较小的值
-	//return (x% orla + orla) % orla;
-	DataType dkey = orla / ekey;
+	DataType x = 0, y = 0;
+	ExGcd(ekey, orla, x, y);
+	//变换，让私钥d是一个比较小的值
+	return (x % orla + orla) % orla;
+	/*DataType dkey = orla / ekey;
 	while (true)
 	{
 		if ((dkey * ekey) % orla == 1)
@@ -208,42 +218,42 @@ DataType RSA::getDKey(DataType ekey, DataType orla)//获取解密秘钥d
 		}
 		++dkey;
 	}
-	return dkey;
+	return dkey;*/
 	
 }
-DataType RSA::getGcd(DataType data1, DataType data2)//获取两个数的最大公约数
+DataType RSA::GetGcd(DataType data1, DataType data2)//获取两个数的最大公约数
 {
 	//传的时候data1 >= data2
 	if (data2 == 0)
 	{
 		return data1;
 	}
-	return getGcd(data2, data1 % data2);
+	return GetGcd(data2, data1 % data2);
 }
 
-void RSA::getKeys()
+void RSA::GetKeys()
 {
-	DataType prime1 = getPrime();
-	DataType prime2 = getPrime();
+	DataType prime1 = GetPrime();
+	DataType prime2 = GetPrime();
 	while (prime1 == prime2)
 	{
-		prime2 = getPrime();
+		prime2 = GetPrime();
 	}
 
-	DataType orla = getOrla(prime1, prime2);
-	m_key._pKey = getPKey(prime1, prime2);
-	m_key._eKey = getEKey(orla);
-	m_key._dKey = getDKey(m_key._eKey,orla);
+	DataType orla = GetOrla(prime1, prime2);
+	m_key.m_pKey = GetPKey(prime1, prime2);
+	m_key.m_eKey = GetEKey(orla);
+	m_key.m_dKey = GetDKey(m_key.m_eKey,orla);
 }
 
-Key RSA::getallKey()//对外封装访问私有成员的接口
+Key RSA::GetAllKey()//对外封装访问私有成员的接口
 {
 	return m_key;
 }
 //求私钥
 
 //求模范元素(公钥e)
-DataType exGcd(DataType a, DataType b, DataType& x, DataType& y)
+DataType ExGcd(DataType a, DataType b, DataType& x, DataType& y)
 {
 	if (b == 0)
 	{
@@ -251,7 +261,7 @@ DataType exGcd(DataType a, DataType b, DataType& x, DataType& y)
 		y = 0;
 		return a;
 	}
-	DataType gcd = exGcd(b, a % b, x, y);
+	DataType gcd = ExGcd(b, a % b, x, y);
 	DataType x1 = x, y1 = y;
 	x = y1;
 	y = x1 - a / b * y1;
