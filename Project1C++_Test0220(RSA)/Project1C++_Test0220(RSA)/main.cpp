@@ -20,17 +20,17 @@ void test_key()
 	}
 }
 
-void test_boost()
-{
-	char* rsa100 = "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
-	char* rsa50 = "12345678901234567890123456789012345678901234567890";
-
-	DataType a(rsa100);
-	DataType b(rsa50);
-
-	cout << a / 2 << endl;
-	cout << b / 2 << endl;
-}
+//void test_boost()
+//{
+//	char* rsa100 = "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
+//	char* rsa50 = "12345678901234567890123456789012345678901234567890";
+//
+//	DataType a(rsa100);
+//	DataType b(rsa50);
+//
+//	cout << a / 2 << endl;
+//	cout << b / 2 << endl;
+//}
 
 void test_file()
 {
@@ -40,16 +40,16 @@ void test_file()
 	rsa.Decrypt("加密文件.txt", "解密文件.txt");
 }
 
-void test_boost_time()
-{
-	//mt19937:一种随机数产生器
-	rp::mt19937 gen(time(nullptr));
-	cout << "random" << endl;
-	//指定随机数的范围 0 ~ (1<<786) 
-	rp::uniform_int_distribution<mp::cpp_int> dist(0, mp::cpp_int(1) << 768);
-
-	cout << dist(gen) << endl;
-}
+//void test_boost_time()
+//{
+//	//mt19937:一种随机数产生器
+//	rp::mt19937 gen(time(nullptr));
+//	cout << "random" << endl;
+//	//指定随机数的范围 0 ~ (1<<786) 
+//	rp::uniform_int_distribution<mp::cpp_int> dist(0, mp::cpp_int(1) << 768);
+//
+//	cout << dist(gen) << endl;
+//}
 
 //
 //void test_add_sub_mul_div()
@@ -76,9 +76,9 @@ void test_boost_time()
 int main()
 {
 	//test_add_sub_mul_div();
-	test_key();
+	//test_key();
 	 //test_boost();
-	//test_file();
+	test_file();
 	system("pause");
 	return 0;
 }

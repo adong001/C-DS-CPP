@@ -1,1 +1,12 @@
 123
+/* 在BL0阶段，Irom内固化的代码读取nandflash或SD卡前16K的内容，
+ * 并比对前16字节中的校验和是否正确，正确则继续，错误则停止。
+ */
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define BUFSIZE                 (16*1024)
+#define IMG_SIZE                (16*1024)
+#define SPL_HEADER_SIZE         16
+#define SPL_HEADER              "S5PC110 HEADER  "
