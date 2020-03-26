@@ -78,7 +78,9 @@ int main()
 	//test_add_sub_mul_div();
 	//test_key();
 	 //test_boost();
-	test_file();
+	//test_file();
+	RSA rsa;
+	rsa.ProdureKeyFile("ekey.txt", "dkey.txt", "pkey.txt");
 	system("pause");
 	return 0;
 }

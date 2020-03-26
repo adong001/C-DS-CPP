@@ -1,5 +1,64 @@
 #include"rsa.h"
 
+void RSA::ProdureKeyFile(const char* ekey_file, const char* dkey_file, const char* pkey_file)//产生钥匙文件
+{
+	int keys = 3;
+	int length = sizeof(DataType);
+	ofstream fe(ekey_file);
+	ofstream fd(dkey_file);
+	ofstream fp(pkey_file);
+
+	while (keys--)
+	{
+		DataType prime1 = GetPrime();
+		DataType prime2 = GetPrime();
+		while (prime1 == prime2)
+		{
+			prime2 = GetPrime();
+		}
+		DataType orla = GetOrla(prime1, prime2);
+		DataType pKey = GetPKey(prime1, prime2);
+		DataType eKey = GetEKey(orla);
+		DataType dKey = GetDKey(m_key.m_eKey, orla);
+		fe.write((char*)&eKey, length);
+		fd.write((char*)&dKey, length);
+		fp.write((char*)&pKey, length);
+	}
+	fe.close();
+	fd.close();
+	fp.close();
+}
+
+
+//void RSA::ProdureKeyFile(const char* ekey_file, const char* dkey_file, const char* pkey_file)//产生钥匙文件
+//{
+//	int keys = 3;
+//	int length = sizeof(DataType);
+//	ofstream fe(ekey_file, ofstream::binary);
+//	ofstream fd(dkey_file, ofstream::binary);
+//	ofstream fp(pkey_file, ofstream::binary);
+//
+//	while (keys--)
+//	{
+//		DataType prime1 = GetPrime();
+//		DataType prime2 = GetPrime();
+//		while (prime1 == prime2)
+//		{
+//			prime2 = GetPrime();
+//		}
+//		DataType orla = GetOrla(prime1, prime2);
+//		DataType pKey = GetPKey(prime1, prime2);
+//		DataType eKey = GetEKey(orla);
+//		DataType dKey = GetDKey(m_key.m_eKey, orla);
+//		fe.write((char*)&eKey, length);
+//		fd.write((char*)&dKey, length);
+//		fp.write((char*)&pKey, length);
+//	}
+//	fe.close();
+//	fd.close();
+//	fp.close();
+//}
+
 void GetRandom()
 {
 	//mt19937:一种随机数产生器  

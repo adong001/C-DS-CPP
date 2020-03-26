@@ -37,7 +37,10 @@ class RSA
 {
 private:
 	Key m_key;
-public:	DataType ExGcd(DataType a, DataType b, DataType& x, DataType& y);//求模范元素(公钥e)
+
+public:
+	void ProdureKeyFile(const char* ekey_file, const char* dkey_file, const char* pkey_file);//产生钥匙文件
+	DataType ExGcd(DataType a, DataType b, DataType& x, DataType& y);//求模范元素(公钥e)
 	DataType Encrypt(DataType data, DataType ekey, DataType pkey);//加密函数
 	DataType Decrypt(DataType data, DataType dkey, DataType pkey);//解密函数
 	DataType GetPrime();//获取素数
