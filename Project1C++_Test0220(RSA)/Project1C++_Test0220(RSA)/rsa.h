@@ -5,7 +5,6 @@
 #include<ctime>
 #include<string>
 #include<fstream>
-#include<xutility>
 #include<boost/multiprecision/cpp_int.hpp>
 #include<boost/multiprecision/miller_rabin.hpp>//大素数检测
 #define NUMBER 256   //一次解密NUMBER个DataType字节大小的数据
@@ -13,8 +12,8 @@
 using namespace std;
 namespace mp = boost::multiprecision;
 namespace rp = boost::random;
-typedef long DataType;
-//typedef mp::uint1024_t DataType;//DataType是一个1024位的无符号大正数
+//typedef long DataType;
+typedef mp::uint1024_t DataType;//DataType是一个1024位的无符号大正数
 
 
 struct Key

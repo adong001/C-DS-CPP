@@ -59,29 +59,19 @@ void RSA::ProdureKeyFile(const char* ekey_file, const char* dkey_file, const cha
 //	fp.close();
 //}
 
-void GetRandom()
-{
-	//mt19937:一种随机数产生器  
-	rp::mt19937 gen(time(nullptr));
-	cout << "random" << endl;
-	//指定随机数的范围 0 ~ (1<<786) 
-	rp::uniform_int_distribution<mp::cpp_int> dist(0, mp::cpp_int(1) << 128);
 
-	cout << dist(gen) << endl;
-}
-
-bool IsPrimeBigInt(DataType& data)
-{
-	rp::mt11213b gen(time(nullptr));
-	if (mp::miller_rabin_test(data, 25, gen))
-	{
-		if (mp::miller_rabin_test((data - 1) / 2, 25, gen))
-		{
-			return true;
-		}
-	}
-	return false;
-}
+//bool IsPrimeBigInt(DataType& data)
+//{
+//	rp::mt11213b gen(time(nullptr));
+//	if (mp::miller_rabin_test(data, 25, gen))
+//	{
+//		if (mp::miller_rabin_test((data - 1) / 2, 25, gen))
+//		{
+//			return true;
+//		}
+//	}
+//	return false;
+//}
 
 void RSA::Encrypt(const char* filename, const char* fileout)//文件加密
 {
@@ -196,14 +186,14 @@ DataType RSA::Decrypt(DataType data, DataType dkey, DataType pkey)//解密函数
 
 DataType RSA::GetPrime()//获取素数
 {
-	/*rp::mt19937 gen(time(NULL));
-	rp::uniform_int_distribution<DataType> dist(DataType(1), DataType(1) << 256);*/
+	rp::mt19937 gen(time(NULL));
+	rp::uniform_int_distribution<DataType> dist(DataType(1), DataType(1) << 256);
 	//随机获取一个50位到256位的大数
-	srand(time(NULL));  
+	//srand(time(NULL));  
     DataType prime;
 	while (true)
 	{
-		prime = rand() % 100 + 2;
+		//prime = rand() % 100 + 2;
 		//prime = dist(gen);
 		if (IsPrime(prime))
 		{
@@ -215,7 +205,7 @@ DataType RSA::GetPrime()//获取素数
 
 bool RSA::IsPrime(DataType data)//判断是否为素数
 {
-	/*rp::mt11213b gen(time(nullptr));
+	rp::mt11213b gen(time(nullptr));
 	if (mp::miller_rabin_test(data, 25, gen))
 	{
 		if (mp::miller_rabin_test((data - 1) / 2, 25, gen))
@@ -223,16 +213,16 @@ bool RSA::IsPrime(DataType data)//判断是否为素数
 			return true;
 		}
 	}
-	return false;*/
+	return false;
 
-	for (int i = 2; i <= sqrt(data); i++)
+	/*for (int i = 2; i <= sqrt(data); i++)
 	{
 		if (data % i == 0)
 		{
 			return false;
 		}
 	}
-	return true;
+	return true;*/
 }
 DataType RSA::GetPKey(DataType prime1, DataType prime2)//获取n
 {
