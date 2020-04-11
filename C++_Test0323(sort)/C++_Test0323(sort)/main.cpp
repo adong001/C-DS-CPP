@@ -115,6 +115,9 @@ void Shell_Sort(T arr[], size_t len, bool(*cmp)(T, T) = Less)//Ï£¶ûÅÅÐò(¸ù¾Ý²åÈë
 	}
 }
 
+
+template<class T>
+void Quick_Sort(T arr[], size_t len, bool(*cmp)(T, T) = Less)
 int main()
 {
 	int arr[] = { 2, 3, 4, 1, 6, 7, 8, 10, 5, 9 ,0,111,2,3,1,3,34,3,23,2,34};
