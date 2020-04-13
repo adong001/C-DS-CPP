@@ -2,6 +2,7 @@
 #include<iostream>
 #include<vector>
 #include<ctime>
+#include<stack>
 //#define SIZEOF(arr) sizeof(arr)/sizeof(arr[0])
 using namespace std;
 
@@ -14,7 +15,7 @@ void Swap(T& a, T& b)
 }
 
 template<class T>
-bool Greater(T a, T b,bool flag = false)
+bool Greater(T a, T b, bool flag = false)
 {
 	return flag ? a >= b : a > b;
 }
@@ -84,7 +85,7 @@ void Select_Sort(vector<T>& arr, size_t len, bool(*cmp)(T, T) = Less)//Ñ¡ÔñÅÅĞò
 template<class T>
 void Insert_Sort(vector<T>& arr, size_t len, bool(*cmp)(T, T) = Less)//²åÈëÅÅĞò
 {
-	int i,j,tmp;
+	int i, j, tmp;
 	for (i = 1; i < len; i++)
 	{
 		tmp = arr[i];
@@ -104,10 +105,10 @@ void Shell_Sort(vector<T>& arr, size_t len, bool(*cmp)(T, T) = Less)//Ï£¶ûÅÅĞò(¸
 	{
 		for (k = 0; k < gap; k++)//Ã¿ÌËgap×é,¶ÔÃ¿×é½øĞĞ²åÈëÅÅĞò
 		{
-			for (i = k + gap; i < len; i+=gap)//Ã¿×éÆğÊ¼Î»ÖÃÎªk + gap,
+			for (i = k + gap; i < len; i += gap)//Ã¿×éÆğÊ¼Î»ÖÃÎªk + gap,
 			{
 				tmp = arr[i];
-				for (j = i; j >= gap && cmp(tmp, arr[j - gap]); j-=gap)//×éÀà³ÉÔ±Ã¿¸ö¼ä¸ôgap
+				for (j = i; j >= gap && cmp(tmp, arr[j - gap]); j -= gap)//×éÀà³ÉÔ±Ã¿¸ö¼ä¸ôgap
 				{
 					arr[j] = arr[j - gap];
 				}
@@ -166,7 +167,7 @@ private:
 public:
 	static void Heap_Sort(vector<T>& arr, size_t len, bool(*cmp)(T, T) = Less)
 	{
-		for (int i = (len - 1)/2; i >= 0; --i)//¹¹½¨¶Ñ
+		for (int i = (len - 1) / 2; i >= 0; --i)//¹¹½¨¶Ñ
 		{
 			AdjustDown(arr, len, i, cmp);
 		}
@@ -227,7 +228,7 @@ private:
 public:
 	static void Merge_Sort(vector<T>& arr, size_t len, bool(*cmp)(T, T) = Less)
 	{
-		Merge_Sort(arr,0, len - 1, cmp);
+		Merge_Sort(arr, 0, len - 1, cmp);
 	}
 };
 
@@ -235,48 +236,159 @@ template<class T>
 class QuickSort
 {
 private:
-	static int GetPivot(vector<T>& arr, int start, int end)//»ñÈ¡»ù×¼ÔªËØ£¬ÓÅ»¯Ëã·¨
+	static void GetPivot(vector<int>& arr,int start, int end)//Ëæ»ú»ñÈ¡»ù×¼ÔªËØ£¬ÓÅ»¯Ëã·¨
 	{
 		srand((unsigned int)(time(NULL)));
 		int pos = rand() % (end - start + 1) + start;
-		return pos;
+		Swap(arr[pos],arr[start]);//ÈÃstart³ÉÎª»ù×¼ÔªËØ
 	}
 public:
-	static void Quick_Sort(vector<int>& arr, int start, int end, bool(*cmp)(T, T,bool) = Less)
+	static int Deal_Quick_Sort(vector<int>& arr, int start, int end, bool(*cmp)(T, T,bool) = Less)//µİ¹é°æ¿ìÅÅ
 	{
 		int left = start,right = end;
-		int pivot = GetPivot(arr, start, end);
-		Swap(arr[start], arr[pivot]);//ÈÃstart³ÉÎª»ù×¼ÔªËØ
+		GetPivot(arr,start, end);//ÈÃstart³ÉÎª»ù×¼ÔªËØ
+		int pivot = arr[start];
+
 		while (start < end)
 		{
-			for (; start < end && cmp(arr[end], pivot, true) ; end--);//´ÓÓÒÍù×ó±È»ù×¼ÖµĞ¡µÄ
+			for (; start < end && cmp(pivot,arr[end] , true) ; end--);//´ÓÓÒÍù×ó±È»ù×¼ÖµĞ¡µÄ
 			
-			for (; start < end && cmp(pivot,arr[start], true) ; start++);//´Ó×óÍùÓÒ±È»ù×¼Öµ´óµÄ
+			for (; start < end && cmp(arr[start],pivot, true) ; start++);//´Ó×óÍùÓÒ±È»ù×¼Öµ´óµÄ
 
 			if (start < end)//ÈôÎ´ÏàÓö¾Í½»»»
 			{
 				Swap(arr[start], arr[end]);
 			}
 		}
-		Swap(arr[left], arr[end]);
-		Quick_Sort(arr, left, end - 1);
-		Quick_Sort(arr, end + 1, right);
+		Swap(arr[left], arr[end]);//ÖĞ¼äÊÇ»ù×¼Öµ£¬×ó±ß±È»ù×¼ÖµĞ¡£¬ÓÒ±ß±È»ù×¼Öµ´ó£¬
+		return end;
+	}
+	static void Recursion_Quick_Sort(vector<int>& arr, int start, int end, bool(*cmp)(T, T, bool) = Less)//µİ¹é°æ¿ìÅÅ
+	{
+		if (start < end)
+		{
+			int mid = Deal_Quick_Sort(arr, start, end, cmp);//Á½±ßÅÅĞò£¬×óĞ¡ÓÚÖĞ¼ä£¬ÓÒ´óÓÚÖĞ¼ä
+			Quick_Sort(arr, start,mid - 1, cmp);//×óÓÒÔÙµİ¹éÅÅĞò
+			Quick_Sort(arr, mid + 1,end, cmp);
+		}
+	}
+	static void NonRecursion_Quick_Sort(vector<int>& arr, int start, int end, bool(*cmp)(T, T, bool) = Less)//·Çµİ¹é°æ
+	{
+		int left, right,mid;
+		stack<T> st;
+		st.push(end);
+		st.push(start);
+		while (!st.empty())
+		{
+			left = st.top();
+			st.pop();
+			right = st.top();
+			st.pop();
+			if (left < right)//·ÀÖ¹Ô½½ç
+			{
+				int mid = Deal_Quick_Sort(arr, left, right,cmp);
+				//ÏÈ½«mid×÷Îª»ù×¼ÔªËØÅÅÍêÁ½±ß£¬×óĞ¡ÓÚmid£¬ÓÒ´óÓÚmid
+
+				if (left < mid - 1)//²»Ô½½ç¾Í½«×ó±ßÑ¹ÈëÕ»
+				{
+					st.push(mid - 1);
+					st.push(left);
+				}
+				if (mid + 1 < right)//²»Ô½½ç¾Í½«ÓÒ±ßÑ¹ÈëÕ»
+				{
+					st.push(right);
+					st.push(mid + 1);
+				}
+			}
+		}
+	
 	}
 };
 
-
+//template<class T>
+//class QuickSort
+//{
+//private:
+//	static void GetPivot(vector<int>& arr, int start, int end)//Ëæ»ú»ñÈ¡»ù×¼ÔªËØ£¬ÓÅ»¯Ëã·¨
+//	{
+//		srand((unsigned int)time(NULL));
+//		int pos = rand() % (end - start + 1) + start;
+//		Swap(arr[pos], arr[start]);
+//	}
+//public:
+//	static int Deal_Quick_Sort(vector<int>& arr, int start, int end, bool(*cmp)(T, T, bool) = Less)//´¦ÀíÃ¿Ò»ÌË
+//	{
+//		int left = start, right = end;
+//		GetPivot(arr, start, end);
+//		int pviot = arr[start];
+//
+//		while (start < end)
+//		{
+//			for (; start < end && cmp(pviot, arr[end], true); end--);
+//			for (; start < end && cmp(arr[start], pviot, true); start++);
+//
+//			if (start < end)
+//			{
+//				Swap(arr[start], arr[end]);
+//			}
+//		}
+//
+//		Swap(arr[left], arr[end]);
+//		return end;
+//
+//	}
+//	static void Recursion_Quick_Sort(vector<int>& arr, int start, int end, bool(*cmp)(T, T, bool) = Less)//µİ¹é°æ¿ìÅÅ
+//	{
+//		if (start < end)
+//		{
+//			int mid = Deal_Quick_Sort(arr, start, end, cmp);
+//			Recursion_Quick_Sort(arr, start, mid - 1, cmp);
+//			Recursion_Quick_Sort(arr, mid + 1, end, cmp);
+//		}
+//	}
+//	static void NonRecursion_Quick_Sort(vector<int>& arr, int start, int end, bool(*cmp)(T, T, bool) = Less)//·Çµİ¹é°æ
+//	{
+//		int left, right, mid;
+//		stack<T> st;
+//		st.push(end);
+//		st.push(start);
+//		while (!st.empty())
+//		{
+//			left = st.top();
+//			st.pop();
+//			right = st.top();
+//			st.pop();
+//			if (left < right)
+//			{
+//				mid = Deal_Quick_Sort(arr, left, right, cmp);
+//
+//				if (left < mid - 1)
+//				{
+//					st.push(mid - 1);
+//					st.push(left);
+//				}
+//				if (mid + 1 < right)
+//				{
+//					st.push(right);
+//					st.push(mid + 1);
+//				}
+//			}
+//		}
+//	}
+//};
 int main()
 {
 	//vector<int> arr = { 2, 3, 4, 1, 6 };
-	 vector<int> arr = { 2, 3, 4, 1, 6, 7, 8, 10, 5, 9 ,0,111,2,3,1,3,34,3,23,2,34};
+	vector<int> arr = { 2, 3, 4, 1, 6, 7, 8, 10, 5, 9, 0, 111, 2, 3, 1, 3, 34, 3, 23, 2, 34 };
 	//int arr[] = { 2, 3, 4, 1, 6, 7, 8, 10, 5, 9 };
 	//Bubble_Sort(arr,arr.size());
 	//Select_Sort(arr,arr.size());
 	//Insert_Sort(arr,arr.size());
 	//Shell_Sort(arr,arr.size());
 	//HeapSort<vector<int>>::Heap_Sort(arr, arr.size());
-	 //MergeSort<int>::Merge_Sort(arr, arr.size());
-	 QuickSort<int>::Quick_Sort(arr, 0,arr.size()-1);
+	//MergeSort<int>::Merge_Sort(arr, arr.size());
+	QuickSort<int>::Recursion_Quick_Sort(arr, 0, arr.size() - 1);
+	//QuickSort<int>::NonRecursion_Quick_Sort(arr, 0, arr.size() - 1);
 	Print(arr, arr.size());
 	system("pause");
 	return 0;
