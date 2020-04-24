@@ -33,10 +33,12 @@ bool Ispha(char ch)
 
 std::string replace(std::string const &source, std::unordered_map<std::string, std::string> const &table)
 {
+	std::unordered_map<std::string, std::string>  t = table;
 	std::string dest;
 	int len = source.size();
 	int pos = 0;
 	int end;
+	t[source.substr(i, j - i + 1)] = 1;
 	for (int i = 0, j = 0; i < len && j <= len;)
 	{
 		if (Isnum(source[j]))//Êý×Ö
