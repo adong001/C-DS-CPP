@@ -52,7 +52,9 @@ int main()
 				cin >> vv[i][j];
 			}
 		}
+		
 		int count = 0;
+		
 		for (int i = 0; i < m; i++)
 		{
 			count += vv[i][2];
