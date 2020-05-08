@@ -65,6 +65,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="七牛云.cpp" />
+    <ClCompile Include="便利蜂.cpp" />
     <ClCompile Include="吉比特.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

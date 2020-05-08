@@ -39,7 +39,7 @@ using namespace std;
 //	return 0;
 //}
 
-int main()
+int main11()
 {
 	int n, m;
 	while (cin >> n >> m)

@@ -21,5 +21,8 @@
     <ClCompile Include="吉比特.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="便利蜂.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
