@@ -2,21 +2,21 @@
 #include<iostream>
 using namespace std;
 
-//class A
-//{
-//private:
-//	int a;
-//public:
-//
-//	static int b;
-//};
-//int A::b = 0;
-class Date
-{
-public:
-	//Date(int year)
-	//	:_year(year)
-	//{}
+// //class a
+// //{
+// //private:
+// //	int a;
+// //public:
+// //
+// //	static int b;
+// //};
+// //int a::b = 0;
+// class date
+// {
+// public:
+	// //date(int year)
+	// //	:_year(year)
+	// //{}
 explicit Date(int year)
 :_year(year)
 {}
