@@ -29,7 +29,7 @@ public:
 		return false;
 	}
 };
-int main()
+int main1()
 {
 	string s;
 	while (cin >> s)
