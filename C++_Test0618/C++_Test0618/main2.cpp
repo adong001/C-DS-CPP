@@ -2,9 +2,27 @@
 #include <string>
 #include <algorithm>
 using namespace std;
-
-int main()
+class A{
+public:
+	A(){ p();}
+	virtual void p(){
+		printf("A");
+	}
+	virtual ~A(){ p(); }
+};
+class B :public A
 {
+public:
+	B(){ p(); }
+	void p(){
+		printf("B");
+	}
+	~B(){ p(); }
+};
+int main2()
+{
+	A* a = new B();
+	delete a;
 	string src;
 	while (getline(cin, src))
 	{
