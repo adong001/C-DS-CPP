@@ -41,7 +41,7 @@ void FindPath(int n, int m)
 	path_tmp.pop_back();//将当前位置退出
 }
 
-int main()
+int main2()
 {
 	while (cin >> N >> M)
 	{
