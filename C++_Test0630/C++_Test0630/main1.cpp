@@ -11,6 +11,7 @@ int main()
 		{
 			cout << "No" << endl;
 		}
+
 		else
 		{
 			cout << "Yes" << endl;
