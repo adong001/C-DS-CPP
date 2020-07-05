@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-int main()
+int main1()
 {
 	int n;
 	while (cin >> n)
@@ -21,4 +21,5 @@ int main()
 		}
 		cout << cnts << endl;
 	}
+	return 0;
 }
