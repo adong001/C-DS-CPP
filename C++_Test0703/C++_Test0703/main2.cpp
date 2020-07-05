@@ -46,7 +46,7 @@ int getFirstUnFormedNum(vector<int>& arr, int len)
 	}
 	return arr[len - 1] + 1;
 }
-int main()
+int main3()
 {
 	int len;
 	while (cin >> len)
