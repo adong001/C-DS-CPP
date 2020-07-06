@@ -102,4 +102,23 @@ void mergesort(int *arr, int *tmp, int start, int end)
 	{
 		arr[i] = tmp[i];
 	}
-}
+}、
+
+
+int left = start,right = end;
+//		GetPivot(arr,start, end);//让start成为基准元素
+//		int pivot = arr[start];
+//
+//		while (start < end)
+//		{
+//			for (; start < end && cmp(pivot,arr[end] , true) ; end--);//从右往左比基准值小的
+//			
+//			for (; start < end && cmp(arr[start],pivot, true) ; start++);//从左往右比基准值大的
+//
+//			if (start < end)//若未相遇就交换
+//			{
+//				Swap(arr[start], arr[end]);
+//			}
+//		}
+//		Swap(arr[left], arr[end]);//中间是基准值，左边比基准值小，右边比基准值大，
+//		return end;
