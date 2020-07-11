@@ -2,7 +2,7 @@
 #include<string>
 #include<algorithm>
 using namespace std;
-int main1()
+int main0()
 {
 	string src, det;
 	while (cin >> src >> det)

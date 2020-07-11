@@ -66,6 +66,9 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="main1.cpp" />
+    <ClCompile Include="main2.cpp" />
+    <ClCompile Include="Pre-Post.cpp" />
+    <ClCompile Include="Rational Arithmetic.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
