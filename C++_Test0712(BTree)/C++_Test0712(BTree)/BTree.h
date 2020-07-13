@@ -1,8 +1,12 @@
 #pragma once
+#include<iostream>
 #include<vector>
 #include<time.h>
+using namespace std;
 
-template<class K, size_t M = 3>
+const size_t M = 3;
+
+template<class K, size_t M>
 struct BTreeNode
 {
 	K m_keys[M];//次节点存储的值
@@ -12,7 +16,7 @@ struct BTreeNode
 
 	BTreeNode()//构造函数
 	{
-		for (int i = 0; i < M; i++)
+		for (int i = 0; i <= M; i++)
 		{
 			m_child[i] = nullptr;
 		}
@@ -28,13 +32,13 @@ class BTree
 private:
 	Node* m_root;
 public:
-	/*BTree() :
+	BTree() :
 		m_root(nullptr)
-	{}*/
+	{}
 	/*查找函数，
 	成功-first=父节点,	second=次节点在这一层的位置;
 	失败-first=父节点,	second=-1;*/
-	pair<Node*,int> Find(const K& key)
+	std::pair<Node*,int> Find(const K& key)
 	{
 		Node* parent = nullptr;
 		Node* cur = m_root;
@@ -92,7 +96,7 @@ public:
 			return true;
 		}
 		pair<Node*, int> ret = Find(key);
-		if (ret)//存在就不能再插入
+		if (ret.second != -1)//存在就不能再插入
 		{
 			return false;
 		}
@@ -102,7 +106,7 @@ public:
 		Node* child = nullptr;
 		while (1)
 		{
-			InsertKey(node, key, child);//先插入，M阶我们开辟了M个值，可以存储M个值
+			InsertKey(node, k, child);//先插入，M阶我们开辟了M个值，可以存储M个值
 			//，只要每次插入后就会判断是否需要分分裂，保证不会越界
 
 			if (node->m_keysize < M)//没有超过每一个节点插入值的个数就插入成功
@@ -117,21 +121,20 @@ public:
 				int i;
 				for (i = mid + 1; i < M; i++)//把右半部分拷贝到新节点中
 				{
-					newnode->m_keys[i - mid - 1] = node->m_keys[i];
+					newnode->m_keys[i - mid - 1] = node->m_keys[i];//拷贝关键字
 					newnode->m_child[i - mid - 1] = node->m_child[i];//左孩子也拷贝过来
 					if (node->m_child[i])
 					{
-						node->m_child[i]->m_parent = newnode->m_keys[i - mid - 1];//孩子认父亲
+						node->m_child[i]->m_parent = newnode;//孩子认父亲
 					}
-					node->m_keys[i - mid - 1] = K();//该值挪走就置空
+					node->m_keys[i] = K();//该值挪走就置空
 					node->m_child[i] = nullptr;//孩子挪走就置空
-					node->m_keys[i - mid - 1] = nullptr;
 					newnode->m_keysize++;
 				}
 				newnode->m_child[i - mid - 1] = node->m_child[i];//最后一个右孩子孩子坐标为M
 				if (node->m_child[i])
 				{
-					node->m_child[i]->m_parent = newnode->m_keys[i - mid - 1];//孩子认父亲
+					node->m_child[i]->m_parent = newnode;//孩子认父亲
 				}
 				node->m_child[i] = nullptr;//孩子挪走就置空
 				node->m_keysize -= (newnode->m_keysize + 1);
@@ -145,6 +148,7 @@ public:
 					m_root->m_child[1] = newnode;//右孩子是分裂出来的节点
 					node->m_parent = newnode->m_parent = m_root;
 					node->m_keys[mid] = K();//该节点挪走就置空
+					m_root->m_keysize = 1;
 					return true;
 				}
 				else//父节点不为空，就相当于给父节点插入一个值为node->m_keys[mid]的孩子
@@ -152,6 +156,7 @@ public:
 					//使用迭代，node变成父节点，child父节点左孩子，循环上去，就是给node插入k
 					k = node->m_keys[mid];
 					child = newnode;
+					node->m_keys[mid] = K();//拿上去置空
 					node = node->m_parent;
 				}
 			}

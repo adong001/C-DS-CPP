@@ -2,17 +2,20 @@
 #include<iostream>
 #include"BTree.h"
 using namespace std;
+#define MY_TEST
 
 void Test()
 {
-	/*int a[] = { 53, 139, 75, 49, 145, 36, 101 };
+#ifdef MY_TEST
+	int a[] = { 53, 139, 75, 49, 145, 36, 101 };
 
 	BTree<int, 3> t;
 	for (int i = 0; i < 7; i++)
 	{
 		t.Insert(a[i]);
 	}
-	t.InOrder();*/
+	t.InOrder();
+#else	
 	vector<int> v(10000);
 	for (int i = 0; i < 10000; i++)
 	{
@@ -24,6 +27,7 @@ void Test()
 		t.Insert(e);
 	}
 	t.InOrder();
+#endif
 }
 
 int main()
