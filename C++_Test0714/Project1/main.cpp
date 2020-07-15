@@ -20,7 +20,7 @@ int Getnum(int num)
 	return cnts;
 }
 
-int main()
+int main0()
 {
 	int n;
 	while (cin >> n)
@@ -37,4 +37,5 @@ int main()
 		}
 		cout << maxnum << endl << maxcnts << endl;
 	}
+	return 0;
 }
