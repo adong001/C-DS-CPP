@@ -21,5 +21,8 @@
     <ClCompile Include="main.h">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="main1.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

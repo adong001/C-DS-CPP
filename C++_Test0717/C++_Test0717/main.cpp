@@ -60,7 +60,7 @@ bool IsAddWord(const string& str)
 	return false;
 }
 
-int main()
+int main1()
 {
 	string s;
 	while (cin >> s)
