@@ -12,7 +12,9 @@ private:
 	//list´æ´¢val
 	list<int> m_lt;
 	int m_capacity;
+	
 public:
+
 	LRUCache(int capacity) :
 		m_capacity(capacity)
 	{}
