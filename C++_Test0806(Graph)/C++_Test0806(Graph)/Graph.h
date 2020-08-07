@@ -3,6 +3,7 @@
 #include<vector>
 #include<string>
 #include<unordered_map>
+#include<queue>
 using namespace std;
 
 namespace Matrix//邻接矩阵
@@ -58,7 +59,7 @@ namespace Matrix//邻接矩阵
 		void _DFS(int srcIndex, vector<bool>& visted)
 		{
 			visted[srcIndex] = true;
-			cout << m_vertex[srcIndex] << "[" << srcIndex << "]" ;
+			cout << m_vertex[srcIndex] << "[" << srcIndex << "]";
 			for (int i = 0; i < m_vertex.size(); i++)
 			{
 				if (m_line[srcIndex][i] != W() && visted[i] != true)
@@ -76,9 +77,33 @@ namespace Matrix//邻接矩阵
 			cout << endl;
 		}
 
-		void BFS()//广度优先遍历
+		void BFS(const V& v)//广度优先遍历
 		{
-
+			int index = GetPosInMatrix(v);
+			vector<bool> flag(m_vertex.size(), false);//标记已经遍历的为true
+			queue<int> q;
+			q.push(index);
+			flag[index] = true;
+			while (!q.empty())
+			{
+				int levelsize = q.size();//每一层的个数
+				for (int i = 0; i < levelsize; i++)
+				{
+					int pos = q.front();
+					cout << m_vertex[pos] << "[" << pos << "]";
+					for (int i = 0; i < m_vertex.size(); i++)
+					{
+						if (flag[i] != true && m_line[pos][i] != W())
+						{
+							q.push(i);
+							flag[i] = true;
+						}
+					}
+					q.pop();
+				}
+				cout << endl;
+			}
+			cout << endl;
 		}
 	};
 
@@ -93,9 +118,12 @@ namespace Matrix//邻接矩阵
 		g.AddEdge("库里", "杜兰特", 90);
 		g.AddEdge("杜兰特", "汤普森", 90);
 		g.AddEdge("科比", "乔丹", 100);
-		g.DFS("詹姆斯");
+		/*g.DFS("詹姆斯");
 		g.DFS("保罗");
-		g.DFS("乔丹");
+		g.DFS("乔丹");*/
+		g.BFS("詹姆斯");
+		g.BFS("保罗");
+		g.BFS("乔丹");
 	}
 }
 
@@ -198,10 +226,10 @@ namespace List//邻接表
 			}
 		}
 
-		void _DFS(int srcIndex,vector<bool>& flag)
+		void _DFS(int srcIndex, vector<bool>& flag)
 		{
 			flag[srcIndex] = true;
-			cout << m_vertex[srcIndex] << "["<<srcIndex<<"]";
+			cout << m_vertex[srcIndex] << "[" << srcIndex << "]";
 			Edge* tmp = m_list[srcIndex];
 			while (tmp)
 			{
@@ -217,13 +245,39 @@ namespace List//邻接表
 		{
 			int index = GetPosInMatrix(v);
 			vector<bool> flag(m_vertex.size(), false);//标记已经遍历的为true
-			_DFS(index,flag);
+			_DFS(index, flag);
 			cout << endl;
 		}
 
 		void BFS(const V& v)//广度优先遍历
 		{
-
+			int index = GetPosInMatrix(v);
+			vector<bool> flag(m_vertex.size(), false);//标记已经遍历的为true
+			queue<int> q;
+			q.push(index);
+			flag[index] = true;
+			while (!q.empty())
+			{
+				int levelsize = q.size();//每一层的个数
+				for (int i = 0; i < levelsize; i++)
+				{
+					int pos = q.front();
+					cout << m_vertex[pos] << "[" << pos << "]";
+					Edge* node = m_list[pos];
+					while (node)
+					{
+						if (flag[node->m_det] != true)
+						{
+							q.push(node->m_det);
+							flag[node->m_det] = true;
+						}
+						node = node->m_next;
+					}
+					q.pop();
+				}
+				cout << endl;
+			}
+			cout << endl;
 		}
 	};
 
@@ -238,8 +292,11 @@ namespace List//邻接表
 		g.AddEdge("库里", "杜兰特", 90);
 		g.AddEdge("杜兰特", "汤普森", 90);
 		g.AddEdge("科比", "乔丹", 100);
-		g.DFS("詹姆斯");
+		/*g.DFS("詹姆斯");
 		g.DFS("保罗");
-		g.DFS("乔丹");
+		g.DFS("乔丹");*/
+		g.BFS("詹姆斯");
+		g.BFS("保罗");
+		g.BFS("乔丹");
 	}
 }
