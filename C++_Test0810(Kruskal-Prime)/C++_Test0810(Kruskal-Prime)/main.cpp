@@ -1,8 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS 1
-#include<iostream>
-using namespace std;
+#include"MinSpanningTree.h"
 
 int main()
 {
+	//Kruskal::TestGraph();
+
+	Prime::TestGraph();
     return 0;
 }

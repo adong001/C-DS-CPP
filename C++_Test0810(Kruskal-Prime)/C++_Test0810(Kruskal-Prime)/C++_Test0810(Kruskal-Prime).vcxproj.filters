@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="c++_file.h">
+    <ClInclude Include="MinSpanningTree.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
