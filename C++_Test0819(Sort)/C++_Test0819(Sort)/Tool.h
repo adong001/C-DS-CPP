@@ -35,7 +35,7 @@ bool Less(T a, T b)
 }
 
 template<class T>
-void Test_Sort(void(*sort)(std::vector<T>&, size_t, bool(*cmp)(T, T) = Less), std::vector<T> v, size_t n)
+void Test_Sort(void(*sort)(std::vector<T>&, size_t, bool(*cmp)(int, int)), std::vector<T>& v, size_t n)
 {
 	//__FUNCTION__
 	srand((unsigned)time(NULL));
@@ -44,7 +44,6 @@ void Test_Sort(void(*sort)(std::vector<T>&, size_t, bool(*cmp)(T, T) = Less), st
 	{
 		v[i] = rand() % n;
 	}
-	//printf("%s:\n", __FUNCTION__);
-	sort(v, 100,cmp);
+	sort(v, 100,Less);
 	print(v);
 }

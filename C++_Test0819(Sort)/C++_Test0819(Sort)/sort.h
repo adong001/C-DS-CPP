@@ -2,7 +2,18 @@
 #include<iostream>
 #include<vector>
 #include"Tool.h"
+/*
+排序方法		平均情况		最好情况		最坏情况	辅助空间		稳定性
 
+冒泡			O(n^2)			O(n)			O(n^2)		O(1)			稳定
+选择			O(n^2)			O(n^2)			O(n^2)		O(1)			稳定
+插入			O(n^2)			O(n)			O(n^2)		O(1)			稳定
+希尔			O(nlogn)-O(n^2)	O(n^1.3)		O(n^2)		O(1)			不稳定
+堆				O(nlogn)		O(nlogn)		O(nlogn)	O(1)			不稳定
+归并			O(nlogn)		O(nlogn)		O(nlogn)	O(n)			稳定
+快速			O(nlogn)		O(nlogn)		O(n^2)		O(logn)-O(n)	不稳定
+
+*/
 //以下所有排序函数格式为 
 //template<class T>
 //void Sort(vector<T>& arr, size_t n, bool(*cmp)(T, T) = Less)
@@ -14,6 +25,7 @@
 template<class T>
 void Bubble_Sort(std::vector<T>& arr, size_t n, bool(*cmp)(T, T) = Less)
 {
+	std::cout << __FUNCTION__ << std::endl;
 	int i, j;
 	for (i = 0; i < n - 1; i++)
 	{
@@ -34,6 +46,7 @@ void Bubble_Sort(std::vector<T>& arr, size_t n, bool(*cmp)(T, T) = Less)
 template<class T>
 void Insert_Sort(std::vector<T>& arr, size_t n, bool(*cmp)(T, T) = Less)
 {
+	std::cout << __FUNCTION__ << std::endl;
 	int i, j,tmp;
 	for (i = 1; i < n; i++)
 	{
@@ -56,6 +69,38 @@ void Insert_Sort(std::vector<T>& arr, size_t n, bool(*cmp)(T, T) = Less)
 template<class T>
 void Choice_Sort(std::vector<T>& arr, size_t n, bool(*cmp)(T, T) = Less)
 {
+	std::cout << __FUNCTION__ << std::endl;
+	int i, j, peak;
+	for (i = 0; i < n - 1; i++)//外层只找n-1个就结束了
+	{
+		//peak记录（i,n-1]中极值(极大值或极小值)的下标
+		peak = i;
+
+		//找出（i,n-1]中的极值
+		for (j = i + 1; j < n; j++)
+		{
+			//arr[j] < arr[peak] 跟新peak的值为j
+			if (cmp(arr[j], arr[peak]))
+			{
+				peak = j;
+			}
+		}
+		//如果找到的极值小于(大于)arr[i]就交换
+		if (cmp(arr[peak], arr[i]))
+		{
+			swap(arr[peak], arr[i]);
+		}
+	}
+}
+
+
+//4.希尔排序
+//算法思想：(1)每一次从待排序的数据元素中选出最小（或最大）的一个元素，存放在序列的起始位置，
+//			(2)直到全部待排序的 数据元素排完
+template<class T>
+void Choice_Sort(std::vector<T>& arr, size_t n, bool(*cmp)(T, T) = Less)
+{
+	std::cout << __FUNCTION__ << std::endl;
 	int i, j, peak;
 	for (i = 0; i < n - 1; i++)//外层只找n-1个就结束了
 	{
