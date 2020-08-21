@@ -41,7 +41,7 @@ int backpack(int m, vector<int>& A, vector<int>& V)
 	return result[m];
 }
 
-int main()
+int main2()
 {
 	//游戏个数和完的天数
 	int Games, PlayDays;
