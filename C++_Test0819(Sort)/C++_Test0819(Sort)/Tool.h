@@ -1,4 +1,5 @@
 #pragma once
+#define SORTNUMBERS 12
 
 //交换两个数据
 template<class T>
@@ -37,13 +38,12 @@ bool Less(T a, T b)
 template<class T>
 void Test_Sort(void(*sort)(std::vector<T>&, size_t, bool(*cmp)(int, int)), std::vector<T>& v, size_t n)
 {
-	//__FUNCTION__
 	srand((unsigned)time(NULL));
 
 	for (int i = 0; i < n; i++)
 	{
 		v[i] = rand() % n;
 	}
-	sort(v, 100,Less);
+	sort(v, SORTNUMBERS, Less);
 	print(v);
 }
