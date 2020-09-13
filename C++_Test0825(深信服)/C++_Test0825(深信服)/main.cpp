@@ -16,7 +16,7 @@ void ChangeStr(string& src, const string& det,char b)
 	}
 }
 
-int main()
+int main1()
 {
 	int n;
 	string src;
@@ -33,7 +33,7 @@ int main()
 				if (!mdet[b + '0'].empty())
 				{
 					//0-1 ,1-2 ,´æ´¢¾ÍÊÇ(0,1),(1,#)->(0,12),(2,#)
-					mdet[]
+					//mdet[]
 				}
 			}
 		}
