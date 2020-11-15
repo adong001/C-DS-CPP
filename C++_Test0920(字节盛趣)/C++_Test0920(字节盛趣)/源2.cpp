@@ -68,8 +68,16 @@ public:
 	}
 };
 
-int main()
+void f(int i, int j)
 {
+	cout << i << " " <<j <<endl;
+}
+int main3()
+{
+	static int i = 0;
+	f(i++, i++);
+	cout << i;
+
 	Solution s;
 	s.sort("\"19 5 9 224\"");
 

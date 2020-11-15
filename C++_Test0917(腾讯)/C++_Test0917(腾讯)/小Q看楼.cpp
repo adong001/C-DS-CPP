@@ -24,6 +24,8 @@ int Count(vector<int>& high, int pos)
 
 int main()
 {
+	int a;
+	printf("%d\n", a += a *= a %= 6);
 	int n;
 	while (cin >> n)
 	{
